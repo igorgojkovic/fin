@@ -1,0 +1,11 @@
+PUSH KEY CLEAR
+SELECT CAREV
+
+*REPORT FORM  CAREV3PREGLED PREVIEW
+
+   mfile='CAREV3PREGLED'
+   uslov=""
+   DO printer_bullzip WITH mdata02,mfile,uslov
+
+
+POP KEY

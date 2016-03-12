@@ -1,0 +1,4 @@
+PUSH KEY CLEAR
+pronorma.cmdsf2.setfocus
+DO FORM PROPOLU
+POP KEY

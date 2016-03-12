@@ -1,0 +1,108 @@
+m2brkal=brkal
+KFAKT='FAKT'
+KFAKTG='FAKTG'
+
+DO IDEL WITH (KKOCKAX)
+DO IDEL WITH (KKOCKAX2)
+
+USE &KFAKTG IN 0 ALIAS FAKTG ORDER 1
+SELECT FAKTG
+COPY STRUCTURE TO &KKOCKA
+USE &KKOCKA IN 0 ALIAS KOCKA EXCLUSIVE
+USE &KFAKT IN 0 ALIAS FAKT ORDER 1
+SELECT FAKT
+COPY STRUCTURE TO &KKOCKA2
+USE &KKOCKA2 IN 0 ALIAS KOCKA2 EXCLUSIVE
+SELECT FAKTG
+SEEK M2BRKAL
+IF FOUND()
+   SELECT FAKTG
+   mbrrac=brrac
+   MDATDOK=DATDOK
+   MBRNAL=BRNAL
+   SCATTER NAME POLJA
+   SELECT KOCKA    
+   APPEND BLANK
+   GATHER NAME POLJA
+   REPLACE BRKAL WITH MBRKAL
+   REPLACE PORBR WITH BRRAC
+   replace brrac WITH mbrkal
+   REPLACE BRNAL WITH MBRNAL
+   REPLACE DATDOK WITH MDATDOK
+   SELECT FAKTG
+   REPLACE BRKAL WITH '999999'
+   *--------------------
+   *--------------------
+   SET DEFAULT TO &MDATA01LE
+   USE LEPOR IN 0 
+   SELECT LEPOR
+   GO TOP
+   DO WHILE.NOT.EOF()
+      IF brrac=mbrrac
+         replace brrac WITH '999999'
+      endif   
+      SKIP
+   ENDDO
+   USE
+   SET DEFAULT TO &MDATA02
+   SELECT FAKT
+   SEEK M2BRKAL
+   IF FOUND()
+      DO WHILE.NOT.EOF()
+         IF BRKAL=M2BRKAL
+            SCATTER NAME POLJA
+            SELECT KOCKA2
+            APPEND BLANK
+            GATHER NAME POLJA
+            REPLACE BRKAL WITH MBRKAL
+            SELECT FAKT
+            REPLACE BRKAL WITH '999999'
+            SEEK M2BRKAL
+            IF FOUND()
+               LOOP
+            ELSE
+               EXIT
+            ENDIF      
+         ELSE
+            EXIT
+         ENDIF
+         SKIP
+      ENDDO   
+   ENDIF
+   SELECT KOCKA
+   SCATTER NAME POLJA
+   USE
+   SELECT KOCKA2
+   USE    
+   SELECT FAK
+   zap
+   APPEND FROM &KKOCKA2
+   replace ALL brkal WITH abrkal
+   GO top
+   DO while.not.eof()
+      mkol=koli
+      replace rob.kol WITH  rob.kol-mkol
+      replace rob.izlaz WITH rob.izlaz+mkol
+      REPLACE TARIFA WITH ROB.TARIFA
+      REPLACE PROCPOR WITH ROB.PROCPOR
+      replace velcena WITH rob.velcena
+      SKIP
+   enddo
+   GO top
+   SELECT FAKG
+   LOCATE FOR brkal=abrkal
+   IF FOUND()
+      GATHER NAME polja
+   endif
+ELSE
+   SELECT KOCKA
+   USE
+   SELECT KOCKA2
+   USE
+ENDIF
+SELECT FAKT
+USE
+SELECT FAKTG
+USE
+SELECT FAK
+lecoprijem.RELEASE

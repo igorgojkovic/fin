@@ -1,0 +1,22 @@
+PARAMETERS MSVE
+PUSH KEY CLEAR
+MMSVE=MSVE
+MBRKAL=BRKAL
+SET ORDER TO 1
+IF MMSVE=0
+   *REPORT FORM KALIZVPREGK0  PREVIEW FOR BRKAL=MBRKAL
+      mfile='KALIZVPREGK0'
+      uslov="BRKAL=MBRKAL"
+      DO printer_bullzip WITH mdata02,mfile,uslov
+   
+ELSE
+   *REPORT FORM KALIZVPREGK0  PREVIEW 
+      mfile='KALIZVPREGK0'
+      uslov=""
+      DO printer_bullzip WITH mdata02,mfile,uslov
+   
+ENDIF
+SELECT KALI
+POP KEY
+
+

@@ -1,0 +1,311 @@
+PARAMETERS KUDA
+PUSH KEY CLEAR
+
+SELECT KASA
+GO TOP
+IF RECCOUNT()>0
+   MFLSIFRA=FLSIFRA
+   USE KASAPAR IN 0
+   SELECT KASAPAR
+   MSIFRA=SIFRA
+   MFVRSTA=FVRSTA
+   MPOCNAL=POCNAL
+   MSEMA=SEMA
+   SET CENTURY OFF
+   mmd='BOY'
+   mdropboxput=ALLTRIM(dropboxput)+mmd
+   SET CENTURY ON
+   USE
+   SELECT KASA
+   MOPER=OPER
+   M2MALVRED=0
+   MGOTOVINA=GOTOVINA
+   MKES=GOTOVINA
+   MCEK=CEK
+   MKARTICA=KARTICA
+   MIDKARTICE=IDKARTICE
+   MFLSIFRA=FLSIFRA
+   DO WHILE.NOT.EOF()
+      M2MALVRED=M2MALVRED+MALVRED
+      SKIP
+   ENDDO
+   
+   *------AKO JE GOTOVINA <>0
+   IF MGOTOVINA<>0
+      *----AKO JE GOTOVINA MANJA OD RACUNA
+      IF MGOTOVINA<M2MALVRED
+         *-----AKO JE CEK RAZLICITO OD 0
+         IF MCEK<>0
+            *----AKO JE CEK + GOTOVINA>=RACUN
+            IF MCEK+MGOTOVINA>=M2MALVRED
+               MCEK=M2MALVRED-MGOTOVINA
+               *----AKO JE CEK + GOTOVINA < RACUNA
+            ELSE
+               *----AKO JE KARTICA<>0
+               IF MKARTICA<>0
+                  *-----AKO JE KARTICA MANJA OD OSTATKA RACUNA
+                  IF MKARTICA<M2MALVRED-MGOTOVINA-MCEK
+                     MCEK=CEK
+                     MKARTICA=KARTICA
+                     MGOTOVINA=M2MALVRED-MCEK-MKARTICA
+                  ELSE
+                     MKARTICA=M2MALVRED-MGOTOVINA-MCEK
+                  ENDIF
+               ELSE
+               *-----AKO JE KARTICA=0
+                  MKARTICA=0
+                  MCEK=CEK
+                  MGOTOVINA=M2MALVRED-MCEK
+               ENDIF
+            
+            ENDIF
+         ELSE
+            *----AKO JE CEK=0
+            *----AKO JE KARTICA<>0
+            IF MKARTICA<>0
+               *-----AKO JE KARTICA MANJA OD OSTATKA RACUNA
+               IF MKARTICA<M2MALVRED-MGOTOVINA
+                  MKARTICA=KARTICA
+                  MGOTOVINA=M2MALVRED-MKARTICA
+               ELSE
+                  MKARTICA=M2MALVRED-MGOTOVINA
+               ENDIF
+            ELSE
+            *-----AKO JE KARTICA=0
+               MKARTICA=0
+               MGOTOVINA=M2MALVRED
+            ENDIF
+         ENDIF
+      *----AKO JE GOTOVINA>=RACUN
+      ELSE
+         MGOTOVINA=M2MALVRED
+         MCEK=0
+         MKARTICA=0
+      ENDIF
+      
+   ELSE
+   *-------AKO JE GOTOVINA 0
+   *-----AKO JE CEK RAZLICITO OD 0
+      IF MCEK<>0
+         *----AKO JE CEK  >=RACUN
+         IF MCEK>=M2MALVRED
+            MCEK=M2MALVRED
+         *----AKO JE CEK < RACUNA
+         ELSE
+            *----AKO JE KARTICA<>0
+            IF MKARTICA<>0
+               *-----AKO JE KARTICA MANJA OD OSTATKA RACUNA
+               IF MKARTICA<=M2MALVRED-MCEK
+                  MCEK=CEK
+                  MGOTOVINA=M2MALVRED-MCEK-MKARTICA
+               ELSE
+                  MKARTICA=M2MALVRED-MCEK
+               ENDIF
+            ELSE
+               *-----AKO JE KARTICA=0
+               MKARTICA=0
+               MCEK=CEK
+               MGOTOVINA=M2MALVRED-MCEK
+            ENDIF
+         ENDIF
+      ELSE
+      *----AKO JE CEK=0 I GOTOVINA=0
+         *----AKO JE KARTICA<>0
+        IF MKARTICA<>0
+           *-----AKO JE KARTICA MANJA OD OSTATKA RACUNA
+           IF MKARTICA<=M2MALVRED
+              MGOTOVINA=M2MALVRED-MKARTICA
+           ELSE
+              MKARTICA=M2MALVRED
+           ENDIF
+        ELSE
+           *-----AKO JE KARTICA=0
+           MKARTICA=0
+           MCEK=0
+           MGOTOVINA=M2MALVRED
+        ENDIF
+      ENDIF
+   ENDIF
+
+   GO TOP
+      MOPER=OPER
+      MDATUM=DATE()
+      MVREME=TIME()
+      MSTO=STO
+*      MSIFRA=SIFRA
+      USE KASABROJ IN 0 
+      SELECT KASABROJ
+      GO BOTTOM
+      IF RECCOUNT()>0
+         MZADNJIbr=VAL(BRKAl)
+      ELSE
+         mzadnjibr=0
+      endif
+      APPEND BLANK
+      IF RECCOUNT()>1
+         MNOVI=ALLTRIM(STR(mzadnjibr+1,6,0))
+         MLEN=LEN(MNOVI)
+         MN2=REPLICATE('0',6-MLEN)+MNOVI  
+         MN2BRKAL=MN2
+      ELSE
+         MN2BRKAL='000001'
+      ENDIF   
+      REPLACE BRKAL WITH MN2BRKAL
+      REPLACE OPER WITH MOPER
+      REPLACE DATUM WITH MDATUM
+      REPLACE VREME WITH MVREME
+      REPLACE STO WITH MSTO
+      USE
+
+   SELECT KASA
+   GO TOP
+*   MSIFRA=SIFRA
+   MBRKAL=MN2BRKAL
+   IF SIFRA<>SPACE(5)
+      MSIFRA=SIFRA
+   ENDIF
+   MFLSIFRA=FLSIFRA
+   KKAL='TMKAL'+TTVREDNI+'.DBF'
+   KKALG='TMKALG'+TTVREDNI+'.DBF'
+   KFAK='TMFAK'+TTVREDNI+'.DBF'
+   KFAKG='TMFAKG'+TTVREDNI+'.DBF'
+   KTVNIV='TMNIV'+TTVREDNI+'.DBF'
+   
+   
+   USE &KFAKG IN 0 ORDER 1 ALIAS FAKG
+   SELECT FAKG
+   SET ORDER TO 1
+   LOCATE FOR BRKAL=MBRKAL
+   IF.NOT.FOUND()
+      APPEND BLANK
+      REPLACE BRKAL WITH MBRKAL
+      REPLACE FVRSTA WITH MFVRSTA
+      REPLACE SIFRA WITH MSIFRA
+      REPLACE VPDV WITH 'IN0'
+      REPLACE OPDV WITH '*'
+      REPLACE DATDOK WITH DATE()
+      REPLACE DATUM WITH DATE()
+      REPLACE VALUTA WITH DATE()
+      REPLACE VREME WITH TIME()
+      REPLACE BRRAC WITH MBRKAL
+      REPLACE BRNAL WITH SUBSTR(MPOCNAL,1,1)+SUBSTR(BRKAL,2,5)
+      REPLACE KES WITH MGOTOVINA
+      REPLACE CEK WITH MCEK
+      REPLACE KARTICA WITH MKARTICA
+      REPLACE KURS WITH AMKURS
+      IF KUDA=1
+         REPLACE KASA WITH '*'
+      ELSE
+         REPLACE KASA WITH 'N'
+      ENDIF
+      REPLACE ARHIVA WITH '*'
+      REPLACE OPER WITH MOPER
+      REPLACE IDKARTICE WITH MIDKARTICE
+      REPLACE FLSIFRA WITH MFLSIFRA
+      SELECT FAKG
+      *--------PRENOSIMO KREDIT------
+      IF Mmkredfl=1
+         SELECT KASAkr
+         SCATTER NAME POLJA
+         SELECT FAKG
+         GATHER NAME POLJA
+         REPLACE BRRAC WITH BRKRED
+      REPLACE BRKAL WITH MBRKAL
+      REPLACE FVRSTA WITH MFVRSTA
+      REPLACE SIFRA WITH MSIFRA
+      REPLACE VPDV WITH 'IN0'
+      REPLACE OPDV WITH '*'
+      REPLACE DATDOK WITH DATE()
+      REPLACE DATUM WITH DATE()
+      REPLACE VALUTA WITH DATE()
+      REPLACE VREME WITH TIME()
+      REPLACE BRNAL WITH SUBSTR(MPOCNAL,1,1)+SUBSTR(BRKAL,2,5)
+      REPLACE KES WITH MGOTOVINA
+      REPLACE CEK WITH MCEK
+      REPLACE KARTICA WITH MKARTICA
+      REPLACE KURS WITH AMKURS         
+      ENDIF
+      *-------------KRAJ PRENOSA KREDITA-----
+   ENDIF
+   USE
+   IF APRAVIBG=1
+      USE KASAdrop IN 0 
+   ENDIF
+   
+   SELECT ROB
+   SET FILTER TO 
+   SET ORDER TO 1
+   USE &KFAK IN 0 ORDER 1 ALIAS FAK
+   SELECT FAK
+   SET RELATION TO RSIF INTO ROB ADDITIVE
+   SELECT KASA
+   DO WHILE.NOT.EOF()
+      MRSIF=RSIF
+      mpodnaziv=rob.podnaziv
+      MKOLI=KOLI
+      MMALCENA=MALCENA
+      MMALVRED=MALVRED-RABAT
+      IF MKOLI<>0
+         MMALCENA=ROUND(MMALVRED/MKOLI,2)
+      ELSE
+         MMALCENA=1
+      ENDIF
+      MDATDOK=DATE()
+      MTARIFA=TARIFA
+      MPROCPOR=PROCPOR
+      SELECT FAK
+      APPEND BLANK
+      REPLACE BRKAL WITH MBRKAL
+      REPLACE RSIF WITH MRSIF
+      REPLACE KOLI WITH MKOLI
+      REPLACE MALCENA WITH MMALCENA
+      REPLACE DEVCENA WITH ROUND(MALCENA/AMKURS,2)
+      REPLACE DEVVRED WITH KOLI*DEVCENA      
+      REPLACE MALVRED WITH MMALVRED
+      REPLACE DATDOK WITH MDATDOK
+      REPLACE TARIFA WITH MTARIFA
+      REPLACE PROCPOR WITH MPROCPOR
+      REPLACE DATDOK WITH MDATDOK
+      IF ROB.PROSCENM<>0
+      REPLACE CENA WITH ROB.PROSCENM
+      ELSE
+      REPLACE CENA WITH MALCENA
+      ENDIF
+      mnaz=rob.naz
+      REPLACE IZNI WITH KOLI*CENA
+      REPLACE POREZ WITH ROUND(MALVRED*PROCPOR/(100+PROCPOR),2)
+      REPLACE MARZA WITH MALVRED-POREZ-IZNI
+      IF APRAVIBG=1
+      *---------OVDE SE PRAVI ZA DRPOBOX*****
+         SELECT kasadrop
+         APPEND BLANK
+         replace posracun WITH mbrkal
+         replace art WITH mpodnaziv
+         replace naziv WITH mnaz   
+         replace izlaz1 WITH  mkoli
+         replace cenamp WITH Mmalcena
+         replace pot WITH mmalvred
+         replace datum WITH DATE() 
+         IF mtarifa='20    '
+            mtarifa='3'
+         ELSE
+            mtarifa='4'
+         endif     
+         replace tarifa WITH mtarifa  
+      ENDIF
+   
+      SELECT KASA
+      SKIP
+   ENDDO   
+   IF APRAVIBG=1
+      SELECT KASAdrop
+      COPY TO &mdropboxput TYPE FOX2X FOR datUM=DATE()
+      USE
+   ENDIF
+   SELECT FAK
+   SET RELATION TO
+   USE
+   SELECT KASA
+   GO TOP
+ENDIF
+POP KEY

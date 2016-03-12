@@ -1,0 +1,141 @@
+PUSH KEY CLEAR
+SET EXACT OFF
+MDAT0=ANALKSVE2.TXTDAT0.VALUE
+MDAT1=ANALKSVE2.TXTDAT1.VALUE
+public iosdat1
+iosdat1=mdat1
+MGRUPAK=ANALKSVE2.TXTGRUPAK.VALUE
+MGRUPA1=ANALKSVE2.TXTGRUPA1.VALUE
+MGRUPA2=ANALKSVE2.TXTGRUPA2.VALUE
+MGRUPA3=ANALKSVE2.TXTGRUPA3.VALUE
+MFPSIFRA=STR(ANALKSVE2.TXTFPSIFRA.VALUE,3,0)
+
+KANAL='ANAL'+TANREDNI
+
+USE &KFAKPODN IN 0 ORDER 1
+SELECT FAKPODN
+SEEK MFPSIFRA
+USE FIRMA IN 0
+
+USE &KANAL IN 0 ALIAS anal
+SELECT anal
+GO TOP
+
+MDOK=ANALKSVE2.TXTDOK.VALUE
+MMP=ANALKSVE2.TXTMP.VALUE
+MMTR=ANALKSVE2.TXTMTR.VALUE
+
+use &kANALK IN 0 EXCLU ALIAS ANALK
+SELECT analk
+DELETE ALL
+PACK
+SET ORDER TO
+
+IF TSIFARNIK<>'  '
+  KAN0='AN0'+ALLTRIM(TSIFARNIK)
+ELSE
+   KAN0='AN0'
+ENDIF
+   
+USE &KAN0 IN 0 ORDER 1 ALIAS AN0
+
+
+
+SELECT anal
+SET RELATION TO SIFRA INTO an0 additive
+SET ORDER TO 6
+GO TOP
+do while.not.eof()
+   MSIFRA=SIFRA
+   ANALKSVE2.LBLFIRMA.CAPTION=SIFRA+' '+AN0.NAZIV 
+   if an0.GRUPA1=MGRUPA1.OR.MGRUPA1=SPACE(3)
+      if an0.GRUPA2=MGRUPA2.OR.MGRUPA2=SPACE(3)                  
+         if an0.GRUPA3=MGRUPA3.OR.MGRUPA3=SPACE(3)
+            if Anal.DOK=MDOK.OR.MDOK=SPACE(3)
+               if DATDOK>=MDAT0.AND.DATDOK<=MDAT1
+                  if MP=MMP.OR.MMP=SPACE(2)
+                     if GRUPA=MGRUPAK.OR.MGRUPAK=SPACE(3)
+                        MNAZIV=AN0.NAZIV
+                        MPOSTA=AN0.POSTA
+                        MMESTO=AN0.MESTO
+                        MULICA=AN0.ULICA
+                        MULBROJ=AN0.ULBROJ
+                        MZIRORAC=AN0.ZIRORAC
+                        MTEL=AN0.TELEFON
+                        MFAX=AN0.FAX
+                        mpib=an0.pib
+                        SCATTER NAME POLJA
+                        SELECT analk
+                        APPEND BLANK
+                        GATHER NAME POLJA
+                        REPLACE NAZIV WITH MNAZIV
+                        REPLACE POSTA WITH MPOSTA
+                        REPLACE MESTO WITH MMESTO
+                        REPLACE ULICA WITH MULICA
+                        REPLACE ULBROJ WITH MULBROJ
+                        REPLACE ZIRORAC WITH MZIRORAC
+                        REPLACE TELEFON WITH MTEL
+                        REPLACE FAX WITH MFAX
+                        REPLACE PIB WITH MPIB
+                        REPLACE FPSIFRA WITH MFPSIFRA
+                        SELECT anal
+                     endif   
+                  endif        
+               endif
+            endif
+         ENDIF
+      ENDIF         
+   endif
+   skip
+enddo          
+go top
+SELECT anal
+SET RELATION TO
+USE 
+SELECT analk
+SET ORDER TO 6
+SELECT AN0
+SET ORDER TO 1
+GO TOP
+DO WHILE.NOT.EOF()
+   MSIFRA=SIFRA
+   SELECT ANALK
+   SEEK MSIFRA
+   IF FOUND()
+      MDUG=0
+      MPOT=0
+      MDEVDUG=0
+      MDEVPOT=0
+      MSALDO=0
+      MDEVSALDO=0
+      DO while.not.eof()
+         IF SIFRA<>MSIFRA
+            EXIT
+         ENDIF   
+         MDUG=MDUG+DUG
+         MPOT=MPOT+POT
+         MSALDO=MSALDO+DUG-POT
+         replace saldo with MSALDO
+         MDEVDUG=MDEVDUG+DEVDUG
+         MDEVPOT=MDEVPOT+DEVPOT
+         MDEVSALDO=MDEVSALDO+DEVDUG-DEVPOT
+         replace DEVsaldo with mDEVSALDO
+         SKIP
+      ENDDO
+   ENDIF
+   SELECT AN0
+   SKIP
+ENDDO      
+SELECT ANALK
+SET RELATION TO FPSIFRA INTO FAKPODN ADDITIVE
+SET ORDER TO 6
+GO TOP
+
+DO FORM ANALKSVE21
+SELECT analk
+USE
+SELECT an0
+USE
+CLOSE ALL TABLES
+POP KEY
+ANALKSVE2.RELEASE

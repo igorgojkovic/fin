@@ -1,0 +1,40 @@
+SELECT FAK
+MBRKAL=BRKAL
+SET ORDER TO 1
+IF FAKG.CENOVNIK<>'   '
+   MCENOVNIK=ALLTRIM(FAKG.CENOVNIK)
+   MAARC='AARC'+MCENOVNIK   
+   MAARC2='AARC'+MCENOVNIK+'.DBF'
+   IF FILE(MAARC2)
+      USE &MAARC IN 0 ALIAS AARC
+      SELECT FAK
+      SEEK MBRKAL
+      IF FOUND()
+         DO WHILE.NOT.EOF()
+            IF BRKAL<>MBRKAL
+               EXIT
+            ENDIF   
+            MRSIF=RSIF
+            SELECT AARC
+            LOCATE FOR RSIF=MRSIF
+            IF FOUND()
+               MRABPROC=RABPROC
+            ELSE
+               MRABPROC=0
+            ENDIF   
+            SELECT FAK
+            REPLACE RABPROC WITH MRABPROC
+            DO FAKRAC
+            SKIP
+         ENDDO   
+      ENDIF   
+   ENDIF   
+   SELECT AARC
+   USE
+   SELECT FAK
+   SEEK MBRKAL
+   SET ORDER TO 
+ENDIF   
+SELECT FAK
+SET ORDER TO 
+FAK.GRD0.SETFOCUS

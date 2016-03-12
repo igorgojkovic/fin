@@ -1,0 +1,7 @@
+PUSH KEY CLEAR
+*REPORT FORM TVKARTPRNROK PREVIEW
+   mfile='TVKARTPRNROK'   
+   USLOV=""
+   DO printer_bullzip WITH mdata02,mfiLE,USLOv   
+
+POP KEY

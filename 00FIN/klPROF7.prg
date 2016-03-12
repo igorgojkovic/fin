@@ -1,0 +1,8 @@
+PUSH KEY CLEAR
+MREDNI=REDNI
+*REPORT FORM KLPRO01 PREVIEW FOR REDNI=MREDNI
+   mfile='KLPRO01'
+   uslov="REDNI=MREDNI"
+   DO printer_bullzip WITH mdata02,mfile,uslov
+
+POP KEY

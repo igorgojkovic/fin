@@ -1,0 +1,37 @@
+PUSH KEY CLEAR
+   SET ORDER TO 
+   IF RECCOUNT()>0
+      MREDBR=REDBR
+      MBRNAL=BRNAL
+      MDATDOK=DATDOK
+      MKONTO=KONTO
+      mopis1=opis1
+      mopis2=opis2
+      mopis3=opis3
+      mopis4=opis4
+      mopis5=opis5
+      MSIFRA=SIFRA
+      APPEND BLANK
+      REPLACE REDBR WITH MREDBR
+      REPLACE BRNAL WITH MBRNAL
+      REPLACE DATDOK WITH MDATDOK
+      REPLACE KONTO WITH MKONTO
+      REPLACE OPER WITH OPERATER
+      REPLACE DATUM WITH DATE()
+      REPLACE VREME WITH TIME()   
+      replace opis1 WITH mopis1
+      replace opis2 WITH mopis2
+      replace opis3 WITH mopis3
+      replace opis4 WITH mopis4
+      replace opis5 WITH mopis5
+      REPLACE SIFRA WITH MSIFRA
+      ANODOB.GRD0.SETFOCUS
+      ANODOB.REFRESH
+   ELSE
+      APPEND BLANK
+      REPLACE REDBR WITH STR(VAL(REDBR),5,0)
+      REPLACE DATDOK WITH DATE()
+   ENDIF
+   ANODOBGRU.GRD0.COLUMN1.SETFOCUS
+   ANODOBGRU.REFRESH  
+POP KEY

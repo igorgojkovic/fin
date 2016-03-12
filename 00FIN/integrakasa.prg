@@ -1,0 +1,145 @@
+PARAMETERS MADATO,MASACEKAJ
+PUSH KEY CLEAR
+
+*MPROVERAF=PROVERAF()
+
+*IF MPROVERAF=1
+   DO KASASTAMP WITH MADATO,MASACEKAJ
+   SELECT KASA
+   GO TOP
+   MGOTOVINA=GOTOVINA
+   MCEK=CEK
+   MKARTICA=KARTICA
+   MAGOTOVINA=GOTOVINA
+   MACEK=CEK
+   MAKARTICA=KARTICA
+   MMIME='dat'+'000'+PPAS+'.ime'
+   MMIME0='dat'+'000'+PPAS
+
+   IF FILE(KKOCKAX)
+      DELETE FILE &KKOCKAX
+   ENDIF
+   IF FILE(KKOCKAX2)
+      DELETE FILE &KKOCKAX2
+   ENDIF
+   SELECT KASA
+   COPY TO &KKOCKA FOR STORNO=' '
+   USE &KKOCKA IN 0 ALIAS KOCKA EXCLU
+   SET EXACT ON
+   SELECT KOCKA
+   INDEX ON RSIF TAG RSIF
+   SET ORDER TO 1
+   TOTAL ON RSIF TO &KKOCKA2 FIELDS RSIF
+   ZAP
+   APPEND FROM &KKOCKA2
+   GO TOP
+   SELECT ROB
+   SET ORDER TO 1
+   SELECT KOCKA
+   SET RELATION TO RSIF INTO ROB ADDITIVE 
+   SET EXACT OFF 
+   SET CENTURY ON
+   FIDAT=FCREATE(MMIME)
+   DO WHILE.NOT.EOF()
+      IF KOLI>0
+         IF AOBVEZNIK=1
+            DO CASE TARIFA
+            CASE ALLTRIM(TARIFA)=TOSTOPA
+               MTARIFA='03'
+            CASE ALLTRIM(TARIFA)=TNSTOPA
+               MTARIFA='04'
+            OTHERWISE
+               MTARIFA='01'
+            ENDCASE
+         ELSE
+            MTARIFA='00'
+         ENDIF
+         MSIFRA=ALLTRIM(rsif)+REPLICATE(' ',20-LEN(ALLTRIM(RSIF)))
+         MNAZIV=ROB.NAZ+SPACE(10)
+         IF NMALCENA=0
+            MCENA=STR(malcena,10,2)
+         ELSE
+            MCENA=STR(Nmalcena,10,2)
+         ENDIF          
+         MCMD='0'
+         MM=MSIFRA+MTARIFA+MCENA+MNAZIV+MCMD
+         FPUTS(fidat,MM)
+      ENDIF
+      SKIP
+   ENDDO
+   GO top
+   FCLOSE(fidat)
+   SELECT KOCKA
+   SET RELATION TO
+   USE
+   DO INTEGRASALJIkasa WITH MMIME,MMIME0,1
+   SELECT KASA
+   GO TOP
+*------------POSLALI SMO ARTIKLE U STAMPAC---------------
+
+*--------SALJEMO BON I PLACANJE--------------------------
+   mstorno=0
+   DO while.not.eof()
+      IF storno=' '
+         mstorno=1
+      ENDIF
+      SKIP
+   ENDDO
+   GO top
+   IF mstorno=1      
+   
+   MMRAC='rac'+'000'+PPAS+'.ime'
+   MMRAC0='rac'+'000'+PPAS
+   FIDAT=FCREATE(MMRAC)
+   M2MALVRED=0
+   DO WHILE.NOT.EOF()
+      IF storno=' '
+      MSIFRA=ALLTRIM(rsif)+REPLICATE(' ',20-LEN(ALLTRIM(RSIF)))
+      IF NMALCENA=0
+         MCENA=STR(malcena,10,2)
+      ELSE
+         MCENA=STR(Nmalcena,10,2)
+      ENDIF          
+      MKOLIC=STR(KOLI,10,3)
+      MSTAVKA='S'
+      mM=MSIFRA+MKOLIC+Mcena+MSTAVKA
+      FPUTS(fidat,MM)
+      endif
+      SELECT KASA
+      M2MALVRED=M2MALVRED+MALVRED-RABAT
+      SKIP
+   ENDDO
+   SELECT kasa
+   GO top
+   MGOTOVINA=TRANSFORM(MGOTOVINA,'9999999.99')
+   MCEK=TRANSFORM(MCEK,'9999999.99')
+   MKARTICA=TRANSFORM(MKARTICA,'9999999.99')
+   IF MAGOTOVINA<>0
+      mM=SPACE(30)+mgotovina+'G'
+      FPUTS(fidat,MM)
+   ENDIF
+   IF MACEK<>0
+      mM=SPACE(30)+MCEK+'C'
+      FPUTS(fidat,MM)
+   ENDIF
+   IF MAKARTICA<>0
+      mM=SPACE(30)+MKARTICA+'K'
+      FPUTS(fidat,MM)
+   ENDIF
+   FCLOSE(fidat)
+   DO INTEGRASALJIKASA WITH MMRAC,MMRAC0,1
+
+   DO KASASNIMAJ 
+
+   endif
+   SELECT KASA
+   ZAP
+
+   SELECT ROB
+   SET ORDER TO 2
+   POP KEY
+*ELSE
+*   POP key
+*   DO PORUKAU WITH 'ŠTAMPAC NIJE FISKALIZOVAN '
+*ENDIF
+

@@ -1,0 +1,28 @@
+PARAMETERS MMIME,MMIME0,MASACEKAJ
+      MFSALJI='c:\'+'\METALINE\EXCH\LNK\TO_FP'
+      MFPRIMI='c:\'+'\METALINE\EXCH\LNK\FROM_FP'
+
+*----------------preimenovanje fajla----------
+   SET path TO &MDATA02
+   SET DEFAULT TO &MDATA02
+   COPY FILE &MMIME TO &MFSALJI
+   INKEY(1)
+   SET PATH TO &MFPRIMI
+   SET DEFAULT TO &MFPRIMI
+   *-------------kraj preimenovanja fajla-----------
+   MMIMEERR=MFPRIMI+'\'+MMIME0+'.ERR'
+   SET PATH TO &MFPRIMI
+   SET DEFAULT TO &MFPRIMI
+
+   MERR=MFPRIMI+'\'+MMIME0+'.ERR'
+
+   IF FILE(MERR)
+      ERASE &MERR
+   ENDIF
+
+   IF MASACEKAJ=0
+      ERASE *.ok
+   ENDIF
+
+   SET path TO &MDATA02
+   SET DEFAULT TO &MDATA02

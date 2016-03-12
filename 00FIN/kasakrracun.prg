@@ -1,0 +1,146 @@
+SELECT KASAKR
+M3REC=RECNO()
+MFLSIFRA=FLSIFRA
+IF TSIFARNIK<>'  '
+  KROB='MROB'+ALLTRIM(TSIFARNIK)
+ELSE
+   KROB='ROB'
+ENDIF
+if tfpossif='D'.AND.TNEZAJEDNO<>'D'
+   KROB='rob'+tobjekat+TTVREDNI
+ENDIF     
+
+USE &KROB IN 0 ORDER 2 ALIAS ROB
+
+USE &KKASA IN 0 ALIAS KASA EXCLU 
+SELECT kasa
+   SELECT KASA
+   SET ORDER TO
+   GO TOP
+   REPLACE FLSIFRA WITH MFLSIFRA
+   MMALVRED=0
+   DO WHILE.NOT.EOF()
+      IF NMALVRED=0
+      MMALVRED=MMALVRED+MALVRED
+      ELSE
+      MMALVRED=MMALVRED+NMALVRED
+      endif      
+      SKIP
+   ENDDO 
+   IZNOSRAC=MMALVRED  
+   AMADATO=IZNOSRAC
+   GO TOP
+replace cek WITH iznosrac
+PUBLIC AMDATO,ASACEKAJ,akontraka
+AMDATO=IZNOSRAC
+AKONTRAKA=0
+ASACEKAJ=1
+*mkamarka=5
+asifra=''
+AKAFIRME=0
+amkurs=1
+USE KASAPAR IN 0
+SELECT KASAPAR
+mkamarka=kamarka
+USE
+SELECT kasa
+DO CASE mkamarka
+   CASE MKAMARKA=1
+      DO KASAGALEBKNJ WITH AMDATO,ASACEKAJ
+   CASE mkamarka=5   
+      DO FI550knjizi WITH AMDATO,ASACEKAJ
+endcase   
+**REPORT FORM KASAracun PREVIEW FOR RECNO()=MREC
+SELECT kasa
+USE
+SELECT rob
+USE
+SELECT kasakr
+GOTO m3rec
+mflsifra=flsifra
+IF arhiva=' '
+*-------------ovde se knjizi analitika----------
+   IF mflsifra<>SPACE(5)
+      man06='an0'+ALLTRIM(tsiffizli)+'.dbf'
+      manal6='anal'+ALLTRIM(tsiffizli)+'.dbf'         
+      USE &man06 IN 0 ALIAS aan06
+      USE &manal6 IN 0 ALIAS aanal6         
+      SELECT aan06
+      LOCATE FOR pib2=mflsifra
+      IF FOUND()
+         m6sifra=sifra
+      ELSE
+         m6sifra=''
+      endif   
+      MSIFRA=M6SIFRA
+      SELECT kasakr
+      Mkamata=kamata
+      mdinsada=dinsada
+      MDATDOK=DATE()
+      MBRRAC='TF-'+Mflsifra
+      MBRNAL='T'+TTVREDNI+SUBSTR(DTOC(DATE()),1,2)+SUBSTR(DTOC(DATE()),4,2)
+      IF mkamata<>0
+         SELECT AANAL6
+         APPEND BLANK
+         REPLACE SIFRA WITH MSIFRA
+         REPLACE DATDOK WITH MDATDOK
+         REPLACE BRRAC WITH MBRRAC
+         REPLACE VALUTA WITH MDATDOK
+         REPLACE BRNAL WITH MBRNAL
+         REPLACE DOK WITH TDOK
+         REPLACE dug WITH MKAMATA
+         REPLACE GRUPA WITH 'TFI'
+         REPLACE OPIS WITH 'TR.FINANSIRANJA'
+         REPLACE ZATVAR WITH '*'
+         APPEND BLANK
+         REPLACE SIFRA WITH MSIFRA
+         REPLACE DATDOK WITH MDATDOK
+         REPLACE BRRAC WITH MBRRAC
+         REPLACE VALUTA WITH MDATDOK
+         REPLACE BRNAL WITH MBRNAL
+         REPLACE DOK WITH TDOK
+         REPLACE pot WITH MKAMATA
+         REPLACE GRUPA WITH 'TFI'
+         REPLACE OPIS WITH 'TR.FINANSIRANJA'
+         REPLACE ZATVAR WITH '*'         
+      ENDIF
+      IF mdinsada<>0
+         SELECT KASAKR
+         MBRRAC='RA-'+Mflsifra
+         MBRNAL='G'+TTVREDNI+SUBSTR(DTOC(DATE()),1,2)+SUBSTR(DTOC(DATE()),4,2)
+         SELECT AANAL6
+    *     APPEND BLANK
+    *     REPLACE SIFRA WITH MSIFRA
+    *     REPLACE DATDOK WITH MDATDOK
+    *     REPLACE BRRAC WITH MBRRAC
+    *     REPLACE VALUTA WITH MDATDOK
+    *     REPLACE BRNAL WITH MBRNAL
+    *     REPLACE DOK WITH TDOK
+    *     REPLACE dug WITH MDINSADA
+    *     REPLACE GRUPA WITH '0RA'
+    *     REPLACE OPIS WITH 'RATA0 KREDITA'
+          APPEND BLANK
+         REPLACE SIFRA WITH MSIFRA
+         REPLACE DATDOK WITH MDATDOK
+         REPLACE BRRAC WITH MBRRAC
+         REPLACE VALUTA WITH MDATDOK
+         REPLACE BRNAL WITH MBRNAL
+         REPLACE DOK WITH TDOK
+         REPLACE pot WITH MDINSADA
+         REPLACE GRUPA WITH '0RA'
+         REPLACE OPIS WITH 'RATA0 KREDITA'
+      endif
+      SELECT aan06
+      USE
+      SELECT aanal6
+      USE
+   endif   
+   SELECT kasakr
+endif
+*--------------kraj knjizenja analitike---------
+DO PORUKAU WITH ' RACUN JE PROKNJIZEN '
+SELECT kasakr
+SET ORDER TO 
+GOTO M3REC
+*REPLACE ARHIVA WITH '*'
+KASAKRKART.RELEASE

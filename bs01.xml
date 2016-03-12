@@ -1,0 +1,555 @@
+<FiForma xmlns="http://schemas.datacontract.org/2004/07/Domain.Model" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+<Naziv>Bilans stanja</Naziv>
+<NumerickaPoljaForme xmlns:a="http://schemas.datacontract.org/2004/07/AppDef">
+<a:NumerickoPolje><a:Naziv>aop-0001-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0001-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0001-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0002-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0002-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0002-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0003-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0003-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0003-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0004-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0004-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0004-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0005-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0005-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0005-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0006-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0006-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0006-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0007-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0007-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0007-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0008-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0008-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0008-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0009-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0009-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0009-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0010-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0010-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0010-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0011-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0011-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0011-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0012-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0012-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0012-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0013-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0013-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0013-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0014-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0014-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0014-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0015-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0015-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0015-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0016-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0016-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0016-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0017-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0017-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0017-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0018-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0018-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0018-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0019-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0019-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0019-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0020-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0020-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0020-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0021-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0021-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0021-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0022-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0022-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0022-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0023-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0023-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0023-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0024-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0024-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0024-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0025-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0025-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0025-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0026-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0026-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0026-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0027-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0027-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0027-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0028-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0028-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0028-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0029-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0029-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0029-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0030-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0030-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0030-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0031-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0031-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0031-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0032-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0032-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0032-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0033-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0033-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0033-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0034-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0034-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0034-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0035-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0035-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0035-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0036-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0036-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0036-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0037-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0037-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0037-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0038-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0038-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0038-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0039-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0039-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0039-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0040-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0040-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0040-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0041-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0041-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0041-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0042-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0042-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0042-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0043-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0043-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0043-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0044-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0044-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0044-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0045-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0045-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0045-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0046-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0046-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0046-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0047-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0047-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0047-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0048-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0048-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0048-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0049-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0049-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0049-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0050-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0050-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0050-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0051-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0051-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0051-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0052-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0052-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0052-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0053-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0053-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0053-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0054-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0054-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0054-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0055-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0055-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0055-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0056-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0056-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0056-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0057-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0057-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0057-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0058-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0058-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0058-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0059-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0059-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0059-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0060-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0060-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0060-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0061-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0061-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0061-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0062-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0062-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0062-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0063-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0063-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0063-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0064-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0064-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0064-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0065-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0065-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0065-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0066-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0066-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0066-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0067-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0067-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0067-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0068-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0068-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0068-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0069-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0069-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0069-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0070-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0070-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0070-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0071-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0071-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0071-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0072-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0072-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0072-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0401-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0401-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0401-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0402-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0402-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0402-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0403-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0403-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0403-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0404-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0404-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0404-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0405-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0405-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0405-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0406-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0406-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0406-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0407-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0407-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0407-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0408-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0408-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0408-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0409-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0409-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0409-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0410-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0410-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0410-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0411-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0411-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0411-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0412-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0412-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0412-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0413-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0413-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0413-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0414-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0414-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0414-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0415-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0415-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0415-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0416-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0416-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0416-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0417-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0417-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0417-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0418-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0418-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0418-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0419-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0419-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0419-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0420-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0420-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0420-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0421-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0421-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0421-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0422-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0422-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0422-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0423-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0423-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0423-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0424-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0424-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0424-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0425-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0425-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0425-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0426-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0426-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0426-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0427-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0427-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0427-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0428-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0428-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0428-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0429-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0429-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0429-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0430-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0430-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0430-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0431-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0431-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0431-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0432-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0432-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0432-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0433-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0433-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0433-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0434-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0434-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0434-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0435-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0435-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0435-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0436-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0436-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0436-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0437-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0437-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0437-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0438-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0438-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0438-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0439-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0439-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0439-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0440-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0440-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0440-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0441-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0441-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0441-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0442-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0442-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0442-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0443-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0443-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0443-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0444-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0444-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0444-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0445-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0445-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0445-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0446-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0446-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0446-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0447-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0447-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0447-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0448-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0448-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0448-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0449-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0449-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0449-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0450-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0450-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0450-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0451-5</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0451-6</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0451-7</a:Naziv><a:Vrednosti>0</a:Vrednosti></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0452-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0452-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0452-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0453-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0453-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0453-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0454-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0454-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0454-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0455-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0455-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0455-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0456-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0456-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0456-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0457-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0457-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0457-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0458-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0458-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0458-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0459-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0459-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0459-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0460-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0460-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0460-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0461-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0461-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0461-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0462-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0462-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0462-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0463-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0463-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0463-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0464-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0464-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0464-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0465-5</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0465-6</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+<a:NumerickoPolje><a:Naziv>aop-0465-7</a:Naziv><a:Vrednosti i:nil="true"/></a:NumerickoPolje>
+</NumerickaPoljaForme>
+<TekstualnaPoljaForme>
+<TekstualnoPolje><Naziv>aop-0001-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0002-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0003-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0004-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0005-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0006-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0007-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0008-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0009-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0010-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0011-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0012-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0013-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0014-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0015-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0016-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0017-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0018-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0019-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0020-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0021-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0022-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0023-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0024-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0025-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0026-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0027-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0028-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0029-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0030-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0031-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0032-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0033-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0034-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0035-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0036-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0037-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0038-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0039-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0040-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0041-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0042-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0043-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0044-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0045-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0046-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0047-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0048-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0049-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0050-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0051-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0052-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0053-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0054-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0055-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0056-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0057-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0058-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0059-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0060-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0061-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0062-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0063-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0064-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0065-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0066-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0067-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0068-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0069-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0070-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0071-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0072-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0401-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0402-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0403-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0404-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0405-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0406-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0407-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0408-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0409-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0410-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0411-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0412-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0413-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0414-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0415-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0416-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0417-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0418-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0419-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0420-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0421-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0422-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0423-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0424-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0425-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0426-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0427-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0428-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0429-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0430-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0431-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0432-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0433-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0434-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0435-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0436-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0437-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0438-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0439-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0440-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0441-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0442-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0443-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0444-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0445-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0446-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0447-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0448-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0449-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0450-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0451-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0452-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0453-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0454-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0455-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0456-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0457-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0458-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0459-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0460-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0461-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0462-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0463-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0464-4</Naziv><Vrednosti/></TekstualnoPolje>
+<TekstualnoPolje><Naziv>aop-0465-4</Naziv><Vrednosti/></TekstualnoPolje>
+</TekstualnaPoljaForme>
+</FiForma>

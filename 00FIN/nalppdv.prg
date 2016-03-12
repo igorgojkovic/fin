@@ -1,0 +1,208 @@
+PUSH KEY CLEAR
+   MBRNAL=BRNAL
+   NALP.COMMAND21.SETFOCUS
+   USE PDVU IN 0 ORDER 5
+   SELECT PDVU
+   *------AKO JE SERVER-------
+   DO IDEL WITH (KKOCKAX)
+   COPY STRU TO &KKOCKA
+   USE &KKOCKA IN 0 ALIAS KOCKA EXCLU
+   SELECT PDVU
+   SEEK MBRNAL
+   IF FOUND()
+      DO WHILE.NOT.EOF()
+         IF BRNAL<>MBRNAL
+            EXIT
+         ENDIF
+         SCATTER NAME POLJA
+         IF VPDV<>SPACE(3)
+            SELECT KOCKA
+            APPEND BLANK
+            GATHER NAME POLJA   
+         ENDIF
+         SELECT PDVU
+         SKIP
+      ENDDO
+   ENDIF
+   SELECT PDVU
+   USE
+   SELECT KOCKA
+   INDEX ON VPDV TAG VPDV
+   SET ORDER TO 1
+   TOTAL ON VPDV TO &KKOCKA2 FIELDS PDV18,PDV8,PDV5
+   DELETE ALL
+   PACK
+
+   APPEND FROM &KKOCKA2
+   USE &KPDVKON IN 0 ORDER 1 ALIAS PDVKON
+   SELECT KOCKA
+   GO TOP
+ 
+   DO WHILE.NOT.EOF()
+      MVPDV=VPDV
+      MPDV18=PDV18
+      MPDV8=PDV8
+      MPDV5=PDV5
+      MMTR=MTR
+      MMESTO=MESTO
+      MDATDOK=DATDOK
+      SELECT PDVKON
+      SEEK MVPDV
+      IF FOUND()
+         MKOND1=KOND1
+         MKOND2=KOND2
+      ELSE
+         MKOND1=''
+         MKOND2=''
+      ENDIF
+      SELECT NALP
+      GO BOTTOM
+      IF RECCOUNT()>0
+         MOPIS=OPIS
+         MBRNAL=BRNAL
+         MDATDOK=DATDOK
+         MDOK=DOK
+         IF MPDV18<>0
+            MPOT=MPDV18
+               APPEND BLANK
+               REPLACE DOK WITH MDOK
+               REPLACE DUG WITH MPOT
+               REPLACE OPIS WITH MOPIS
+               REPLACE KONTO WITH MKOND1
+               REPLACE MP WITH MMESTO
+               REPLACE DATDOK WITH MDATDOK
+               REPLACE BRNAL WITH MBRNAL
+         ENDIF
+         IF MPDV8<>0
+            MPOT=MPDV8
+               APPEND BLANK
+               REPLACE DOK WITH MDOK
+               REPLACE DUG WITH MPOT
+               REPLACE OPIS WITH MOPIS
+               REPLACE KONTO WITH MKOND2
+               REPLACE MP WITH MMESTO
+             
+               REPLACE DATDOK WITH MDATDOK
+               REPLACE BRNAL WITH MBRNAL
+         ENDIF
+         IF MPDV5<>0
+            MPOT=MPDV5
+               APPEND BLANK
+               REPLACE DOK WITH MDOK
+               REPLACE DUG WITH MPOT
+               REPLACE OPIS WITH MOPIS
+               REPLACE KONTO WITH MKOND2
+               REPLACE MP WITH MMESTO
+              
+               REPLACE DATDOK WITH MDATDOK
+               REPLACE BRNAL WITH MBRNAL
+         ENDIF
+      ENDIF
+      SELECT KOCKA
+      SKIP
+   ENDDO
+   SELECT KOCKA
+   USE
+   SELECT PDVKON
+   USE
+   
+   *-----------PDV IZLAZ---------------
+   
+   SELECT NALP
+   USE PDVI IN 0 ORDER 5
+   SELECT PDVI
+   
+   DO IDEL WITH (KKOCKAX)
+   COPY STRU TO &KKOCKA
+   USE &KKOCKA IN 0 ALIAS KOCKA EXCLU
+   SELECT PDVI
+   SEEK MBRNAL
+   IF FOUND()
+      DO WHILE.NOT.EOF()
+         IF BRNAL<>MBRNAL
+            EXIT
+         ENDIF
+         SCATTER NAME POLJA
+         IF VPDV<>SPACE(3)
+            SELECT KOCKA
+            APPEND BLANK
+            GATHER NAME POLJA   
+         ENDIF
+         SELECT PDVI
+         SKIP
+      ENDDO
+   ENDIF
+   SELECT PDVI
+   USE
+   SELECT KOCKA
+   INDEX ON VPDV TAG VPDV
+   SET ORDER TO 1
+   TOTAL ON VPDV TO &KKOCKA2 FIELDS PDV18,PDV8
+DELETE ALL
+PACK
+
+   APPEND FROM &KKOCKA2
+   USE &KPDVKON IN 0 ORDER 1 ALIAS PDVKON
+   SELECT KOCKA
+   GO TOP
+ 
+   DO WHILE.NOT.EOF()
+      MVPDV=VPDV
+      MPDV18=PDV18
+      MPDV8=PDV8
+      MMTR=MTR
+      MMESTO=MESTO
+      MDATDOK=DATDOK
+      SELECT PDVKON
+      SEEK MVPDV
+      IF FOUND()
+         MKONP1=KONP1
+         MKONP2=KONP2
+      ELSE
+         MKONP1=''
+         MKONP2=''
+      ENDIF
+      SELECT NALP
+      GO BOTTOM
+      IF RECCOUNT()>0
+         MOPIS='PDV'
+         MBRNAL=BRNAL
+         MDATDOK=DATDOK
+         MDOK=DOK
+         IF MPDV18<>0
+            MPOT=MPDV18
+               APPEND BLANK
+               REPLACE DOK WITH MDOK
+               REPLACE POT WITH MPOT
+               REPLACE OPIS WITH MOPIS
+               REPLACE KONTO WITH MKONP1
+               REPLACE MP WITH MMESTO
+               REPLACE DATDOK WITH MDATDOK
+               REPLACE BRNAL WITH MBRNAL
+         ENDIF
+         IF MPDV8<>0
+            MPOT=MPDV8
+               APPEND BLANK
+               REPLACE DOK WITH MDOK
+               REPLACE POT WITH MPOT
+               REPLACE OPIS WITH MOPIS
+               REPLACE KONTO WITH MKONP2
+               REPLACE MP WITH MMESTO
+             
+               REPLACE DATDOK WITH MDATDOK
+               REPLACE BRNAL WITH MBRNAL
+         ENDIF
+      ENDIF
+      SELECT KOCKA
+      SKIP
+   ENDDO
+   SELECT KOCKA
+   USE
+   SELECT PDVKON
+   USE
+   SELECT NALP
+   NALP.GRD0.SETFOCUS
+POP KEY
+   NALP.Refresh   
+   
+

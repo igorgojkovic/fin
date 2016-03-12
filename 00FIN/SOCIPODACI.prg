@@ -1,0 +1,5 @@
+DO  FORM socIpod
+SELECT socI
+SET ORDER TO 
+SOCI.GRD0.SETFOCUS()
+SOCI.Refresh

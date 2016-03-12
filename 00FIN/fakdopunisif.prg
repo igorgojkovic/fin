@@ -1,0 +1,29 @@
+IF TFPOSSIF='D'.AND.TNEZAJEDNO<>'D'
+   USE ROB IN 0 ALIAS ROB0
+   SELECT FAK
+   SET ORDER TO 
+   DO WHILE.NOT.EOF()
+      MRSIF=RSIF
+      SELECT ROB
+      LOCATE FOR RSIF=MRSIF
+      IF.NOT.FOUND()
+         SELECT ROB0
+         LOCATE FOR RSIF=MRSIF
+         IF FOUND()
+            SCATTER NAME POLJA
+            SELECT ROB
+            APPEND BLANK
+            GATHER NAME POLJA
+         ENDIF   
+      ENDIF      
+      SELECT FAK
+      SKIP
+   ENDDO   
+   SELECT ROB0
+   USE
+   SELECT FAK
+   SET ORDER TO 
+   GO TOP
+   FAK.GRD0.SETFOCUS
+ENDIF   
+

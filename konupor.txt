@@ -1,0 +1,146 @@
+014        OSTALA NEMATERIJALNA ULAGANJA                               012       SOFTVER I OSTALA PRAVA                                                 0
+012        GUDVIL                                                      013       GUDVIL                                                                 0
+019        ISPR.VRED.SA ANALIT.RAÈ.GR.01.NEMAT.ULAGANJ.                019       ISPRAVKA VREDNOSTI NEMATERIJALNE IMOVINE                               0
+020       DDEO RAÈUNA 020 - ZEMLJIŠTE                                            POLJOPRIVREDNO I OSTALO ZEMLJIŠTE 020                                  0
+          DDEO RAÈUNA 020 - ZEMLJIŠTE 020                              021       GRAÐEVINSKO ZEMLJIŠTE                                                  0
+          DISPRAVKA VREDNOSTI SA ANALITIÈKIH RAÈUNA                    029       ISPRAVKA VREDNOSTI NEKRETNINA, POSTROJENJA I OPREME                    0
+          DU OKV.RAÈ.GRUPE 02, OSIM RAÈUNA NA KOJIMA                   029                                                                              0
+          DSE ISKAZUJU BIOLOŠKA SREDSTVA 020                           029                                                                              0
+021       DDEO RAÈUNA 021-ŠUME I VIŠEGODIŠ.ZASADI                      030       ŠUME                                                                   0
+          DDEO RAÈUNA 021-ŠUME I VIŠEGODIŠ.ZASADI 021                  031       VIŠEGODIŠNJI ZASADI                                                    0
+025        OSNOVNO STADO                                               032       OSNOVNO STADO                                                          0
+027       DDEO RAÈ. 027-NEKRETNINE, POSTROJENJA                        026       NEKRETNINE U PROPREMI                                                  0
+          DOPREMA I BIOLOŠ.SREDS. U PRIPREMI 027                       037       BIOLOŠKA SREDSTVA U PRIPREMI                                           0
+028       DDEO RAÈ. 028-AVANSI ZA NEKRETNINE, POSTROJ.                           AVANSI ZA BIOLOŠKA SREDSTVA                                            0
+          DOPREMU I BIOLOŠKA SREDSTVA                                  038                                                                              0
+021       DISPRAVKA VREDNOSTI SA ANALITIÈKIH RAÈUNA                    039       ISPRAVKA VREDNOSTI BIOLOŠKIH SREDSTAVA                                 0
+025       D021 I 025 KOJA SE ODNOSI NA BIOLOŠKA SREDSTVA                                                                                                0
+030        UÈEŠÆA U KAPITALU ZAVISNIH PRAVNIH LICA                     040       UÈEŠÆA U KAPITALU ZAVISNIH PRVNIH LICA                                 0
+031        UÈEŠÆA U KAPITALU OST. POVEZ.(PRIDRUŽ.)PRAV.LICA            041       UÈEŠÆA U KAPITALU PRIDRUŽ. PRAVNIH LICA I ZAJ.PODUHV.                  0
+032        UÈEŠÆA U KAPITALU OSTALIH PRAVNIH LICA I DRUGE              042       UÈEŠÆA U KAPITALU OSTALIH PRAVNIH LICA I DRUGE HARTIJE                 0
+           HARTIJE OD VREDNOSTI RASPOLŽIVE ZA PRODAJU 032                        OD VREDNOSTI RASPOLOŽIVE ZA PRODAJU 042                                0
+033       DDEO 033 DUGOROÈNI KREDITI MATIÈNIM, ZAVISNIM I                        DUGOROÈNI PLASMANI MATIÈNIM, ZAVISNIM I OSTALIM                        0
+          DOSTALIM POVEZANIM PRAVNIM LICIMA 033                        043       POVEZANIM PRAVNIM LICIMA U ZEMLJI 043                                  0
+          DDUGOROÈNI KREDITI MATIÈNIM, ZAVISNIM I OSTALIM                        DUGOROÈNI PLASMANI MATIÈNIM, ZAVISNIM I OSTALIM POVEZANIM              0
+          DPOVEZANIM PRAVNIM LICIMA 033                                044       PRAVNIM LICIMA U INOSTRANSTVU                                          0
+034        DUGOROÈNI KREDITI U ZEMLJI                                  045       DUGOROÈNI PLASMANI U ZEMLJI I INOSTRANSTVU                             0
+035        DUGOROÈNI KREDITI U INOSTRANSTVU                                      DUGOROÈNI PLASMANI U ZEMLJI I INOSTRANSTVU 045                         0
+036        HARTIJE OD VREDNOSTI KOJE SE DRŽE DO DOSPEÆA                046       HARTIE OD VREDNOSTI KOJE SE DRŽE DO DOSPEÆA                            0
+037        OTKUPLJENE SOPSTVENE AKCIJE I OTKUPLJENI                    047       OTKUPLJENE SOPSTVENE AKCIJE I OTKUPLJENI SOPSTVENI                     0
+           SOPSTVENI UDELI 037                                                   UDELI 047                                                              0
+038        OSTALI DUGOROÈNI FINANSIJSKI PLASMANI                       048       OSTALI DUGOROÈNI FINANSIJSKI PLASMANI                                  0
+039        ISPRAVKA VREDNOSTI DUGOROÈNIH FINANSIJSKIH                  049       ISPRAVKA VREDNOSTI DUGOROÈNIH FINANSIJSKIH PLASMANA                    0
+           PLASMANA 039                                                                                                                                 0
+050       DDEO RAÈUNA NA KOJIMA SU ISKAZANA POTRAŽIV.                                                                                                   0
+          DOD MATIÈ.I ZAVIS.LICA ÈIJI JE ROK DOSPELOSTI                                                                                                 0
+          DDUŽI OD GODINU DANA 050                                     050       POTRAŽIVANJA OD MATIÈNIH I ZAVISNIH PRAVNIH LICA                       0
+051       DDEO RAÈ. NA KOJIMA SU IKSAZANA POTRAŽIV. OD                                                                                                  0
+          DOSTALIH POVEZ.LICA ÈIJI JE ROK DOSPELOSTI                                                                                                    0
+          DDUŽI OD GODINU DANA 051                                     051       POTRAŽIVANJA OD OSTALIH POVEZANIH LICA 051                             0
+038       DDEO RAÈUNA 038-OSTALI DUGOROÈ.FIN.PLASM.                    052       POTRAŽIVANJA PO OSNOVU PRODAJE NA ROBNI KREDIT                         0
+          DDEO RAÈUNA 038-OSTALI DUGOROÈ.FIN.PLASM. 038                053       POTRAŽIVANJA ZA PRODAJU PO UGOVORIMA O FINANSIJSKOM LIZINGU            0
+054       DDEO RAÈUNA NA KOJIMA SU ISKAZANA DUGOROÈ.                                                                                                    0
+          DPOTRAŽIVANJA PO OSNOVU JEMSTVA  054                         054       POTRAŽIVANJA PO OSNOVU JEMSTVA                                         0
+055       DDEO RAÈUNA NA KOJEM SU ISKAZANA UTUŽENA                                                                                                      0
+          DI SUMNJIVA POTRAŽIVANJA 055                                 055       SPORNA I SUMNJIVA POTRAŽIVANJA                                         0
+056       DDEO RAÈUNA NA KOJEM SU ISKAZANA OSTALA                                                                                                       0
+          DDUGOROÈNA POTRAŽIVANJA 056                                  056       OSTALA DUGOROÈNA POTRAŽIVANJA                                          0
+039       DDEO RAÈUNA 039 I DRUGIH RAÈUNA NA KOJIMA                                                                                                     0
+          DJE ISKAZANA ISPRAV.VRED.DUGOROÈ.POTRAŽ. 039                 059        ISPRAVKA VREDNOSTI DUGOROÈNIH POTRAŽIVANJA                            0
+101       DDEO RAÈUNA 101 102 I 103                                    104       MATERIJAL. REZ.DEL, ALAT I INVEN. U OBRADI, DORADI I MANIP.            0
+150       DDEO RAÈUNA 150 - DATI AVANSI ZA ZALIHE I USLUGE             150       PLAÆENI AVANSI ZA MATERIJAL REZ.DEL. I INVENTAR U ZEMLJI               0
+          DDEO RAÈUNA 150 - DATI AVANSI ZA ZALIHE I USLUGE 150         151       PLAÆENI AVANSI ZA MATERIJAL REZ.DEL. I INVENTAR U INOSTRAN.            0
+          DDEO RAÈUNA 150 - DATI AVANSI ZA ZALIHE I USLUGE 150         152       PLAÆENI AVANSI ZA ROBU U ZEMLJI                                        0
+          DDEO RAÈUNA 150 - DATI AVANSI ZA ZALIHE I USLUGE 150         153       PLAÆENI AVANSI ZA ROBU U INOSTRANSTVU                                  0
+          DDEO RAÈUNA 150 - DATI AVANSI ZA ZALIHE I USLUGE 150         154       PLAÆENI AVANSI ZA USLUGE U ZEMLJI                                      0
+          DDEO RAÈUNA 150 - DATI AVANSI ZA ZALIHE I USLUGE 150         155       PLAÆENI AVANSI ZA USLUGE U INOSTRANSTVU                                0
+200       DDEO RAÈUNA 200 - KUPCI - MATIÈNA I ZAVISNA                  201                                                                              0
+          D PRAVNA LICA 200                                                      KUPCI U ZEMLJI - MATIÈNA I ZAVISNA PRAVNA LICA                         0
+          DDEO RAÈUNA 200 - KUPCI - MATIÈNA I ZAVISNA                                                                                                   0
+          DPRAVNA LICA 200                                                       KUPCI U INOSTRANSTVU - MATIÈNA I ZAVISNA PRAVNA LICA                   0
+201       DDEO RAÈUNA 201 - KUPCI - OSTALA POVEZANA PRAV.LICA          202                                                                              0
+          DDEO RAÈUNA 201 - POTRAŽIVANJA - OSTALA                                KUPCI U ZEMLJI - OSTALA POVEZANA  LICA                                 0
+          DPOVEZANA PRAVNA LICA 201                                              KUPCI U INOSTRANSTVU - OSTALA POVEZANA  LICA                           0
+202        KUPCI U ZEMLJI                                              204       KUPCI U ZEMLJI                                                         0
+203        KUPCI U INOSTRANSTVU                                        205       KUPCI U INOSTRANSTVU                                                   0
+228       DDEO RAÈUNA 228 - OSTALA POTRAŽIVANJA                        225       POTRAŽIVANJA ZA NAKNADE ZARADA KOJE SE REFUNDIRAJU                     0
+          DDEO RAÈUNA 228 - OSTALA POTRAŽIVANJA 228                    226       POTRAŽIVANJA PO OSNOVU NAKNADA ŠTETE                                   0
+287       DDEO RAÈUNA 287 - RAZGRANIÈENI PDV ZA DEO                                                                                                     0
+          DPDV KOJI JE OBRAÈUNAT PO OPŠTOJ STOPI 287                   270       PDV U PRIMLJENIM FAKTUR. PO OPŠTOJ STOPI (OSIM PLAÆ.AVANSA)            0
+          DDEO RAÈUNA 287 - RAZGRANIÈENI PDV ZA DEO 287                271       PDV U PRIMLJENIM FAKTUR. PO POSEB. STOPI ( OSIM PLAÆ.AVANSA)           0
+          DPDV KOJI JE OBRAÈUNAT PO POSEBNOJ STOPI 287                 271                                                                              0
+290        GUBITAK IZNAD VISINE KAPITALA                               350                                                                               0
+320        EMISIONA PREMIJA                                            306       EMISIONA PREMIJA                                                       0
+330       DDEO RAÈUNA 330 - REVALORIZACIONE REZERVE                    330       REVAL. REZERVE PO OSN. REVALOR. NEMAT.IMOV.NEKRET.POST.I OPR           0
+                                                                       331       AKTUARSKI DOBICI ILI GUBICI PO OS. PLANOVA DEFINIS. PRIMANJA           0
+                                                                       332       DOBICI ILI GUBICI PO OS. ULAGANJA U VLASNIÈ.INSTRUM.KAPITALA           0
+                                                                       333       DOB. ILI GUB. PO OS. UDELA U OST.SVEOBUH.DOBITKU PRID.DRUŠT.           0
+331        REZERVE PO OSNOVU PRERAÈUNA FINANSIJS.                                                                                                       0
+           IZVEŠTAJA PRIKAZANIH U DRUGOJ FUNKCIONAL.                                                                                                    0
+           VALUTI, ODNOSNO VALUTI PRIKAZIVANJA 331                     334       DOB. ILI GUB. PO OS. PRERAÈ.FINAN.IZVEŠT. INOSTRANOG POSLOV.           0
+                                                                       335       DOB. ILI GUB. OD INSTRUM. ZAŠTITE NETO ULAGANJA U INOST.POSL           0
+330       DDEO RAÈUNA 330 - REVALORIZACIONE REZERVE                    336       DOB. ILI GUB. PO OSN.INSTR.ZAŠT. RIZIKA (HEDŽINGA) NOVÈ.TOKA           0
+332        IZNOSI SA RAÈUNA 332 I 333                                  337       DOB. ILI GUB. PO OSN. HART. OD VREDN. RASPOLOŽ. ZA PRODAJU             0
+409       DDEO RAÈ. 409 - OSTALA DUGOROÈNA REZERVISANJA                405       REZERVISANJA ZA TROŠKOVE SUDSKIH SPOROVA                               0
+419       DDEO RAÈUNA 419 - OSTALE DUGOROÈNE OBAVEZE                   416       OBAVEZE PO OSNOVU FINANSIJSKOG LIZINGA                                 0
+431       DDEO RAÈUNA 431 - DOBAVLJAÈI - MATIÈNA I                     432                                                                              0
+          DZAVISNA PRAVNA LICA 431                                               DOBAVLJAÈI - MATIÈNA I ZAVISNA PRAVNA LICA U ZEMLJI                    0
+          DDEO RAÈUNA 431 - DOBAVLJAÈI - MATIÈNA I                                                                                                      0
+          DZAVISNA PRAVNA LICA 431                                               DOBAVLJAÈI - MATIÈNA I ZAVISNA PRAVNA LICA U INOSTRANSTVU              0
+432       DDEO RAÈUNA 432 - DOBAVLJAÈI - OSTALA                        433                                                                              0
+          DPOVEZANA PRAVNA LICA 432                                              DOBAVLJAÈI - OSTALA POVEZANA  LICA U ZEMLJI                            0
+432       DDEO RAÈUNA 432 - DOBAVLJAÈI - OSTALA                        434                                                                              0
+          DPOVEZANA PRAVNA LICA 432                                              DOBAVLJAÈI - OSTALA POVEZANA  LICA U INOSTRANSTVU                      0
+433        DOBAVLJAÈI U ZEMLJI                                         435       DOBAVLJAÈI U ZEMLJI                                                    0
+434        DOBAVLJAÈI U INOSTRANSTVU                                   436       DOBAVLJAÈI U INOSTRANSTVU                                              0
+497       DDEO RAÈUNA 497 - RAZGRANIÈENE OBAVEZE ZA                                                                                                     0
+          DPDV ZA DEO PDV KOJI JE OBRAÈUNAT PO                                                                                                          0
+          DOPŠTOJ STOPI 497                                            470       OBAVEZE ZA PDV PO IZDAT.FAKT. PO OPŠ.ST. (OSIM PRIM.AVANSA)            0
+          DDEO RAÈUNA 497 - RAZGRANIÈENE OBAVEZE ZA                                                                                                     0
+          DPDV ZA DEO PDV KOJI JE OBRAÈUNAT PO                                                                                                          0
+          DPOSEBNOJ STOPI 497                                          471       OBAVEZE ZA PDV PO IZDAT.FAKT. PO POSEB.ST.(OSIM PRIM.AVANSA)           0
+512       DDEO SA RAÈUNA GRUPE 51                                      514       TROŠKOVI REZERVNIH DELOVA                                              0
+          DDEO SA RAÈUNA GRUPE 51   512                                515       TROŠKOVI JEDNOKRATNOG OTPISA ALATA I INVENTARA                         0
+572        RAÈUN 572 - GUBICI PO OSNOVU PRODAJE                                                                                                         0
+           UÈEŠÆA U KAPITALU I HARTIJA OD VREDNOSTI I                                                                                                   0
+          D I  DEO 579 - OSTALI NEPOMENUTI RASHODI   572               572       GUBICI PO OSN.PRODAJE UÈEŠ.U KAPIT.POTRAŽ.I HART.OD VREDNOS.           0
+579       DDEO RAÈUNA 579 - OSTALI NEPOMENUTI RASHODI                  576       RASHODI PO OSNOVU DIREKTNIH OTPISA POTRAŽIVANJA                        0
+600       DDEO RAÈUNA 600 - PRIHODI OD PRODAJE ROBE                    600                                                                              0
+          DMATIÈNIM I ZAVISNIM PRAVNIM LICIMA 600                                PRIHODI OD PRODAJE ROBE MATIÈ.I ZAVIS.PRAV.LIC.NA DOM.TRŽIŠ.           0
+600       DDEO RAÈUNA 600 - PRIHODI OD PRODAJE ROBE                    601                                                                              0
+          DMATIÈNIM I ZAVISNIM PRAVNIM LICIMA 600                                PRIHODI OD PRODAJE ROBE MATIÈ.I  ZAVIS.PRAV.LIC.NA INOST.TRŽ           0
+601       DDEO RAÈUNA 601 - PRIHODI OD PRODAJE ROBE                    602                                                                              0
+          DOSTALIM POVEZANIM PRAVNIM LICIMA 601                                  PRIH.OD PRODAJE ROBE OST.POVEZ.PRAV.LICIMA NA DOM.TRŽIŠTU              0
+          DDEO RAÈUNA 601 - PRIHODI OD PRODAJE ROBE                                                                                                     0
+          DOSTALIM POVEZANIM PRAVNIM LICIMA  601                       603       PRIH.OD PRODAJE ROBE OST.POVEZ.PRAV.LICIMA NA INOSTR.TRŽIŠTU           0
+602        PRIHODI OD PRODAJE ROBE NA DOMAÆ.TRŽIŠTU                    604       PRIHODI OD PRODAJE ROBE NA DOMAÆEM TRŽIŠTU                             0
+603        PRIHODI OD PRODAJE ROBE NA INOST.TRŠIŠTU                    605       PRIHODI OD PRODAJE ROBE NA INOSTRANOM TRŽIŠTU                          0
+610       DDEO RAÈUNA 610 - PRIHODI OD PRODAJE                                                                                                          0
+          DPROIZVODA I USLUGA MATIÈ.I ZAVIS.PRAV.LICIMA 610            610       PRIH.OD PROD. PROIZ.I USL.MAT.I ZAV.PRAV.LICIMA NA DOM. TRŽ.           0
+          DDEO RAÈUNA 610 - PRIHODI OD PRODAJE                                                                                                          0
+          DPROIZVODA I USLUGA MATIÈ.I  ZAVIS.PRAV.LICIMA 610                     PRIH.OD PROD.PROIZ.I USL.MAT.IZAV.PRAV.LICIMA NA INOST.TRŽ.            0
+611       DDEO RAÈUNA 611 - PRIHODI OD PRODAJE                         612                                                                              0
+          DPROIZVODA I USLUGA OST.POVEZ.PRAV.LICIMA  611                         PRIH.OD PROD.PROIZ.I USL.OST.POVEZ.PRAV.LIC.NA DOM.TRŽIŠ.              0
+          DDEO RAÈUNA 611 - PRIHODI OD PRODAJE                                                                                                          0
+          DPROIZVODA I USLUGA OST.POVEZ.PRAV.LICIMA 611                          PRIH.OD PROD.PROIZ.I USL.OST.POVEZ.PRAV.LIC.NA INOST.TRŽIŠ.            0
+612       DPRIHODI OD PRODAJE PROIZVODA I USLUGA                       614                                                                              0
+           NA DOMAÆEM TRŽIŠTU   612                                              PRIHODI OD PRODAJE PROIZVODA I USLUGA NA DOMAÆEM TRŽIŠTU               0
+613        PRIHODI OD PRODAJE PROIZVODA I USLUGA                       615                                                                              0
+           NA INOSTRANOM TRŽIŠTU  613                                            PRIHODI OD PRODAJE PROIZVODA I USLUGA NA INOSTRANOM TRŽIŠTU            0
+672        RAÈUN 672 - DOBICI OD PRODAJE UÈEŠÆA I                                                                                                       0
+           DUGOROÈNIH HARTIJA OD VREDNOSTI I DEO                                                                                                        0
+           679 - OSTALI NEPOMENUTI PRIHODI    672                      672       DOBICI OD PRODAJE UÈEŠÆA, POTRAŽ.I DUG.HARTIJA OD VREDNOSTI            0
+88        DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA                 880       TUÐA SREDSTVA UZETA U OPERATIVNI LIZING (ZAKUP)                        0
+          DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA  88             881       PREUZETI PROIZVODI I ROBA ZA ZAJEDNIÈKO POSLOVANJE                     0
+          DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA  88             882       ROBA UZETA U KOMISION I KONSIGNACIJU                                   0
+          DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA   88            883       MATERIJAL I ROBA PRIMLJENI NA OBRADU I DORADU                          0
+          DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA  88             884       DATA JEMSTVA, GARANCIJE I DRUGA PRAVA                                  0
+          DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA  88             885       HARTIJE OD VREDNOSTI KOJE SU VAN PROMETA                               0
+          DDEO SA RAÈUNA GRUP. 88 - VANBILANSNA AKTIVA  88             889       IMOVINA KOD DRUGIH SUBJEKATA                                           0
+89        DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA                 890       OBAVEZE I SREDSTVA UZETA U OPERATIVNI LIZING (ZAKUP)                   0
+          DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA 89              891       OBAVEZE ZA PREUZETE PROIZVODE I ROBU ZA  ZAJEDN. POSLOVANJE            0
+          DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA 89              892       OBAVEZE ZA ROBU UZETU U KOMISION I KONSIGNACIJU                        0
+          DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA 89              893       OBAVEZE ZA MATERIJAL I ROBU PRIMLJENU NA OBRADU I DORADU               0
+          DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA 89              894       OBAVEZE ZA DATA JEMSTVA, GARANCIJE I DRUGA PRAVA                       0
+          DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA 89              895       OBAVEZE ZA HARTIJE OD VREDNOSTI KOJE SU VAN PROMETA                    0
+          DDEO SA RAÈUNA GRUP. 89 - VANBILANSNA PASIVA 89              899       OBAVEZE ZA IMOVINU KOD DRUGIH SUBJEKATA                                0

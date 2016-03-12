@@ -1,0 +1,3124 @@
+PROCEDURE ZAMENAP
+PUSH KEY CLEAR
+
+SET PATH TO &MDATA01
+SET DEFAULT TO &MDATA01
+
+ERASE *.DBF
+ERASE *.CDX
+
+
+GPRG=MPRG+'DBDATA00'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+CLOSE ALL
+
+SET PATH TO TO &MDATA00
+SET DEFAULT TO &MDATA00
+
+MRECL=0
+BLOZINKE=MDATA00+'\'+'LOZINKE.DBF'
+IF FILE(BLOZINKE)
+   USE &BLOZINKE IN 0 ALIAS LOZINKE
+   SELECT LOZINKE
+   MRECL=RECCOUNT()
+   USE
+ENDIF
+
+SET PATH TO &MDATA02
+SET DEFAULT TO &MDATA02
+ERASE Q*.DBF
+ERASE *.CDX
+ERASE ANALK*.DBF
+ERASE IZ*.DBF
+
+ERASE ZRREV0*.DBF
+
+ERASE DPRAC*.DBF
+
+
+
+ZAMENA.LABEL1.CAPTION=' OSNOVNE TABELE '
+
+IF FILE('GENPAR.DBF')
+   RENAME GENPAR.DBF TO QGENPAR.DBF
+ENDIF
+
+IF FILE('PUTNAL.DBF')
+   RENAME PUTNAL.DBF TO QPUTNAL.DBF
+ENDIF
+
+IF FILE('IMENIK.DBF')
+   RENAME IMENIK.DBF TO QIMENIK.DBF
+ENDIF
+
+IF FILE('IMENPOR.DBF')
+   RENAME IMENPOR.DBF TO QIMENPOR.DBF
+ENDIF
+
+IF FILE('KURS.DBF')
+   RENAME KURS.DBF TO QKURS.DBF
+ENDIF
+
+IF FILE('MESTA.DBF')
+   RENAME MESTA.DBF TO QMESTA.DBF
+ENDIF
+
+IF FILE('FIRMA.DBF')
+   RENAME FIRMA.DBF TO QFIRMA.DBF
+ENDIF
+
+IF FILE('VIRM.DBF')
+   RENAME VIRM.DBF TO QVIRM.DBF
+ENDIF
+
+IF FILE('MTR.DBF')
+   RENAME MTR.DBF TO QMTR.DBF
+ENDIF
+
+IF FILE('datumi.DBF')
+   RENAME DATUMI.DBF TO QDATUMI.DBF
+ENDIF
+
+
+IF FILE('NALBROJ.DBF')
+   RENAME NALBROJ.DBF TO QNALBROJ.DBF
+ENDIF
+
+IF FILE('NALVRSTA.DBF')
+   RENAME NALVRSTA.DBF TO QNALVRST.DBF
+ENDIF
+
+IF FILE('AANAL.DBF')
+   RENAME AANAL.DBF TO QAANAL.DBF
+ENDIF
+
+IF FILE('AABL.DBF')
+   RENAME AABL.DBF TO QAABL.DBF
+ENDIF
+
+IF FILE('AAAN.DBF')
+   RENAME AAAN.DBF TO QAAAN.DBF
+ENDIF
+
+IF FILE('AAKA.DBF')
+   RENAME AAKA.DBF TO QAAKA.DBF
+ENDIF
+
+IF FILE('PRENOS.DBF')
+   RENAME PRENOS.DBF TO QPRENOS.DBF
+ENDIF
+
+IF FILE('PLACPOR.DBF')
+   RENAME PLACPOR.DBF TO QPLACPOR.DBF
+ENDIF
+
+IF FILE('KSEMA.DBF')
+   RENAME KSEMA.DBF TO QKSEMA.DBF
+ENDIF
+
+IF FILE('TARIFA.DBF')
+   RENAME TARIFA.DBF TO QTARIFA.DBF
+ENDIF
+
+IF FILE('FAKPRN.DBF')
+   RENAME FAKPRN.DBF TO QFAKPRN.DBF
+ENDIF
+
+IF FILE('KALPRN.DBF')
+   RENAME KALPRN.DBF TO QKALPRN.DBF
+ENDIF
+
+IF FILE('FAKPODN.DBF')
+   RENAME FAKPODN.DBF TO QFAKPODN.DBF
+ENDIF
+
+IF FILE('AATV.DBF')
+   RENAME AATV.DBF TO QAATV.DBF
+ENDIF
+
+IF FILE('AATM.DBF')
+   RENAME AATM.DBF TO QAATM.DBF
+ENDIF
+
+IF FILE('AAUS.DBF')
+   RENAME AAUS.DBF TO QAAUS.DBF
+ENDIF
+
+IF FILE('LDPARAM.DBF')
+   RENAME LDPARAM.DBF TO QLDPARAM.DBF
+ENDIF
+
+IF FILE('APFAK.DBF')
+   RENAME APFAK.DBF TO QAPFAK.DBF
+ENDIF
+
+IF FILE('APFAK0.DBF')
+   RENAME APFAK0.DBF TO QAPFAK0.DBF
+ENDIF
+
+IF FILE('APTRO.DBF')
+   RENAME APTRO.DBF TO QAPTRO.DBF
+ENDIF
+
+IF FILE('APTRO0.DBF')
+   RENAME APTRO0.DBF TO QAPTRO0.DBF
+ENDIF
+
+IF FILE('CAREV.DBF')
+   RENAME CAREV.DBF TO QCAREV.DBF
+ENDIF
+IF FILE('CARROB.DBF')
+   RENAME CARROB.DBF TO QCARROB.DBF
+ENDIF
+
+ERASE FINPAR*.DBF
+ERASE PREGLE*.DBF
+
+GPRG=MPRG+'DBDATA02'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+*--------PRENOSIMO FINBAZEP--------------
+IF FILE('GENPAR.DBF')
+   IF FILE('QGENPAR.DBF')
+      USE GENPAR
+      APPEND FROM QGENPAR
+      USE
+   ENDIF   
+ENDIF
+
+
+
+IF FILE('PUTNAL.DBF')
+   IF FILE('QPUTNAL.DBF')
+      USE PUTNAL
+      APPEND FROM QPUTNAL
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('IMENIK.DBF')
+   IF FILE('QIMENIK.DBF')
+      USE IMENIK
+      APPEND FROM QIMENIK
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('IMENPOR.DBF')
+   IF FILE('QIMENPOR.DBF')
+      USE IMENPOR
+      APPEND FROM QIMENPOR
+      USE
+   ENDIF   
+ENDIF
+
+
+
+
+IF FILE('KURS.DBF')
+   IF FILE('QKURS.DBF')
+      USE KURS
+      APPEND FROM QKURS 
+      USE
+   ENDIF   
+ENDIF
+
+
+
+IF FILE('MESTA.DBF')
+   IF FILE('QMESTA.DBF')
+      USE MESTA
+      APPEND FROM QMESTA 
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('FIRMA.DBF')
+   IF FILE('QFIRMA.DBF')
+      USE FIRMA EXCLU
+      ZAP
+      APPEND FROM QFIRMA
+      USE
+   ENDIF  
+ENDIF
+
+IF FILE('VIRM.DBF')
+   IF FILE('QVIRM.DBF')
+      USE VIRM
+      APPEND FROM QVIRM
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('MTR.DBF')
+   IF FILE('QMTR.DBF')
+      USE MTR
+      APPEND FROM QMTR
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('datumi.DBF')
+   IF FILE('Qdatumi.DBF')
+      USE DATUMI
+      APPEND FROM QDATUMI
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('NALBROJ.DBF')
+   IF FILE('QNALBROJ.DBF')
+      USE NALBROJ
+      APPEND FROM QNALBROJ
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('NALVRSTA.DBF')
+   IF FILE('QNALVRST.DBF')
+      USE NALVRSTA
+      APPEND FROM QNALVRST
+      USE
+   ENDIF
+ENDIF
+
+IF FILE('AANAL.DBF')
+   IF FILE('QAANAL.DBF')
+      USE AANAL
+      APPEND FROM QAANAL
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('AABL.DBF')
+   IF FILE('QAABL.DBF')
+      USE AABL
+      APPEND FROM QAABL
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('AAAN.DBF')
+   IF FILE('QAAAN.DBF')
+      USE AAAN
+      APPEND FROM QAAAN
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('AAKA.DBF')
+   IF FILE('QAAKA.DBF')
+      USE AAKA
+      APPEND FROM QAAKA
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('AATV.DBF')
+   IF FILE('QAATV.DBF')
+      USE AATV
+      APPEND FROM QAATV
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('AATM.DBF')
+   IF FILE('QAATM.DBF')
+      USE AATM
+      APPEND FROM QAATM
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('AAUS.DBF')
+   IF FILE('QAAUS.DBF')
+      USE AAUS
+      APPEND FROM QAAUS
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('LDPARAM.DBF')
+   IF FILE('QLDPARAM.DBF')
+      USE LDPARAM
+      APPEND FROM QLDPARAM
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('PRENOS.DBF')
+   IF FILE('QPRENOS.DBF')
+      USE PRENOS
+      APPEND FROM QPRENOS
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('PLACPOR.DBF')
+   IF FILE('QPLACPOR.DBF')
+      USE PLACPOR
+      APPEND FROM QPLACPOR
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('KSEMA.DBF')
+   IF FILE('QKSEMA.DBF')
+      USE KSEMA
+      APPEND FROM QKSEMA
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('TARIFA.DBF')
+   IF FILE('QTARIFA.DBF')
+      USE TARIFA
+      APPEND FROM QTARIFA
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('FAKPRN.DBF')
+   IF FILE('QFAKPRN.DBF')
+      USE FAKPRN
+      APPEND FROM QFAKPRN
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('KALPRN.DBF')
+   IF FILE('QKALPRN.DBF')
+      USE KALPRN
+      APPEND FROM QKALPRN
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('FAKPODN.DBF')
+   IF FILE('QFAKPODN.DBF')
+      USE FAKPODN
+      APPEND FROM QFAKPODN
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('APFAK.DBF')
+   IF FILE('QAPFAK.DBF')
+      USE APFAK
+      APPEND FROM QAPFAK
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('APFAK0.DBF')
+   IF FILE('QAPFAK0.DBF')
+      USE APFAK0
+      APPEND FROM QAPFAK0
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('APTRO.DBF')
+   IF FILE('QAPTRO.DBF')
+      USE APTRO
+      APPEND FROM QAPTRO
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('APTRO0.DBF')
+   IF FILE('QAPTRO0.DBF')
+      USE APTRO0
+      APPEND FROM QAPTRO0
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('CAREV.DBF')
+   IF FILE('QCAREV.DBF')
+      USE CAREV
+      APPEND FROM QCAREV
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('CARROB.DBF')
+   IF FILE('QCARROB.DBF')
+      USE CARROB
+      APPEND FROM QCARROB
+      USE
+   ENDIF   
+ENDIF
+
+*------------KRAJ ZA FINBAZE-----------------------
+
+*-------------ANBAZE------------------------------
+
+ZAMENA.LABEL1.CAPTION=' ANALITIKA PARTNERI '
+
+IF FILE('AN0.DBF')
+   RENAME AN0.DBF TO QAN0.DBF
+ENDIF
+
+
+IF FILE('ANAL.DBF')
+   RENAME ANAL.DBF TO QANAL.DBF
+ENDIF
+
+MRECAN=0
+IF FILE('AAAN.DBF')
+   USE AAAN
+   MRECAN=RECCOUNT()
+   USE
+ENDIF
+
+IF MRECAN>0         
+
+   FOR I=1 TO MRECAN
+
+      QKAN0='QAN0'+ALLTRIM(STR(I,2,0))+'.DBF'
+      KAN0='AN0'+ALLTRIM(STR(I,2,0))+'.DBF'      
+      IF FILE(KAN0)
+         RENAME &KAN0 TO &QKAN0
+      ENDIF   
+      QKANAL='QANAL'+ALLTRIM(STR(I,2,0))+'.DBF'
+      KANAL='ANAL'+ALLTRIM(STR(I,2,0))+'.DBF'      
+      IF FILE(KANAL)
+         RENAME &KANAL TO &QKANAL
+      ENDIF   
+
+
+   NEXT
+
+ENDIF
+
+
+
+
+*-------IDI NAPRAVI NOVE BAZE----------
+GPRG=MPRG+'DBAN'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+   
+IF FILE('AN0.DBF')
+   IF FILE('QAN0.DBF')
+      USE AN0
+      APPEND FROM QAN0
+      replace ALL pib WITH sifra
+*      DO dodsifra
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('ANAL.DBF')
+   IF FILE('QANAL.DBF')
+      USE ANAL
+      APPEND FROM QANAL
+*      DO dodsifra
+      USE
+   ENDIF   
+ENDIF
+
+
+
+
+IF MRECAN>0         
+
+   FOR I=1 TO MRECAN
+
+      QKAN0='QAN0'+ALLTRIM(STR(I,2,0))+'.DBF'
+      KAN0='AN0'+ALLTRIM(STR(I,2,0))+'.DBF'      
+
+      IF FILE(KAN0)
+         IF FILE(QKAN0)
+            USE &KAN0
+                APPEND FROM &QKAN0
+ *               DO dodsifra
+            USE
+         ENDIF   
+      ENDIF
+
+
+      USE AAAN IN 0
+      SELECT AAAN
+      GOTO I
+      MKONTO=KONTO
+      USE
+        
+      QKANAL='QANAL'+ALLTRIM(STR(I,2,0))+'.DBF'
+      KANAL='ANAL'+ALLTRIM(STR(I,2,0))+'.DBF'      
+
+
+      IF FILE(KANAL)
+         IF FILE(QKANAL)
+            USE &KANAL
+                APPEND FROM &QKANAL
+                REPLACE ALL KONTO WITH MKONTO
+*                DO dodsifra
+            USE
+         ENDIF   
+      ENDIF
+
+
+
+   NEXT
+
+ENDIF
+
+
+
+
+*-----------ZAVRSENA JE ANALITIKA---------------------
+
+*------------BLAGAJNA---------------------------------
+
+ZAMENA.LABEL1.CAPTION=' BLAGAJNA '
+
+MRECB=0
+IF FILE('AABL.DBF')
+   USE AABL
+   MRECB=RECCOUNT()
+   USE
+ENDIF
+
+
+IF MRECB>0         
+   FOR I=1 TO MRECB
+      QKBL='QBL'+ALLTRIM(STR(I,2,0))+'.DBF'
+      KBL='BL'+ALLTRIM(STR(I,2,0))+'.DBF'      
+      IF FILE(KBL)
+         RENAME &KBL TO &QKBL
+      ENDIF   
+   NEXT
+ENDIF
+
+
+*-------IDI NAPRAVI NOVE BAZE----------
+GPRG=MPRG+'DBBL'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO BLAGAJNU---------------
+
+
+
+IF MRECB>0         
+   FOR I=1 TO MRECB
+      QKBL='QBL'+ALLTRIM(STR(I,2,0))+'.DBF'
+      KBL='BL'+ALLTRIM(STR(I,2,0))+'.DBF'      
+      IF FILE(KBL)
+         IF FILE(QKBL)
+            USE &KBL
+               APPEND FROM &QKBL
+            USE
+         ENDIF   
+      ENDIF
+   NEXT
+ENDIF
+
+
+
+*-----------ZAVRSENA JE -BLAGAJNA---------------------------------
+*-----------GLAVNA KNJIGA-----------------------------------------
+
+ZAMENA.LABEL1.CAPTION=' GLAVNA KNJIGA  '
+
+
+IF FILE('NALAP.DBF')
+   RENAME NALAP.DBF TO QNALAP.DBF
+ENDIF
+
+IF FILE('NAL.DBF')
+   RENAME NAL.DBF TO QNAL.DBF
+ENDIF
+
+
+IF FILE('KON1.DBF')
+   RENAME KON1.DBF TO QKON1.DBF
+ENDIF
+
+IF FILE('KON2.DBF')
+   RENAME KON2.DBF TO QKON2.DBF
+ENDIF
+IF FILE('KON3.DBF')
+   RENAME KON3.DBF TO QKON3.DBF
+ENDIF
+IF FILE('KON4.DBF')
+   RENAME KON4.DBF TO QKON4.DBF
+ENDIF
+IF FILE('KON5.DBF')
+   RENAME KON5.DBF TO QKON5.DBF
+ENDIF
+IF FILE('KON6.DBF')
+   RENAME KON6.DBF TO QKON6.DBF
+ENDIF
+
+IF FILE('KONTO.DBF')
+   RENAME KONTO.DBF TO QKONTO.DBF
+ENDIF
+
+IF FILE('BILSEMA.DBF')
+   RENAME BILSEMA.DBF TO QBILSEMA.DBF
+ENDIF
+
+
+IF FILE('ANEKS.DBF')
+   RENAME ANEKS.DBF TO QANEKS.DBF
+ENDIF
+
+
+
+MRECN=0
+IF FILE('AANAL.DBF')
+   USE AANAL
+   MRECN=RECCOUNT()
+   USE
+ENDIF
+
+
+IF MRECN>0
+   FOR I=1 TO MRECN
+      MI=ALLTRIM(STR(I,2,0))
+      KNAL='NAL'+MI+'.DBF'
+      QKNAL='QNAL'+MI+'.DBF'
+      IF FILE(KNAL)
+         RENAME &KNAL TO &QKNAL
+      ENDIF
+   NEXT
+ENDIF
+
+*-----------------PLANIRANJE----------------
+IF FILE('plan.dbf')
+   ERASE plan.dbf
+endif   
+   
+MRECPLAN=0
+IF FILE('AAPLAN.DBF')
+   USE AAPLAN
+   MRECPLAN=RECCOUNT()
+   USE
+ENDIF
+
+IF MRECPLAN>0
+   FOR I=1 TO MRECPLAN
+      MI=ALLTRIM(STR(I,2,0))
+      KPLAN='PLAN'+MI+'.DBF'
+      QKPLAN='QPLAN'+MI+'.DBF'
+      IF FILE(KPLAN)
+         RENAME &KPLAN TO &QKPLAN
+      ENDIF
+   NEXT
+ENDIF
+
+
+*-------IDI NAPRAVI NOVE BAZE----------
+GPRG=MPRG+'DBGK'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO GLAVNU KNJIGU---------------
+
+
+IF FILE('NALAP.DBF')
+   IF FILE('QNALAP.DBF')
+      USE NALAP
+         APPEND FROM QNALAP
+      USE
+   ENDIF   
+ENDIF
+
+
+
+IF FILE('NAL.DBF')
+   IF FILE('QNAL.DBF')
+      USE NAL
+         APPEND FROM QNAL
+      USE
+   ENDIF   
+ENDIF
+
+
+
+IF FILE('KON1.DBF')
+   IF FILE('QKON1.DBF')
+      USE KON1
+         APPEND FROM QKON1
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('KON2.DBF')
+   IF FILE('QKON12DBF')
+      USE KON2
+         APPEND FROM QKON2
+      USE
+   ENDIF   
+ENDIF
+IF FILE('KON3.DBF')
+   IF FILE('QKON3.DBF')
+      USE KON3
+         APPEND FROM QKON3
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('KON4.DBF')
+   IF FILE('QKON4.DBF')
+      USE KON4
+         APPEND FROM QKON4
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('KON5.DBF')
+   IF FILE('QKON5.DBF')
+      USE KON5
+         APPEND FROM QKON5
+      USE
+   ENDIF   
+ENDIF
+IF FILE('KON6.DBF')
+   IF FILE('QKON6.DBF')
+      USE KON6
+         APPEND FROM QKON6
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('KONTO.DBF')
+   IF FILE('QKONTO.DBF')
+      USE KONTO
+         APPEND FROM QKONTO
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('BILSEMA.DBF')
+   IF FILE('QBILSEMA.DBF')
+      USE BILSEMA
+         APPEND FROM QBILSEMA
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('ANEKS.DBF')
+   IF FILE('QANEKS.DBF')
+      USE ANEKS
+         APPEND FROM QANEKS
+      USE
+   ENDIF   
+ENDIF
+
+
+
+IF MRECN>0
+   FOR I=1 TO MRECN
+      MI=ALLTRIM(STR(I,2,0))
+      KNAL='NAL'+MI+'.DBF'
+      QKNAL='QNAL'+MI+'.DBF'
+      IF FILE(KNAL)
+         IF FILE(QKNAL)
+            USE &KNAL  
+            APPEND FROM &QKNAL
+            USE
+         ENDIF
+      ENDIF       
+    NEXT
+ENDIF
+
+
+IF MRECPLAN>0
+   FOR I=1 TO MRECPLAN
+      MI=ALLTRIM(STR(I,2,0))
+      KPLAN='PLAN'+MI+'.DBF'
+      QKPLAN='QPLAN'+MI+'.DBF'
+      IF FILE(KPLAN)
+         IF FILE(QKPLAN)
+            USE &KPLAN
+            APPEND FROM &QKPLAN
+            USE
+         ENDIF
+      ENDIF       
+    NEXT
+ENDIF
+
+
+*---------ZAVRSETAK GLAVNE KNJIGE----------
+
+*---------KAMATE---------------------------
+
+ZAMENA.LABEL1.CAPTION=' KAMATE '
+
+IF FILE('KASTOP.DBF')
+   RENAME KASTOP.DBF TO QKASTOP.DBF
+ENDIF
+
+IF FILE('KAKOEF.DBF')
+   RENAME KAKOEF.DBF TO QKAKOEF.DBF
+ENDIF
+
+IF FILE('KAMATE.DBF')
+   RENAME KAMATE.DBF TO QKAMATE.DBF
+ENDIF
+
+
+IF FILE('KAMOBRAC.DBF')
+   RENAME KAMOBRAC.DBF TO QKAMOBRA.DBF
+ENDIF
+
+
+
+
+
+MRECA=0
+IF FILE('AAKA.DBF')
+   USE AAKA
+   MRECA=RECCOUNT()
+   USE
+ENDIF
+
+
+IF MRECA>0
+   FOR I=1 TO MRECA
+      MI=ALLTRIM(STR(I,2,0))
+      KKAMATE='KAMATE'+MI+'.DBF'
+      QKKAMATE='QAMATE'+MI+'.DBF'
+      KKAKOEF='KAKOEF'+MI+'.DBF'
+      QKKAKOEF='QAKOEF'+MI+'.DBF'
+      KKASTOP='KASTOP'+MI+'.DBF'
+      QKKASTOP='QASTOP'+MI+'.DBF'
+      
+      IF FILE(KKAMATE)
+         RENAME &KKAMATE TO &QKKAMATE
+      ENDIF
+      
+      IF FILE(KKAKOEF)
+         RENAME &KKAKOEF TO &QKKAKOEF
+      ENDIF
+      
+      IF FILE(KKASTOP)
+         RENAME &KKASTOP TO &QKKASTOP
+      ENDIF
+   NEXT      
+ENDIF   
+      
+*-------IDI NAPRAVI NOVE BAZE KAMATA----------
+GPRG=MPRG+'DBKA'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO KAMATU-------------
+
+IF FILE('KASTOP.DBF')
+   IF FILE('QKASTOP.DBF')
+      USE KASTOP
+         APPEND FROM QKASTOP
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('KAKOEF.DBF')
+   IF FILE('QKAKOEF.DBF')
+      USE KAKOEF
+         APPEND FROM QKAKOEF
+      USE
+   ENDIF   
+ENDIF
+
+
+IF FILE('KAMATE.DBF')
+   IF FILE('QKAMATE.DBF')
+      USE KAMATE
+         APPEND FROM QKAMATE
+      USE
+   ENDIF   
+ENDIF
+
+IF FILE('KAMOBRAC.DBF')
+   IF FILE('QKAMOBRA.DBF')
+      USE KAMOBRAC
+         APPEND FROM QKAMOBRA
+      USE
+   ENDIF   
+ENDIF
+
+
+IF MRECA>0
+   FOR I=1 TO MRECA
+      MI=ALLTRIM(STR(I,2,0))
+      KKAMATE='KAMATE'+MI+'.DBF'
+      QKKAMATE='QAMATE'+MI+'.DBF'
+      KKAKOEF='KAKOEF'+MI+'.DBF'
+      QKKAKOEF='QAKOEF'+MI+'.DBF'
+      KKASTOP='KASTOP'+MI+'.DBF'
+      QKKASTOP='QASTOP'+MI+'.DBF'
+
+      IF FILE(KKAMATE)
+         IF FILE(QKKAMATE)
+            USE &KKAMATE  
+            APPEND FROM &QKKAMATE
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF       
+
+      IF FILE(KKAKOEF)
+         IF FILE(QKKAKOEF)
+            USE &KKAKOEF  
+            APPEND FROM &QKKAKOEF
+            USE
+         ENDIF
+      ENDIF       
+      
+      IF FILE(KKASTOP)
+         IF FILE(QKKASTOP)
+            USE &KKASTOP  
+            APPEND FROM &QKKASTOP
+            USE
+         ENDIF
+      ENDIF       
+
+   NEXT      
+ENDIF   
+
+*--------ZAVRSEN ZAMENA KAMATA-------------
+
+*--------PLATE-----------------------------
+
+ZAMENA.LABEL1.CAPTION=' ZARADE PLATE '
+
+      IF FILE('LDRAD.DBF')
+         RENAME LDRAD.DBF TO QLDRAD.DBF
+      ENDIF
+
+      IF FILE('LDSPIS.DBF')
+         RENAME LDSPIS.DBF TO QLDSPIS.DBF
+      ENDIF
+
+      IF FILE('Lmesta.DBF')
+         RENAME LMESTA.DBF TO QLMESTA.DBF
+      ENDIF
+
+      IF FILE('LD.DBF')
+         RENAME LD.DBF TO QLD.DBF
+      ENDIF
+
+      IF FILE('LDSAMOD.DBF')
+         RENAME LDSAMOD.DBF TO QLDSAMOD.DBF
+      ENDIF
+
+      IF FILE('LDPOD.DBF')
+         RENAME LDPOD.DBF TO QLDPOD.DBF
+      ENDIF
+
+      IF FILE('LDOPJ.DBF')
+         RENAME LDOPJ.DBF TO QLDOPJ.DBF
+      ENDIF
+
+      IF FILE('LDOPJ1.DBF')
+         RENAME LDOPJ1.DBF TO QLDOPJ1.DBF
+      ENDIF
+
+      IF FILE('LDOPJ2.DBF')
+         RENAME LDOPJ2.DBF TO QLDOPJ2.DBF
+      ENDIF
+      IF FILE('LDOPJ3.DBF')
+         RENAME LDOPJ3.DBF TO QLDOPJ3.DBF
+      ENDIF
+      IF FILE('LDOPJ4.DBF')
+         RENAME LDOPJ4.DBF TO QLDOPJ4.DBF
+      ENDIF
+      IF FILE('LDOPJ5.DBF')
+         RENAME LDOPJ5.DBF TO QLDOPJ5.DBF
+      ENDIF
+      IF FILE('LDOPJ6.DBF')
+         RENAME LDOPJ6.DBF TO QLDOPJ6.DBF
+      ENDIF
+      IF FILE('LDOPJ7.DBF')
+         RENAME LDOPJ7.DBF TO QLDOPJ7.DBF
+      ENDIF
+      IF FILE('LDOPJ8.DBF')
+         RENAME LDOPJ8.DBF TO QLDOPJ8.DBF
+      ENDIF
+
+      IF FILE('LDOD.DBF')
+         RENAME LDOD.DBF TO QLDOD.DBF
+      ENDIF
+
+      IF FILE('LDOD1.DBF')
+         RENAME LDOD1.DBF TO QLDOD1.DBF
+      ENDIF
+
+      IF FILE('LDREK.DBF')
+         RENAME LDREK.DBF TO QLDREK.DBF
+      ENDIF
+
+      IF FILE('LDSPIS.DBF')
+         RENAME LDSPIS.DBF TO QLDSPIS.DBF
+      ENDIF
+
+      IF FILE('LDKOLONA.DBF')
+         RENAME LDKOLONA.DBF TO QLDKOLON.DBF
+      ENDIF
+
+      IF FILE('LDKRED.DBF')
+         RENAME LDKRED.DBF TO QLDKRED.DBF
+      ENDIF
+
+      IF FILE('LDKREDR.DBF')
+         RENAME LDKREDR.DBF TO QLDKREDR.DBF
+      ENDIF
+
+      IF FILE('LDVIRM.DBF')
+         RENAME LDVIRM.DBF TO QLDVIRM.DBF
+      ENDIF
+
+      IF FILE('L2VIRM.DBF')
+         RENAME L2VIRM.DBF TO QL2VIRM.DBF
+      ENDIF
+
+      IF FILE('LDNZ1.DBF')
+         RENAME LDNZ1.DBF TO QLDNZ1.DBF
+      ENDIF
+
+      IF FILE('LDZ1.DBF')
+         RENAME LDZ1.DBF TO QLDZ1.DBF
+      ENDIF
+
+      IF FILE('LDRAD0.DBF')
+         RENAME LDRAD0.DBF TO QLDRAD0.DBF
+      ENDIF
+      
+      IF FILE('LDVIRM6.DBF')
+         RENAME LDVIRM6.DBF TO QLDVIRM6.DBF
+      ENDIF
+
+      IF FILE('LDOPJ6P1.DBF')
+         RENAME LDOPJ6P1.DBF TO QDOPJ6P1.DBF
+      ENDIF
+      
+      IF FILE('LDOPJ6P2.DBF')
+         RENAME LDOPJ6P2.DBF TO QDOPJ6P2.DBF
+      ENDIF
+      IF FILE('LDOPJ6P3.DBF')
+         RENAME LDOPJ6P3.DBF TO QDOPJ6P3.DBF
+      ENDIF
+
+      
+      IF FILE('LDDUNK.DBF')
+         RENAME LDDUNK.DBF TO QLDDUNK.DBF
+      ENDIF
+
+
+      IF FILE('LDOSNOV.DBF')
+         RENAME LDOSNOV.DBF TO QLDOSNOV.DBF
+      ENDIF
+
+      IF FILE('LDKATEG.DBF')
+         RENAME LDKATEG.DBF TO QLDKATEG.DBF
+      ENDIF
+
+FOR I=1 TO 99
+   
+   MLD='LD'+alltrim(str(I,2,0))+'.dbf'
+   MLDPOD='LDPOD'+alltrim(str(I,2,0))+'.dbf'
+   MLDP='LDP'+alltrim(str(I,2,0))+'.dbf'
+   MLDPODP='LDPODP'+alltrim(str(I,2,0))+'.dbf'
+   MLDB='LDB'+alltrim(str(I,2,0))+'.dbf'
+   MLDPODB='LDPODB'+alltrim(str(I,2,0))+'.dbf'
+   MLDI='LDI'+alltrim(str(I,2,0))+'.dbf'
+   MLDPODI='LDPODI'+alltrim(str(I,2,0))+'.dbf'
+
+
+   QMLD='QLD'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPOD='QLDPOD'+alltrim(str(I,2,0))+'.dbf'
+   QMLDP='QLDP'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPODP='QLDPODP'+alltrim(str(I,2,0))+'.dbf'
+   QMLDB='QLDB'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPODB='QLDPODB'+alltrim(str(I,2,0))+'.dbf'
+   QMLDI='QLDI'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPODI='QLDPODI'+alltrim(str(I,2,0))+'.dbf'
+
+
+
+   IF FILE(MLD)
+      RENAME &MLD TO &QMLD
+   ENDIF
+      
+   IF FILE(MLDPOD)
+      RENAME &MLDPOD TO &QMLDPOD
+   ENDIF
+
+   IF FILE(MLDP)
+      RENAME &MLDP TO &QMLDP
+   ENDIF
+      
+   IF FILE(MLDPODP)
+      RENAME &MLDPODP TO &QMLDPODP
+   ENDIF
+
+   IF FILE(MLDB)
+      RENAME &MLDB TO &QMLDB
+   ENDIF
+      
+   IF FILE(MLDPODB)
+      RENAME &MLDPODB TO &QMLDPODB
+   ENDIF
+
+   IF FILE(MLDI)
+      RENAME &MLDI TO &QMLDI
+   ENDIF
+      
+   IF FILE(MLDPODI)
+      RENAME &MLDPODI TO &QMLDPODI
+   ENDIF
+   
+NEXT
+
+
+
+*-------IDI NAPRAVI NOVE BAZE PLATA----------
+GPRG=MPRG+'DBLD'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO PLATU------------
+
+      IF FILE('LMESTA.DBF')
+         IF FILE('QLMESTA.DBF')
+            USE LMESTA
+            APPEND FROM QLMESTA
+            USE
+         ENDIF
+      ENDIF         
+
+
+      IF FILE('LDRAD.DBF')
+         IF FILE('QLDRAD.DBF')
+            USE LDRAD
+            APPEND FROM QLDRAD
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDSPIS.DBF')
+         IF FILE('QLDSPIS.DBF')
+            USE LDSPIS
+            APPEND FROM QLDSPIS
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LD.DBF')
+         IF FILE('QLD.DBF')
+            USE LD
+            APPEND FROM QLD
+            USE
+         ENDIF
+      ENDIF         
+
+
+      IF FILE('LDSAMOD.DBF')
+         IF FILE('QLDSAMOD.DBF')
+            USE LDSAMOD
+            APPEND FROM QLDSAMOD
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDPOD.DBF')
+         IF FILE('QLDPOD.DBF')
+            USE LDPOD
+            APPEND FROM QLDPOD
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOPJ.DBF')
+         IF FILE('QLDOPJ.DBF')
+            USE LDOPJ
+            APPEND FROM QLDOPJ
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOPJ1.DBF')
+         IF FILE('QLDOPJ1.DBF')
+            USE LDOPJ1
+            APPEND FROM QLDOPJ1
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOPJ2.DBF')
+         IF FILE('QLDOPJ2.DBF')
+            USE LDOPJ2
+            APPEND FROM QLDOPJ2
+            USE
+         ENDIF
+      ENDIF         
+      IF FILE('LDOPJ3.DBF')
+         IF FILE('QLDOPJ3.DBF')
+            USE LDOPJ3
+            APPEND FROM QLDOPJ3
+            USE
+         ENDIF
+      ENDIF         
+      IF FILE('LDOPJ4.DBF')
+         IF FILE('QLDOPJ4.DBF')
+            USE LDOPJ4
+            APPEND FROM QLDOPJ4
+            USE
+         ENDIF
+      ENDIF         
+      IF FILE('LDOPJ5.DBF')
+         IF FILE('QLDOPJ5.DBF')
+            USE LDOPJ5
+            APPEND FROM QLDOPJ5
+            USE
+         ENDIF
+      ENDIF         
+      IF FILE('LDOPJ6.DBF')
+         IF FILE('QLDOPJ6.DBF')
+            USE LDOPJ6
+            APPEND FROM QLDOPJ6
+            USE
+         ENDIF
+      ENDIF         
+      IF FILE('LDOPJ7.DBF')
+         IF FILE('QLDOPJ7.DBF')
+            USE LDOPJ7
+            APPEND FROM QLDOPJ7
+            USE
+         ENDIF
+      ENDIF         
+      IF FILE('LDOPJ8.DBF')
+         IF FILE('QLDOPJ8.DBF')
+            USE LDOPJ8
+            APPEND FROM QLDOPJ8
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOD.DBF')
+         IF FILE('QLDOD.DBF')
+            USE LDOD
+            APPEND FROM QLDOD
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOD1.DBF')
+         IF FILE('QLDOD1.DBF')
+            USE LDOD1
+            APPEND FROM QLDOD1
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDREK.DBF')
+         IF FILE('QLDREK.DBF')
+            USE LDREK
+            APPEND FROM QLDREK
+            USE
+         ENDIF
+      ENDIF         
+
+
+      IF FILE('LDSPIS.DBF')
+         IF FILE('QLDSPIS.DBF')
+            USE LDSPIS
+            APPEND FROM QLDSPIS
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDKOLONA.DBF')
+         IF FILE('QLDKOLON.DBF')
+            USE LDKOLONA
+            APPEND FROM QLDKOLON
+            USE
+         ENDIF
+      ENDIF         
+
+
+      IF FILE('LDKRED.DBF')
+         IF FILE('QLDKRED.DBF')
+            USE LDKRED
+            APPEND FROM QLDKRED
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDKREDR.DBF')
+         IF FILE('QLDKREDR.DBF')
+            USE LDKREDR
+            APPEND FROM QLDKREDR
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDVIRM.DBF')
+         IF FILE('QLDVIRM.DBF')
+            USE LDVIRM
+            APPEND FROM QLDVIRM
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('L2VIRM.DBF')
+         IF FILE('QL2VIRM.DBF')
+            USE L2VIRM
+            APPEND FROM QL2VIRM
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDNZ1.DBF')
+         IF FILE('QLDNZ1.DBF')
+            USE LDNZ1
+            APPEND FROM QLDNZ1
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDZ1.DBF')
+         IF FILE('QLDZ1.DBF')
+            USE LDZ1
+            APPEND FROM QLDZ1
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDRAD0.DBF')
+         IF FILE('QLDRAD0.DBF')
+            USE LDRAD0
+            APPEND FROM QLDRAD0
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDVIRM6.DBF')
+         IF FILE('QLDVIRM6.DBF')
+            USE LDVIRM6
+            APPEND FROM QLDVIRM6
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDDUNK.DBF')
+         IF FILE('QLDDUNK.DBF')
+            USE LDDUNK
+            APPEND FROM QLDDUNK
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOSNOV.DBF')
+         IF FILE('QLDOSNOV.DBF')
+            USE LDOSNOV
+            APPEND FROM QLDOSNOV
+            USE
+         ENDIF
+      ENDIF         
+      
+      IF FILE('LDKATEG.DBF')
+         IF FILE('QLDKATEG.DBF')
+            USE LDKATEG
+            APPEND FROM QLDKATEG
+            USE
+         ENDIF
+      ENDIF         
+      
+
+      IF FILE('LDOPJ6P1.DBF')
+         IF FILE('QDOPJ6P1.DBF')
+            USE LDOPJ6P1
+            APPEND FROM QDOPJ6P1
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOPJ6P2.DBF')
+         IF FILE('QDOPJ6P2.DBF')
+            USE LDOPJ6P2
+            APPEND FROM QDOPJ6P2
+            USE
+         ENDIF
+      ENDIF         
+
+      IF FILE('LDOPJ6P3.DBF')
+         IF FILE('QDOPJ6P3.DBF')
+            USE LDOPJ6P3
+            APPEND FROM QDOPJ6P3
+            USE
+         ENDIF
+      ENDIF         
+
+
+FOR I=1 TO 99
+   
+   MLD='LD'+alltrim(str(I,2,0))+'.dbf'
+   MLDPOD='LDPOD'+alltrim(str(I,2,0))+'.dbf'
+   MLDP='LDP'+alltrim(str(I,2,0))+'.dbf'
+   MLDPODP='LDPODP'+alltrim(str(I,2,0))+'.dbf'
+   MLDB='LDB'+alltrim(str(I,2,0))+'.dbf'
+   MLDPODB='LDPODB'+alltrim(str(I,2,0))+'.dbf'
+   MLDI='LDI'+alltrim(str(I,2,0))+'.dbf'
+   MLDPODI='LDPODI'+alltrim(str(I,2,0))+'.dbf'
+
+
+   QMLD='QLD'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPOD='QLDPOD'+alltrim(str(I,2,0))+'.dbf'
+   QMLDP='QLDP'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPODP='QLDPODP'+alltrim(str(I,2,0))+'.dbf'
+   QMLDB='QLDB'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPODB='QLDPODB'+alltrim(str(I,2,0))+'.dbf'
+   QMLDI='QLDI'+alltrim(str(I,2,0))+'.dbf'
+   QMLDPODI='QLDPODI'+alltrim(str(I,2,0))+'.dbf'
+
+   IF FILE(QMLD)
+      IF !FILE(MLD)
+         USE LD
+         COPY STRU TO &MLD
+         USE
+      ENDIF   
+      USE &MLD
+      APPEND FROM &QMLD
+      USE
+   ENDIF         
+
+   IF FILE(QMLDPOD)
+      IF !FILE(MLDPOD)
+         USE LDPOD
+         COPY STRU TO &MLDPOD
+         USE
+      ENDIF   
+      USE &MLDPOD
+      APPEND FROM &QMLDPOD
+      USE
+   ENDIF         
+
+   IF FILE(QMLDP)
+      IF !FILE(MLDP)
+         USE LD
+         COPY STRU TO &MLDP
+         USE
+      ENDIF   
+      USE &MLDP
+      APPEND FROM &QMLDP
+      USE
+   ENDIF         
+
+   IF FILE(QMLDPODP)
+      IF !FILE(MLDPODP)
+         USE LDPOD
+         COPY STRU TO &MLDPODP
+         USE
+      ENDIF   
+      USE &MLDPODP
+      APPEND FROM &QMLDPODP
+      USE
+   ENDIF         
+
+   IF FILE(QMLDB)
+      IF !FILE(MLDB)
+         USE LD
+         COPY STRU TO &MLDB
+         USE
+      ENDIF   
+      USE &MLDB
+      APPEND FROM &QMLDB
+      USE
+   ENDIF         
+   IF FILE(QMLDPODB)
+      IF !FILE(MLDPODB)
+         USE LDPOD
+         COPY STRU TO &MLDPODB
+         USE
+      ENDIF   
+      USE &MLDPODB
+      APPEND FROM &QMLDPODB
+      USE
+   ENDIF         
+
+   IF FILE(QMLDI)
+      IF !FILE(MLDI)
+         USE LD
+         COPY STRU TO &MLDI
+         USE
+      ENDIF   
+      USE &MLDI
+      APPEND FROM &QMLDI
+      USE
+   ENDIF         
+   IF FILE(QMLDPODI)
+      IF !FILE(MLDPODI)
+         USE LDPOD
+         COPY STRU TO &MLDPODI
+         USE
+      ENDIF   
+      USE &MLDPODI
+      APPEND FROM &QMLDPODI
+      USE
+   ENDIF         
+NEXT
+
+
+
+*-----------ZAVRSILI SMO PLATE--------------
+
+*-----------TRGOVINA NA VELIKO--------------
+
+
+ZAMENA.LABEL1.CAPTION=' TRGOVINA NA VELIKO  '
+
+
+ERASE KALIZV*.DBF
+ERASE NIVIZV*.DBF
+ERASE TVKART*.DBF
+ERASE KALP*.DBF
+ERASE FAKP*.DBF
+ERASE TVNIVP*.DBF
+ERASE PREGLE*.DBF
+
+IF FILE('TVTM.DBF')
+   RENAME TVTM.DBF TO QTVTM.DBF
+ENDIF
+
+IF FILE('ROB.DBF')
+   RENAME ROB.DBF TO QROB.DBF
+ENDIF
+
+IF FILE('ROBPAK.DBF')
+   RENAME ROBPAK.DBF TO QROBPAK.DBF
+ENDIF
+
+IF FILE('KAL.DBF')
+   RENAME KAL.DBF TO QKAL.DBF
+ENDIF
+
+IF FILE('KALG.DBF')
+   RENAME KALG.DBF TO QKALG.DBF
+ENDIF
+
+
+IF FILE('FAK.DBF')
+   RENAME FAK.DBF TO QFAK.DBF
+ENDIF
+
+IF FILE('FAKG.DBF')
+   RENAME FAKG.DBF TO QFAKG.DBF
+ENDIF
+
+
+IF FILE('FAKA.DBF')
+   RENAME FAKA.DBF TO QFAKA.DBF
+ENDIF
+
+IF FILE('FAKAG.DBF')
+   RENAME FAKAG.DBF TO QFAKAG.DBF
+ENDIF
+IF FILE('FAKAR.DBF')
+   RENAME FAKAR.DBF TO QFAKAR.DBF
+ENDIF
+
+
+IF FILE('TVNIV.DBF')
+   RENAME TVNIV.DBF TO QTVNIV.DBF
+ENDIF
+
+IF FILE('PP.DBF')
+   RENAME PP.DBF TO QPP.DBF
+ENDIF
+
+
+IF FILE('TMP.DBF')
+   RENAME TMP.DBF TO QTMP.DBF
+ENDIF
+
+
+ERASE KNJIZT.DBF
+ERASE KNJIZS.DBF
+ERASE KNJIZA.DBF
+ERASE KNJIZP.DBF
+ERASE KNJIZR.DBF
+ERASE KNJIZT.DBF
+ERASE KNJIZT.DBF
+ERASE KALIZV*.DBF
+ERASE FAKVAL*.DBF
+
+
+MRECT=0
+IF FILE('AATV.DBF')
+   USE AATV
+   MRECT=RECCOUNT()
+  USE
+ENDIF
+
+IF MRECT>0
+   FOR I=1 TO MRECT
+      MI=ALLTRIM(STR(I,2,0))
+      KKAL='KAL'+MI+'.DBF'
+      QKKAL='QKAL'+MI+'.DBF'
+      KKALG='KALG'+MI+'.DBF'
+      QKKALG='QKALG'+MI+'.DBF'      
+      KFAK='FAK'+MI+'.DBF'      
+      KFAKPAK='FAKPAK'+MI+'.DBF'      
+      QKFAK='QFAK'+MI+'.DBF'
+      QKFAKPAK='QFAKPAK'+MI+'.DBF'
+      KFAKG='FAKG'+MI+'.DBF'
+      QKFAKG='QFAKG'+MI+'.DBF'
+      KTVNIV='TVNIV'+MI+'.DBF'
+      QKTVNIV='QTVNIV'+MI+'.DBF'
+      KROB='ROB'+MI+'.DBF'
+      QKROB='QROB'+MI+'.DBF'
+      KTM='TVTM'+MI+'.DBF'
+      QKTM='QTVTM'+MI+'.DBF'
+      KKALZAV='KALZAV'+MI+'.DBF'
+      QKALZAV='QKALZA'+MI+'.DBF'
+   
+      IF FILE(KKAL)
+         RENAME &KKAL TO &QKKAL
+      ENDIF
+   
+      IF FILE(KKALG)
+         RENAME &KKALG TO &QKKALG
+      ENDIF
+
+      IF FILE(KFAK)
+         RENAME &KFAK TO &QKFAK
+      ENDIF
+      IF FILE(KFAKPAK)
+         RENAME &KFAKPAK TO &QKFAKPAK
+      ENDIF
+
+      IF FILE(KFAKG)
+         RENAME &KFAKG TO &QKFAKG
+      ENDIF
+
+      IF FILE(KTVNIV)
+         RENAME &KTVNIV TO &QKTVNIV
+      ENDIF
+
+      IF FILE(KROB)
+         RENAME &KROB TO &QKROB
+      ENDIF
+
+      IF FILE(KTM)
+         RENAME &KTM TO &QKTM
+      ENDIF
+      
+      IF FILE(KKALZAV)
+         RENAME &KKALZAV TO &QKALZAV
+      ENDIF
+      
+   NEXT
+ENDIF    
+
+
+IF MRECL>0
+   FOR I=1 TO MRECL
+      MI=ALLTRIM(STR(I,2,0))
+      KFAKA='FAKA'+MI+'.DBF'      
+      QKFAKA='QFAKA'+MI+'.DBF'
+      KFAKAG='FAKAG'+MI+'.DBF'
+      QKFAKAG='QFAKAG'+MI+'.DBF'
+   
+      IF FILE(KFAKA)
+         RENAME &KFAKA TO &QKFAKA
+      ENDIF
+
+      IF FILE(KFAKAG)
+         RENAME &KFAKAG TO &QKFAKAG
+      ENDIF
+   NEXT
+ENDIF    
+
+*---------PRAVIMO TVBAZE---------
+GPRG=MPRG+'DBTV'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO TVBAZE------------
+
+IF FILE('ROB.DBF')
+   IF FILE('QROB.DBF')
+      USE ROB
+      APPEND FROM QROB
+*      DO dodrsif
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('ROBPAK.DBF')
+   IF FILE('QROBPAK.DBF')
+      USE ROBPAK
+      APPEND FROM QROBPAK
+*      DO dodrsif
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('FAKA.DBF')
+   IF FILE('QFAKA.DBF')
+      USE FAKA
+      APPEND FROM QFAKA
+*DO dodrsif
+
+      USE
+   ENDIF    
+ENDIF
+IF FILE('FAKAG.DBF')
+   IF FILE('QFAKAG.DBF')
+      USE FAKAG
+      APPEND FROM QFAKAG
+*DO dodsifra
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('FAKAR.DBF')
+   IF FILE('QFAKAR.DBF')
+      USE FAKAR
+      APPEND FROM QFAKAR
+*DO dodrsif
+     
+      USE
+   ENDIF    
+ENDIF
+
+
+MRECT=0
+IF FILE('AATV.DBF')
+   USE AATV
+   MRECT=RECCOUNT()
+  USE
+ENDIF
+
+IF MRECT>0
+   SET STEP ON 
+   FOR I=1 TO MRECT
+      MI=ALLTRIM(STR(I,2,0))
+      KKAL='KAL'+MI+'.DBF'
+      QKKAL='QKAL'+MI+'.DBF'
+      KKALG='KALG'+MI+'.DBF'
+      QKKALG='QKALG'+MI+'.DBF'      
+      KFAK='FAK'+MI+'.DBF'      
+      QKFAK='QFAK'+MI+'.DBF'
+      KFAKPAK='FAKPAK'+MI+'.DBF'      
+      QKFAKPAK='QFAKPAK'+MI+'.DBF'
+      KFAKG='FAKG'+MI+'.DBF'
+      QKFAKG='QFAKG'+MI+'.DBF'
+      KTVNIV='TVNIV'+MI+'.DBF'
+      QKTVNIV='QTVNIV'+MI+'.DBF'
+      KROB='ROB'+MI+'.DBF'
+      QKROB='QROB'+MI+'.DBF'
+      KTM='TVTM'+MI+'.DBF'
+      QKTM='QTVTM'+MI+'.DBF'
+      KKALZAV='KALZAV'+MI+'.DBF'
+      QKALZAV='QKALZA'+MI+'.DBF'
+   
+      IF FILE(KKAL)
+         IF FILE(QKKAL)
+            USE &KKAL
+            APPEND FROM &QKKAL
+*         DO dodrsif
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KKALG)
+         IF FILE(QKKALG)
+            USE &KKALG
+            APPEND FROM &QKKALG
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KFAK)
+         IF FILE(QKFAK)
+            USE &KFAK
+            APPEND FROM &QKFAK
+*            DO dodrsif
+            USE
+         ENDIF
+      ENDIF      
+      IF FILE(KFAKPAK)
+         IF FILE(QKFAKPAK)
+            USE &KFAKPAK
+            APPEND FROM &QKFAKPAK
+*            DO dodrsif
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KFAKG)
+         IF FILE(QKFAKG)
+            USE &KFAKG
+            APPEND FROM &QKFAKG
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KTVNIV)
+         IF FILE(QKTVNIV)
+            USE &KTVNIV
+            APPEND FROM &QKTVNIV
+*           DO dodrsif
+            USE
+         ENDIF
+      ENDIF      
+
+
+      IF FILE(KROB)
+         IF FILE(QKROB)
+            USE &KROB
+            APPEND FROM &QKROB
+ *           DO dodrsif
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KTM)
+         IF FILE(QKTM)
+            USE &KTM
+            APPEND FROM &QKTM
+            USE
+         ENDIF
+      ENDIF      
+      
+      IF FILE(KKALZAV)
+         IF FILE(QKALZAV)
+            USE &KKALZAV
+            APPEND FROM &QKALZAV
+            USE
+         ENDIF
+      ENDIF      
+
+   NEXT
+ENDIF    
+
+
+IF MRECL>0
+   FOR I=1 TO MRECL
+      MI=ALLTRIM(STR(I,2,0))
+      KFAKA='FAKA'+MI+'.DBF'      
+      QKFAKA='QFAKA'+MI+'.DBF'
+      KFAKAG='FAKAG'+MI+'.DBF'
+      QKFAKAG='QFAKAG'+MI+'.DBF'
+   
+
+      IF FILE(KFAKA)
+         IF FILE(QKFAKA)
+            USE &KFAKA
+            APPEND FROM &QKFAKA
+*            DO dodrsif
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KFAKAG)
+         IF FILE(QKFAKAG)
+            USE &KFAKAG
+            APPEND FROM &QKFAKAG
+*            DO dodsifra
+            USE
+         ENDIF
+      ENDIF      
+   NEXT
+ENDIF    
+
+
+*-----------TRGOVINA NA MALO--------------
+
+ZAMENA.LABEL1.CAPTION=' TRGOVINA NA MALO '
+MRECT=0
+IF FILE('AATM.DBF')
+   USE AATM
+   MRECT=RECCOUNT()
+  USE
+ENDIF
+
+IF MRECT>0
+   FOR I=1 TO MRECT
+      MI=ALLTRIM(STR(I,2,0))
+      KKAL='TMKAL'+MI+'.DBF'
+      QKKAL='QTMKAL'+MI+'.DBF'
+      KKALG='TMKALG'+MI+'.DBF'
+      QKKALG='QTMKALG'+MI+'.DBF'      
+      KFAK='TMFAK'+MI+'.DBF'      
+      QKFAK='QTMFAK'+MI+'.DBF'
+      KFAKG='TMFAKG'+MI+'.DBF'
+      QKFAKG='QTMFAKG'+MI+'.DBF'
+      KTVNIV='TMNIV'+MI+'.DBF'
+      QKTVNIV='QTMNIV'+MI+'.DBF'
+      KROB='MROB'+MI+'.DBF'
+      QKROB='QMROB'+MI+'.DBF'
+      KTM='TM'+MI+'.DBF'
+      QKTM='QTM'+MI+'.DBF'
+   
+      KPP='PP'+MI+'.DBF'
+      QKPP='QPP'+MI+'.DBF'
+   
+      KTMP='TMP'+MI+'.DBF'
+      QKTMP='QTMP'+MI+'.DBF'
+      KKALZAM='KALZAM'+MI+'.DBF'
+      QKALZAM='QKALZA'+MI+'.DBF'
+
+   
+      IF FILE(KKAL)
+         RENAME &KKAL TO &QKKAL
+      ENDIF
+   
+      IF FILE(KKALG)
+         RENAME &KKALG TO &QKKALG
+      ENDIF
+
+      IF FILE(KFAK)
+         RENAME &KFAK TO &QKFAK
+      ENDIF
+
+      IF FILE(KFAKG)
+         RENAME &KFAKG TO &QKFAKG
+      ENDIF
+
+      IF FILE(KTVNIV)
+         RENAME &KTVNIV TO &QKTVNIV
+      ENDIF
+
+      IF FILE(KROB)
+         RENAME &KROB TO &QKROB
+      ENDIF
+
+      IF FILE(KTM)
+         RENAME &KTM TO &QKTM
+      ENDIF
+      
+      IF FILE(KPP)
+         RENAME &KPP TO &QKPP
+      ENDIF
+      IF FILE(KTMP)
+         RENAME &KTMP TO &QKTMP
+      ENDIF
+      IF FILE(KKALZAM)
+         RENAME &KKALZAM TO &QKALZAM
+      ENDIF
+
+   NEXT
+ENDIF    
+
+*---------PRAVIMO TMBAZE---------
+GPRG=MPRG+'DBTM'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO TVBAZE------------
+
+MRECT=0
+IF FILE('AATM.DBF')
+   USE AATM
+   MRECT=RECCOUNT()
+  USE
+ENDIF
+
+IF MRECT>0
+   FOR I=1 TO MRECT
+      MI=ALLTRIM(STR(I,2,0))
+      KKAL='TMKAL'+MI+'.DBF'
+      QKKAL='QTMKAL'+MI+'.DBF'
+      KKALG='TMKALG'+MI+'.DBF'
+      QKKALG='QTMKALG'+MI+'.DBF'      
+      KFAK='TMFAK'+MI+'.DBF'      
+      QKFAK='QTMFAK'+MI+'.DBF'
+      KFAKG='TMFAKG'+MI+'.DBF'
+      QKFAKG='QTMFAKG'+MI+'.DBF'
+      KTVNIV='TMNIV'+MI+'.DBF'
+      QKTVNIV='QTMNIV'+MI+'.DBF'
+      KROB='MROB'+MI+'.DBF'
+      QKROB='QMROB'+MI+'.DBF'
+      KTM='TM'+MI+'.DBF'
+      QKTM='QTM'+MI+'.DBF'
+   
+      KPP='PP'+MI+'.DBF'
+      QKPP='QPP'+MI+'.DBF'
+      KTMP='TMP'+MI+'.DBF'
+      QKTMP='QTMP'+MI+'.DBF'
+   
+      KKALZAM='KALZAM'+MI+'.DBF'
+      QKALZAM='QKALZA'+MI+'.DBF'
+   
+   
+      IF FILE(KKAL)
+         IF FILE(QKKAL)
+            USE &KKAL
+            APPEND FROM &QKKAL
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KKALG)
+         IF FILE(QKKALG)
+            USE &KKALG
+            APPEND FROM &QKKALG
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KFAK)
+         IF FILE(QKFAK)
+            USE &KFAK
+            APPEND FROM &QKFAK
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KFAKG)
+         IF FILE(QKFAKG)
+            USE &KFAKG
+            APPEND FROM &QKFAKG
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KTVNIV)
+         IF FILE(QKTVNIV)
+            USE &KTVNIV
+            APPEND FROM &QKTVNIV
+            USE
+         ENDIF
+      ENDIF      
+
+
+      IF FILE(KROB)
+         IF FILE(QKROB)
+            USE &KROB
+            APPEND FROM &QKROB
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KTM)
+         IF FILE(QKTM)
+            USE &KTM
+            APPEND FROM &QKTM
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KPP)
+         IF FILE(QKPP)
+            USE &KPP
+            APPEND FROM &QKPP
+            USE
+         ENDIF
+      ENDIF      
+      IF FILE(KTMP)
+         IF FILE(QKTMP)
+            USE &KTMP
+            APPEND FROM &QKTMP
+            USE
+         ENDIF
+      ENDIF      
+      IF FILE(KKALZAM)
+         IF FILE(QKALZAM)
+            USE &KKALZAM
+            APPEND FROM &QKALZAM
+            USE
+         ENDIF
+      ENDIF      
+
+   NEXT
+ENDIF    
+
+*-------------OSNOVNA SREDSTVA
+
+ZAMENA.LABEL1.CAPTION=' OSNOVNA SREDSTVA '
+
+      IF FILE('OS0.DBF')
+         RENAME OS0.DBF TO QOS0.DBF
+      ENDIF
+      IF FILE('OSS.DBF')
+         RENAME OSS.DBF TO QOSS.DBF
+      ENDIF
+      IF FILE('OSPODACI.DBF')
+         RENAME OSPODACI.DBF TO QSPODACI.DBF
+      ENDIF
+GPRG=MPRG+'DBOS'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+   IF FILE('OS0.DBF')
+      IF FILE('QOS0.DBF')
+         USE OS0
+         APPEND FROM QOS0
+         USE
+      ENDIF
+   ENDIF      
+   
+   IF FILE('OSS.DBF')
+      IF FILE('QOSS.DBF')
+         USE OSS
+         APPEND FROM QOSS
+         USE
+      ENDIF
+   ENDIF      
+
+   IF FILE('OSPODACI.DBF')
+      IF FILE('QOSPODACI.DBF')
+         USE OSPODACI
+         APPEND FROM QSPODACI
+         USE
+      ENDIF
+   ENDIF      
+
+
+
+*-----------USLUGE--------------
+
+
+ZAMENA.LABEL1.CAPTION=' USLUGE  '
+
+
+IF FILE('US0.DBF')
+   RENAME US0.DBF TO QUS0.DBF
+ENDIF
+
+IF FILE('USL.DBF')
+   RENAME USL.DBF TO QUSL.DBF
+ENDIF
+
+IF FILE('USLG.DBF')
+   RENAME USLG.DBF TO QUSLG.DBF
+ENDIF
+
+
+MRECU=0
+IF FILE('AAUS.DBF')
+   USE AAUS
+   MRECU=RECCOUNT()
+  USE
+ENDIF
+
+IF MRECU>0
+   FOR I=1 TO MRECU
+      MI=ALLTRIM(STR(I,2,0))
+      KUS0='US0'+MI+'.DBF'
+      KUSL='USL'+MI+'.DBF'
+      KUSLG='USLG'+MI+'.DBF'
+
+      QKUS0='QUS0'+MI+'.DBF'
+      QKUSL='QUSL'+MI+'.DBF'
+      QKUSLG='QUSLG'+MI+'.DBF'
+   
+      IF FILE(KUS0)
+         RENAME &KUS0 TO &QKUS0
+      ENDIF
+   
+      IF FILE(KUSL)
+         RENAME &KUSL TO &QKUSL
+      ENDIF
+      IF FILE(KUSLG)
+         RENAME &KUSLG TO &QKUSLG
+      ENDIF
+   NEXT
+ENDIF    
+
+
+
+*---------PRAVIMO TVBAZE---------
+GPRG=MPRG+'DBUSL'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO TVBAZE------------
+
+IF FILE('US0.DBF')
+   IF FILE('QUS0.DBF')
+      USE US0
+      APPEND FROM QUS0
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('USL.DBF')
+   IF FILE('QUSL.DBF')
+      USE USL
+      APPEND FROM QUSL
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('USLG.DBF')
+   IF FILE('QUSLG.DBF')
+      USE USLG
+      APPEND FROM QUSLG
+      USE
+   ENDIF    
+ENDIF
+
+
+MRECU=0
+IF FILE('AAUS.DBF')
+   USE AAUS
+   MRECU=RECCOUNT()
+  USE
+ENDIF
+
+
+IF MRECU>0
+   FOR I=1 TO MRECU
+      MI=ALLTRIM(STR(I,2,0))
+      KUS0='US0'+MI+'.DBF'
+      KUSL='USL'+MI+'.DBF'
+      QKUSL='QUSL'+MI+'.DBF'
+      QKUS0='QUS0'+MI+'.DBF'
+      KUSLG='USLG'+MI+'.DBF'
+      QKUSLG='QUSLG'+MI+'.DBF'
+   
+
+      IF FILE(KUS0)
+         IF FILE(QKUS0)
+            USE &KUS0
+            APPEND FROM &QKUS0
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KUSL)
+         IF FILE(QKUSL)
+            USE &KUSL
+            APPEND FROM &QKUSL
+            USE
+         ENDIF
+      ENDIF      
+
+      IF FILE(KUSLG)
+         IF FILE(QKUSLG)
+            USE &KUSLG
+            APPEND FROM &QKUSLG
+*            DO DODSIFRA
+            USE
+         ENDIF
+      ENDIF      
+   NEXT
+ENDIF    
+
+
+
+*-------------TRANSPORT----------------------
+
+   ZAMENA.LABEL1.CAPTION=' TRANSPORT '
+
+
+      IF FILE('VOZILA.DBF')
+         RENAME VOZILA.DBF TO QVOZILA.DBF
+      ENDIF
+ 
+      IF FILE('VOZACI.DBF')
+         RENAME VOZACI.DBF TO QVOZACI.DBF
+      ENDIF
+
+      IF FILE('VOZTR0.DBF')
+         RENAME VOZTR0.DBF TO QVOZTR0.DBF
+      ENDIF
+
+      IF FILE('VOZNAL.DBF')
+         RENAME VOZNAL.DBF TO QVOZNAL.DBF
+      ENDIF
+      
+       IF FILE('VOZTROS.DBF')
+         RENAME VOZTROS.DBF TO QVOZTROS.DBF
+      ENDIF
+     
+      IF FILE('VOZIZV.DBF')
+         RENAME VOZIZV.DBF TO QVOZIZV.DBF
+      ENDIF
+
+       IF FILE('VOZGOR.DBF')
+         RENAME VOZGOR.DBF TO QVOZGOR.DBF
+      ENDIF
+
+GPRG=MPRG+'VOZBAZE'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+
+   IF FILE('VOZILA.DBF')
+      IF FILE('QVOZILA.DBF')
+         USE VOZILA
+         APPEND FROM QVOZILA
+         USE
+      ENDIF
+   ENDIF      
+
+   IF FILE('VOZACI.DBF')
+      IF FILE('QVOZACI.DBF')
+         USE VOZACI
+         APPEND FROM QVOZACI
+         USE
+      ENDIF
+   ENDIF      
+
+  IF FILE('VOZTR0.DBF')
+      IF FILE('QVOZTR0.DBF')
+         USE VOZTR0
+         APPEND FROM QVOZTR0
+         USE
+      ENDIF
+   ENDIF      
+
+
+  IF FILE('VOZNAL.DBF')
+      IF FILE('QVOZNAL.DBF')
+         USE VOZNAL
+         APPEND FROM QVOZNAL
+         USE
+      ENDIF
+   ENDIF      
+
+
+  IF FILE('VOZTROS.DBF')
+      IF FILE('QVOZTROS.DBF')
+         USE VOZTROS
+         APPEND FROM QVOZTROS
+         USE
+      ENDIF
+   ENDIF      
+
+
+  IF FILE('VOZIZV.DBF')
+      IF FILE('QVOZIZV.DBF')
+         USE VOZIZV
+         APPEND FROM QVOZIZV
+         USE
+      ENDIF
+   ENDIF      
+
+  IF FILE('VOZGOR.DBF')
+      IF FILE('QVOZGOR.DBF')
+         USE VOZGOR
+         APPEND FROM QVOZGOR
+         USE
+      ENDIF
+   ENDIF      
+
+
+
+*'''''''PROIZVODNJA''''''''''''''''
+
+ZAMENA.LABEL1.CAPTION=' PROIZVODNJA  '
+
+IF FILE('PRONORMA.DBF')
+   RENAME PRONORMA.DBF TO QPRONORM.DBF
+ENDIF
+
+IF FILE('PROPAR.DBF')
+   RENAME PROPAR.DBF TO QPROPAR.DBF
+ENDIF
+
+IF FILE('PRONAL.DBF')
+   RENAME PRONAL.DBF TO QPRONAL.DBF
+ENDIF
+
+IF FILE('PRONORA.DBF')
+   RENAME PRONORA.DBF TO QPRONORA.DBF
+ENDIF
+
+IF FILE('PROMAT.DBF')
+   RENAME PROMAT.DBF TO QPROMAT.DBF
+ENDIF
+
+IF FILE('PROPMAT.DBF')
+   RENAME PROPMAT.DBF TO QPROPMAT.DBF
+ENDIF
+
+IF FILE('PROPOLU.DBF')
+   RENAME PROPOLU.DBF TO QPROPOLU.DBF
+ENDIF
+
+IF FILE('PROAMB.DBF')
+   RENAME PROAMB.DBF TO QPROAMB.DBF
+ENDIF
+
+IF FILE('PRORAD.DBF')
+   RENAME PRORAD.DBF TO QPRORAD.DBF
+ENDIF
+
+IF FILE('PRODIR.DBF')
+   RENAME PRODIR.DBF TO QPRODIR.DBF
+ENDIF
+IF FILE('PROOPS.DBF')
+   RENAME PROOPS.DBF TO QPROOPS.DBF
+ENDIF
+
+*---------PRAVIMO BAYE PROIYVODNJE--------
+GPRG=MPRG+'DBPRO'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+*--------LEPIMO BAZE------------
+
+IF FILE('PRONORMA.DBF')
+   IF FILE('QPRONORM.DBF')
+      USE PRONORMA
+      APPEND FROM QPRONORM
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PROPAR.DBF')
+   IF FILE('QPROPAR.DBF')
+      USE PROPAR
+      APPEND FROM QPROPAR
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('PRONAL.DBF')
+   IF FILE('QPRONAL.DBF')
+      USE PRONAL
+      APPEND FROM QPRONAL
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('PRONORA.DBF')
+   IF FILE('QPRONORA.DBF')
+      USE PRONORA
+      APPEND FROM QPRONORA
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PROMAT.DBF')
+   IF FILE('QPROMAT.DBF')
+      USE PROMAT
+      APPEND FROM QPROMAT
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PROPMAT.DBF')
+   IF FILE('QPROPMAT.DBF')
+      USE PROPMAT
+      APPEND FROM QPROPMAT
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PROPOLU.DBF')
+   IF FILE('QPROPOLU.DBF')
+      USE PROPOLU
+      APPEND FROM QPROPOLU
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('PROAMB.DBF')
+   IF FILE('QPROAMB.DBF')
+      USE PROAMB
+      APPEND FROM QPROAMB
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PROAMB.DBF')
+   IF FILE('QPROAMB.DBF')
+      USE PROAMB
+      APPEND FROM QPROAMB
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PRORAD.DBF')
+   IF FILE('QPRORAD.DBF')
+      USE PRORAD
+      APPEND FROM QPRORAD
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('PRODIR.DBF')
+   IF FILE('QPRODIR.DBF')
+      USE PRODIR
+      APPEND FROM QPRODIR
+      USE
+   ENDIF    
+ENDIF
+IF FILE('PROOPS.DBF')
+   IF FILE('QPROOPS.DBF')
+      USE PROOPS
+      APPEND FROM QPROOPS
+      USE
+   ENDIF    
+ENDIF
+
+*---------------------DIREKCIJA CUPRIJA---------------
+
+IF FILE('DCCENAP.DBF')
+   RENAME DCCENAP.DBF TO QDCCENAP.DBF
+ENDIF
+
+IF FILE('DCF.DBF')
+   RENAME DCF.DBF TO QDCF.DBF
+ENDIF
+
+IF FILE('DCF0.DBF')
+   RENAME DCF0.DBF TO QDCF0.DBF
+ENDIF
+
+IF FILE('DCG.DBF')
+   RENAME DCG.DBF TO QDCG.DBF
+ENDIF
+
+IF FILE('DCG0.DBF')
+   RENAME DCG0.DBF TO QDCG0.DBF
+ENDIF
+
+IF FILE('DCULD.DBF')
+   RENAME DCULD.DBF TO QDCULD.DBF
+ENDIF
+
+IF FILE('DCUPLATE.DBF')
+   RENAME DCUPLATE.DBF TO QDCUPLAT.DBF
+ENDIF
+
+GPRG=MPRG+'DBDC'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+IF FILE('DCCENAP.DBF')
+   IF FILE('QDCCENAP.DBF')
+      USE DCCENAP
+      APPEND FROM QDCCENAP
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('DCF.DBF')
+   IF FILE('QDCF.DBF')
+      USE DCF
+      APPEND FROM QDCF
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DCF0.DBF')
+   IF FILE('QDCF0.DBF')
+      USE DCF0
+      APPEND FROM QDCF0
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DCG.DBF')
+   IF FILE('QDCG.DBF')
+      USE DCG
+      APPEND FROM QDCG
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('DCG0.DBF')
+   IF FILE('QDCG0.DBF')
+      USE DCG0
+      APPEND FROM QDCG0
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DCULD.DBF')
+   IF FILE('QDCULD.DBF')
+      USE DCULD
+      APPEND FROM QDCULD
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('DCUPLAT.DBF')
+   IF FILE('QDCUPLATE.DBF')
+      USE DCUPLATE
+      APPEND FROM QDCUPLAT
+      USE
+   ENDIF    
+ENDIF
+
+
+
+
+
+
+
+
+
+
+
+
+
+*----------------STUDENTI----------------
+
+IF FILE('ST0.DBF')
+   RENAME ST0.DBF TO QST0.DBF
+ENDIF
+
+IF FILE('STPRED.DBF')
+   RENAME STPRED.DBF TO QSTPRED.DBF
+ENDIF
+
+IF FILE('STISP.DBF')
+   RENAME STISP.DBF TO QSTISP.DBF
+ENDIF
+
+
+IF FILE('STUPIS.DBF')
+   RENAME STUPIS.DBF TO QSTUPIS.DBF
+ENDIF
+
+
+IF FILE('STSEM.DBF')
+   RENAME STSEM.DBF TO QSTSEM.DBF
+ENDIF
+
+
+IF FILE('STSMER.DBF')
+   RENAME STSMER.DBF TO QSTSMER.DBF
+ENDIF
+
+IF FILE('STUSEM.DBF')
+   RENAME STUSEM.DBF TO QSTSUSEM.DBF
+ENDIF
+
+IF FILE('STPROF.DBF')
+   RENAME STPROF.DBF TO QSTPROF.DBF
+ENDIF
+
+IF FILE('STPRI.DBF')
+   RENAME STPRI.DBF TO QSTPRI.DBF
+ENDIF
+
+IF FILE('STRANG.DBF')
+   RENAME STRANG.DBF TO QSTRANG.DBF
+ENDIF
+
+GPRG=MPRG+'DBST'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+IF FILE('ST0.DBF')
+   IF FILE('QST0.DBF')
+      USE ST0
+      APPEND FROM QST0
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('STPRED.DBF')
+   IF FILE('QSTPRED.DBF')
+      USE STPRED
+      APPEND FROM QSTPRED
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('STISP.DBF')
+   IF FILE('QSTISP.DBF')
+      USE STISP
+      APPEND FROM QSTISP
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('STUPIS.DBF')
+   IF FILE('QSTUPIS.DBF')
+      USE STUPIS
+      APPEND FROM QSTUPIS
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('STSEM.DBF')
+   IF FILE('QSTSEM.DBF')
+      USE STSEM
+      APPEND FROM QSTSEM
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('STSMER.DBF')
+   IF FILE('QSTSMER.DBF')
+      USE STSMER
+      APPEND FROM QSTSMER
+      USE
+   ENDIF    
+ENDIF
+
+
+
+IF FILE('STUSEM.DBF')
+   IF FILE('QSTUSEM.DBF')
+      USE STUSEM
+      APPEND FROM QSTUSEM
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('STPROF.DBF')
+   IF FILE('QSTPROF.DBF')
+      USE STPROF
+      APPEND FROM QSTPROF
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('STPRI.DBF')
+   IF FILE('QSTPRI.DBF')
+      USE STPRI
+      APPEND FROM QSTPRI
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('STRANG.DBF')
+   IF FILE('QSTRANG.DBF')
+      USE STRANG
+      APPEND FROM QSTRANG
+      USE
+   ENDIF    
+ENDIF
+
+
+
+
+*---------------------DIREKCIJA PARACIN---------------
+
+IF FILE('DPG.DBF')
+   RENAME DPG.DBF TO QDPG.DBF
+ENDIF
+
+IF FILE('DPF.DBF')
+   RENAME DPF.DBF TO QDPF.DBF
+ENDIF
+
+IF FILE('DPGUPL.DBF')
+   RENAME DPGUPL.DBF TO QDPGUPL.DBF
+ENDIF
+
+IF FILE('DPCENE.DBF')
+   RENAME DPCENE.DBF TO QDPCENE.DBF
+ENDIF
+
+IF FILE('DPULICE.DBF')
+   RENAME DPULICE.DBF TO QDPULICE.DBF
+ENDIF
+
+IF FILE('DPOBRAC.DBF')
+   RENAME DPOBRAC.DBF TO QDPOBRAC.DBF
+ENDIF
+
+IF FILE('DPTEXT.DBF')
+   RENAME DPTEXT.DBF TO QDPTEXT.DBF
+ENDIF
+
+
+GPRG=MPRG+'DBDP'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+IF FILE('DPG.DBF')
+   IF FILE('QDPG.DBF')
+      USE DPG
+      APPEND FROM QDPG
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('DPF.DBF')
+   IF FILE('QDPF.DBF')
+      USE DPF
+      APPEND FROM QDPF
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DPGUPL.DBF')
+   IF FILE('QDPGUPL.DBF')
+      USE DPGUPL
+      APPEND FROM QDPGUPL
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DPCENE.DBF')
+   IF FILE('QDPCENE.DBF')
+      USE DPCENE
+      APPEND FROM QDPCENE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DPULICE.DBF')
+   IF FILE('QDPULICE.DBF')
+      USE DPULICE
+      APPEND FROM QDPULICE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DPOBRAC.DBF')
+   IF FILE('QDPOBRAC.DBF')
+      USE DPOBRAC
+      APPEND FROM QDPOBRAC
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('DPTEXT.DBF')
+   IF FILE('QDPTEXT.DBF')
+      USE DPTEXT
+      APPEND FROM QDPTEXT
+      USE
+   ENDIF    
+ENDIF
+
+
+
+*----------------------VODOVOD PARACIN
+
+IF FILE('VP.DBF')
+   RENAME VP.DBF TO QVP.DBF
+ENDIF
+
+IF FILE('VPUPL.DBF')
+   RENAME VPUPL.DBF TO QVPUPL.DBF
+ENDIF
+
+IF FILE('VPUPLE.DBF')
+   RENAME VPUPLE.DBF TO QVPUPLE.DBF
+ENDIF
+
+IF FILE('VPUPLES.DBF')
+   RENAME VPUPLES.DBF TO QVPUPLES.DBF
+ENDIF
+
+IF FILE('VPUPLESS.DBF')
+   RENAME VPUPLESS.DBF TO QVPUPLSS.DBF
+ENDIF
+
+IF FILE('VPCENE.DBF')
+   RENAME VPCENE.DBF TO QVPCENE.DBF
+ENDIF
+
+IF FILE('VPULICE.DBF')
+   RENAME VPULICE.DBF TO QVPULICE.DBF
+ENDIF
+
+IF FILE('VPTXT.DBF')
+   RENAME VPTXT.DBF TO QDPTXT.DBF
+ENDIF
+
+
+GPRG=MPRG+'DBVP'
+*EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+IF FILE('VP.DBF')
+   IF FILE('QVP.DBF')
+      USE VP
+      APPEND FROM QVP
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('VPUPL.DBF')
+   IF FILE('QVPUPL.DBF')
+      USE VPUPL
+      APPEND FROM QVPUPL
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('VPUPLE.DBF')
+   IF FILE('QVPUPLE.DBF')
+      USE VPUPLE
+      APPEND FROM QVPUPLE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('VPUPLES.DBF')
+   IF FILE('QVPUPLES.DBF')
+      USE VPUPLES
+      APPEND FROM QVPUPLES
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('VPUPLESS.DBF')
+   IF FILE('QVPUPLSS.DBF')
+      USE VPUPLESS
+      APPEND FROM QVPUPLSS
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('VPCENE.DBF')
+   IF FILE('QVPCENE.DBF')
+      USE VPCENE
+      APPEND FROM QVPCENE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('VPULICE.DBF')
+   IF FILE('QVPULICE.DBF')
+      USE VPULICE
+      APPEND FROM QVPULICE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('VPTXT.DBF')
+   IF FILE('QVPTXT.DBF')
+      USE VPTXT
+      APPEND FROM QVPTXT
+      USE
+   ENDIF    
+ENDIF
+
+
+
+
+
+
+*---------------------USLUGA PARACIN---------------
+
+IF FILE('JP.DBF')
+   RENAME JP.DBF TO QJP.DBF
+ENDIF
+
+IF FILE('JPF.DBF')
+   RENAME JPF.DBF TO QJPF.DBF
+ENDIF
+
+IF FILE('JPUPL.DBF')
+   RENAME JPUPL.DBF TO QJPUPL.DBF
+ENDIF
+
+IF FILE('JPCENE.DBF')
+   RENAME JPCENE.DBF TO QJPCENE.DBF
+ENDIF
+
+IF FILE('JPULICE.DBF')
+   RENAME JPULICE.DBF TO QJPULICE.DBF
+ENDIF
+
+IF FILE('JPOBRAC.DBF')
+   RENAME JPOBRAC.DBF TO QJPOBRAC.DBF
+ENDIF
+
+
+
+GPRG=MPRG+'DBJP'
+EXTERNAL PROCEDURE (GPRG)
+DO  (GPRG) 
+
+
+IF FILE('JP.DBF')
+   IF FILE('QJP.DBF')
+      USE JP
+      APPEND FROM QJP
+      USE
+   ENDIF    
+ENDIF
+
+
+IF FILE('JPF.DBF')
+   IF FILE('QJPF.DBF')
+      USE JPF
+      APPEND FROM QJPF
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('JPUPL.DBF')
+   IF FILE('QJPUPL.DBF')
+      USE JPUPL
+      APPEND FROM QJPUPL
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('JPCENE.DBF')
+   IF FILE('QJPCENE.DBF')
+      USE JPCENE
+      APPEND FROM QJPCENE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('JPULICE.DBF')
+   IF FILE('QJPULICE.DBF')
+      USE JPULICE
+      APPEND FROM QJPULICE
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('JPOBRAC.DBF')
+   IF FILE('QJPOBRAC.DBF')
+      USE JPOBRAC
+      APPEND FROM QJPOBRAC
+      USE
+   ENDIF    
+ENDIF
+
+IF FILE('JPFOBRAC.DBF')
+   IF FILE('QJPFOBRAC.DBF')
+      USE JPFOBRAC
+      APPEND FROM QJPFOBRAC
+      USE
+   ENDIF    
+ENDIF
+
+
+CLOSE ALL
+*ERASE Q*.DBF
+ERASE *.CDX
+POP KEY
+ENDPROC
+

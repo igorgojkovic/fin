@@ -1,0 +1,24 @@
+SELECT VP
+SET ORDER TO 1
+SET RELATION TO 
+SELECT VPUPLD
+DO  FORM VPUPLDf
+SELECT VPUPLD
+SET RELATION to
+MPIB=PIB
+SELECT VP
+SET ORDER TO 1
+SEEK mpib
+IF FOUND()
+   mrec=RECNO()
+ELSE
+   mrec=0
+endif      
+CLOSE ALL
+If VKOJIGRAD='PN'
+   vpAF.release
+   DO vpaF WITH mrec
+ELSE
+   vcAF.release
+   DO vcaF WITH mrec
+endif

@@ -1,0 +1,2 @@
+PARAMETERS mm
+FPUTS(novifajl,MM)

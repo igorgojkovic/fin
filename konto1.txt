@@ -1,0 +1,10 @@
+0NEUPLACENI UPISANI KAPITAL I STALNA IMOVINA  UPISANI A NEUPLAÆENI KAPITAL I OSTALA IMOVINA0           0
+1ZALIHE                                       ZALIHE I OSTALA SREDSTVA NAMENJENA PRODAJI   1           0
+2KRATKOROCNA POTRAZIVANJA,PLASMANI I GOTOVINA KRATK.POTR.NOVÈ.SRED. I AKTIV.VREM.RAZGRANIÈ.2           0
+3KAPITAL                                      KAPITAL                                      3           0
+4DUGOROCNA REZERVISANJA I OBAVEZE             DUGOROÈ.REZERV.OBAVEZE I PASIV.VREM.RAZGRAN. 4           0
+5RASHODI                                      RASHODI                                      5           0
+6PRIHODI                                      PRIHODI                                      6           0
+7OTVARANJE I ZAKLJUCAK RACUNA STANJA I USPEHA OTVARANJE I ZAKLJUÈAK RAÈUNA STANJA I USPEHA 7           0
+8VANBILANSNA EVIDENCIJA                       VANBILANSNA EVIDENCIJA                       8           0
+9OBRACUN TROSKOVA I UCINAKA                   OBRAÈUN TROŠKOVA I UÈINAKA                   9           0
