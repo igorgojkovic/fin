@@ -1,6 +1,7 @@
 data01/
 data02/
 F1/
+F2/
 greske/
 ssnimak/
 xvoData00/
@@ -12,3 +13,6 @@ Slike/
 Txt/
 dd.dbf
 fin.exe
+*.zip
+*.app
+*.exe
