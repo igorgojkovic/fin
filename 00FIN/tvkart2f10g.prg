@@ -1,9 +1,0 @@
-PUSH KEY CLEAR
-*REPORT FORM TVKARTPRNG PREVIEW
-
-   mfile='TVKARTPRNG'   
-   USLOV=""
-   DO printer_bullzip WITH mdata02,mfiLE,USLOv   
-
-
-POP KEY

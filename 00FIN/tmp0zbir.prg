@@ -1,3 +1,0 @@
-   PUSH KEY CLEAR
-   DO FORM TMP03 
-   POP KEY

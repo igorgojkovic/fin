@@ -1,6 +1,0 @@
-PUSH KEY CLEAR
-   FOR i= 1 TO 8-MREC
-      append blank
-      REPLACE RADNIK WITH 'V'
-   NEXT
-POP KEY

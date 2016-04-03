@@ -1,3 +1,0 @@
-PARAMETERS vvppaa
-DO  FORM JBaF WITH vvppaa
-

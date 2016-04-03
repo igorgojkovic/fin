@@ -1,1 +1,0 @@
-RONARPOV.txtPODNAZIV.setfocus

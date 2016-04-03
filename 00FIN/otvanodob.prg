@@ -1,9 +1,0 @@
-PUSH KEY CLEAR
-   IF ANODOB.GRD0.READONLY=.T.
-      ANODOB.GRD0.ReadOnly=.F.
-   ELSE
-      ANODOB.GRD0.ReadOnly=.T.
-   ENDIF   
-   ANODOB.GRD0.SetFocus
-   ANODOB.Refresh 
-POP KEY

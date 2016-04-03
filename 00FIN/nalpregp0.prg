@@ -1,2 +1,0 @@
-PARAMETERS sstampa
-   DO NALPREGP WITH sstampa

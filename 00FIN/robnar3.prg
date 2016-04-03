@@ -1,7 +1,0 @@
-PUSH KEY CLEAR
-DO FORM ROBNAR3
-KEYBOARD '{LEFTARROW}'
-robnar.grd0.setfocus
-robnar.grd0.refresh
-ROBNAR.REFRESH
-POP KEY

@@ -1,3 +1,0 @@
-PARAMETERS vvppaa
-DO  FORM JCA WITH vvppaa
-

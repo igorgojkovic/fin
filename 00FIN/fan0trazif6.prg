@@ -1,2 +1,0 @@
-FAN0.TXT2SIFRA.setfocus
-

@@ -1,4 +1,0 @@
-IF.NOT.EOF()
-   GO BOTTOM
-ENDIF   
-

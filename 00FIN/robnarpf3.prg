@@ -1,1 +1,0 @@
-robnarp.txtGRUPA.Setfocus

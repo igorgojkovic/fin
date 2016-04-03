@@ -1,9 +1,0 @@
-   MMIME='of.sys'
-   FIDAT=FCREATE(MMIME)
-   mM=''
-   FPUTS(fidat,MM)
-   FCLOSE(fidat)
-   MePUTANJA='C:\IPOS\UKASU'
-   COPY FILE &MMIME TO &MePUTANJA
-   DELETE FILE (MMIME)
-

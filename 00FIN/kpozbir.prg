@@ -1,3 +1,0 @@
-   PUSH KEY CLEAR
-   DO FORM KPO03 
-   POP KEY

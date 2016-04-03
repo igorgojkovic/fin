@@ -1,7 +1,0 @@
-IF MRADNJA=1
-
-  KASA.GRD1.BackColor=RGB(255,255,128)
-
-   KASA.TXTKOL.value=0
-   KASA.TXTKOL.SETFOCUS
-endif

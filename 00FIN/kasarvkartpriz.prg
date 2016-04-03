@@ -1,5 +1,0 @@
-IF ZATVAR=' '
-   DO FORM kasarvkartpriz
-ELSE
-   DO PORUKAU WITH ' STAVKA JE ZATVORENA '
-ENDIF

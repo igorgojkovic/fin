@@ -1,2 +1,0 @@
-# fin
-brniceva desktop aplikacija

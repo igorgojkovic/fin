@@ -1,4 +1,0 @@
-   SELECT KASA
-   KASApor.GRD1.BackColor=RGB(255,255,128)
-   KASApor.TXTRSIF.value=''
-   KASApor.TXTRSIF.SETFOCUS

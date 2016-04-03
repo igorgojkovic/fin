@@ -1,8 +1,0 @@
-PUSH KEY CLEAR
-MBRKAL=BRKAL
-*REPORT FORM KASAREV01rabat PREVIEW FOR BRKAL=MBRKAL
-   mfile='KASAREV01RABAT'
-   uslov="BRKAL=MBRKAL"
-   DO printer_bullzip WITH mdata02,mfile,uslov
-
-POP KEY

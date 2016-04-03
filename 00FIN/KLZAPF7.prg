@@ -1,8 +1,0 @@
-PUSH KEY CLEAR
-MREDNI=REDNI
-*REPORT FORM KLZAP01 PREVIEW FOR REDNI=MREDNI
-   mfile='KLZAP01'
-   uslov="REDNI=MREDNI"
-   DO printer_bullzip WITH mdata02,mfile,uslov
-
-POP KEY

@@ -1,4 +1,0 @@
-PUSH KEY CLEAR
-mrec=recno()
-REPORT FORM LDVIRM01 PREVIEW for recno()=mrec
-POP KEY
