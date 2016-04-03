@@ -1,0 +1,18 @@
+PUSH KEY CLEAR
+USE AN0FIZLI IN 0 ORDER 1
+SELECT AN0FIZLI
+SELECT kali
+SET RELATION TO flsifra INTO an0fizli additive
+SET ORDER TO 1
+*REPORT FORM FAKIZV2POTRosaci PREVIEW FOR FLSIFRA<>SPACE(5)
+
+   mfile='FAKIZV2POTRosaci'
+   uslov="FLSIFRA<>SPACE(5)"
+   DO printer_bullzip WITH mdata02,mfile,uslov
+
+
+SELECT an0fizli
+USE
+SELECT kali
+POP KEY
+

@@ -1,0 +1,3 @@
+IF.NOT.BOF()
+   GO TOP
+ENDIF   

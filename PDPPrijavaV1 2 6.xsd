@@ -1,0 +1,2052 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Verzija 1.0.0 - prva verzija prijave
+Verzija 1.0.1 - dodata obavezna polja na bilanse i obrasce
+Verzija 1.1.0 - promena modela, preimenovanje polja, dodata podrska za pdf priloge
+Verzija 1.1.1 - unificirani svi nazivi za Type componenete (preimenovani Tip u Type, dodat sufiks Type gde nije postojao)
+Verzija 1.1.2 - ispravljeni nazivi elemenata u kojim se pojavljuje prazan znak, na obrascima dodat tip za poreske stope gde je nedostajao
+Verzija 1.1.3 - na nekoliko obrazaca definisano da su opcioni, MPL je stavljen da je opcioni
+Verzija 1.1.4 - PoreskaStopaKOB, PoreskaStopaAK i PoreskaStopaNO - izmenjen tip sa Integer na Decimal
+Verzija 1.1.5 - Dopuna polja Osnov sa vrednostima 100-600 (za prijave po nalazu kontrole)
+Verzija 1.2.0 - Promene:
+              - dodato polje 5.13a [IznosObracunateKamateNO] u tip PodaciZaPoreskuObavezu4567Type
+              - sekcija 8 razbijena na dve sekcije, stari tip [PodaciLikvidacijaStecajType] => [sekcija 8 - PodaciLikvidacijaType, sekcija 9 - PodaciStecajType]
+              - promenjeno ime elementa i tipa za sekciju 3. Podaci o podnosiocu [PodaciOPodnosiocu-PodaciOPodnosiocuType] staro ime [PodaciOIsplatiocu]
+              - uveden novi tip [PDPDrustvoType] za listu 10.3 - Podaci o drustvima koja ucestvuju u statusnoj promeni
+Verzija 1.2.1 - Promene:
+              - promenjeni tipovi za odgovarajuca polja iz ineteger u nonNegativeInteger i positiveInteger
+              - kardinalnost polja: odgovarajuca polja postavljena kao obavezna
+              - za polje 1. Broj grupe [PDP_OA_BG] u tipu OAType uvedena restrikcija [II, III, IV, V]
+              - dodato polje 1. Prhodi stalne poslovne jedinice [PDP_PBPJ_1] u tip PBPJType
+Verzija 1.2.2 - Promene:
+              - ispravljen tip polja PDP_ANEKS1_PB1_44 na nonNegativeInteger
+              - PoreskaOsnovica, UvecanjeObracunatogPoreza, PoreskaOsnovicaNO - izmenjen tip sa positiveInteger na nonNegativeInteger
+Verzija 1.2.3 - Promene:
+              - OstatakOporeziveDobitiAK, ObracunatiPorezAK - izmenjen tip sa positiveInteger na nonNegativeInteger
+Verzija 1.2.4 - Promene:
+              - dodat element DK i tip KoeficjentType
+              - PDP_SU_5, PDP_SU2_5, PDP_SI_3 - izmenjen tip na DecimalPozitivNulaType
+              - PDP_OK_10 - izmenjen tip na KoeficjentType
+              - IznosUmanjenjePKPK1, IznosUmanjenjaSUSU2, IznosUmanjenjaAPB1, PDP_SU2_2 - izmenjen tip na nonNegativeInteger
+              - IznosUmanjenjaC51 - izmenjen tip na positiveInteger
+Verzija 1.2.5 - Promene:
+              - IznosUmanjenjaA1PB1 - izmenjen tip sa positiveInteger na nonNegativeInteger 
+              - PDP_PK1_7 - kardinalnost promenjena u obavezno polje 
+              - PIBMaticnogPravnogLica, NazivMaticnogPravnogLica - kardinalnost promenjena u nebavezno polje
+Verzija 1.2.6 - Promene:
+              - Promenjen pattern za validaciju tipa eMailAdresaType (koji ukljucuje donju crtu i apostrof)
+
+              -->
+<xs:schema 
+   elementFormDefault="qualified"
+   targetNamespace="http://pid.purs.gov.rs"
+   version="1.2.6"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:tns="http://pid.purs.gov.rs">
+   <xs:element name="PDPDeklaracija" type="tns:PDPDeklaracijaType"/>
+   <!--
+   Datum u formatu YYYY-MM-DD.
+   -->
+   <xs:simpleType name="DatumType">
+     <xs:restriction base="xs:date">
+     </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="eMailAdresaType">
+     <xs:restriction base="xs:string">
+        <xs:maxLength value="512"/>
+        <xs:minLength value="3"/>
+        <xs:pattern value="[A-Za-z0-9_]+([-+.&#39;][A-Za-z0-9_]+)*@[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*\.[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="PIBType">
+     <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{9}"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="MBRType">
+     <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{8}"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <!--
+   String dužine 1-255 karaktera.
+   -->
+   <xs:simpleType name="String255Type">
+     <xs:restriction base="xs:string">
+        <xs:maxLength value="255"/>
+        <xs:minLength value="1"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="PB1Type">
+      <xs:sequence>
+         <!--
+         62. Пореска основица (55+61)>0
+         -->
+         <xs:element name="PDP_PB1_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Облик пореског обвезника
+         -->
+         <xs:element name="PDP_PB1_OBLIK_POB">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+                 <xs:enumeration value="4"/>
+                 <xs:enumeration value="5"/>
+                 <xs:enumeration value="6"/>
+                 <xs:enumeration value="7"/>
+                 <xs:enumeration value="8"/>
+                 <xs:enumeration value="9"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         1. Добит пословне године
+         -->
+         <xs:element name="PDP_PB1_A_I_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Добит остварена по основу прихода од предмета концесије
+         -->
+         <xs:element name="PDP_PB1_A_I_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Губитак пословне године
+         -->
+         <xs:element name="PDP_PB1_A_I_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Добици од продаје имовине
+         -->
+         <xs:element name="PDP_PB1_A_II_4" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Губици од продаје имовине
+         -->
+         <xs:element name="PDP_PB1_A_II_5" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Трошкови који нису документовани
+         -->
+         <xs:element name="PDP_PB1_A_III_6" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Исправке вредности појединачних потраживања од лица коме се истовремено дугује, до износа обавезе према том лицу
+         -->
+         <xs:element name="PDP_PB1_A_III_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Поклони и прилози дати политичким организацијама
+         -->
+         <xs:element name="PDP_PB1_A_III_8" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Поклони чији је прималац повезано лице
+         -->
+         <xs:element name="PDP_PB1_A_III_9" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Камате због неблаговремено плаћених пореза, доприноса и других јавних дажбина
+         -->
+         <xs:element name="PDP_PB1_A_III_10" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         11. Трошкови поступка принудне наплате пореза и других дуговања, трошкови порескопрекршајног и других прекршајних поступака који се воде пред надлежним органом
+         -->
+         <xs:element name="PDP_PB1_A_III_11" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Новчане казне, уговорне казне и пенали
+         -->
+         <xs:element name="PDP_PB1_A_III_12" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         13. Затезне камате између повезаних лица
+         -->
+         <xs:element name="PDP_PB1_A_III_13" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         14. Трошкови који нису настали у сврху обављања пословне делатности
+         -->
+         <xs:element name="PDP_PB1_A_III_14" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         15. Трошкови материјала и набавна вредност продате робе изнад износа обрачунатог применом методе пондерисане просечне цене или FIFO методе
+         -->
+         <xs:element name="PDP_PB1_A_III_15" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         16. Отпремнине и новчане накнаде по основу престанка радног односа, обрачунате а неисплаћене у пореском периоду
+         -->
+         <xs:element name="PDP_PB1_A_III_16" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         17. Отпремнине и новчане накнаде по основу престанка радног односа које су обрачунате у претходном а исплаћене у пореском периоду за који се подноси порески биланс
+         -->
+         <xs:element name="PDP_PB1_A_III_17" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         18. Укупан износ амортизације обрачунат у финансијским извештајима
+         -->
+         <xs:element name="PDP_PB1_A_III_18" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         19. Укупан износ амортизације обрачунат за пореске сврхе
+         -->
+         <xs:element name="PDP_PB1_A_III_19" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         20. Издаци за здравствене, образовне, научне, хуманитарне, верске, заштиту човекове средине и спортске намене и давања учињена установама социјалне заштите
+         -->
+         <xs:element name="PDP_PB1_A_III_20" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         21. Издаци за улагања у области културе
+         -->
+         <xs:element name="PDP_PB1_A_III_21" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         22. Чланарине коморама, савезима и удружењима
+         -->
+         <xs:element name="PDP_PB1_A_III_22" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         32. Расходи за рекламу и пропаганду
+         -->
+         <xs:element name="PDP_PB1_A_III_23" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         24. Расходи по основу репрезентације
+         -->
+         <xs:element name="PDP_PB1_A_III_24" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         25. Исправка вредности појединачних потраживања ако од рока за њихову наплату није прошло најмање 60 дана, као и отпис вредности појединачних потраживања која претходно нису била укључена у приходе, нису отписана као ненаплатива и за која није пружен доказ о неуспелој наплати
+         -->
+         <xs:element name="PDP_PB1_A_III_25" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         26. Трошкови које огранак нерезидентног обвезника исказује у складу са чланом 20. Закона
+         -->
+         <xs:element name="PDP_PB1_A_III_26" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         27. Порези, доприноси, таксе и друге јавне дажбине које не зависе од резултата пословања и нису плаћене у пореском периоду, а по основу којих је у пословним књигама обвезника исказан расход
+         -->
+         <xs:element name="PDP_PB1_A_III_27" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         28. Порези, доприноси, таксе и друге јавне дажбине које не зависе од резултата пословања, плаћене у пореском периоду, а које нису биле плаћене у претходном пореском периоду у коме је по том основу у пословним књигама обвезника био исказан расход
+         -->
+         <xs:element name="PDP_PB1_A_III_28" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         29. Увећање исправке вредности потраживања банке изнад износа утврђеног прописима Народне банке Србије29. 
+         -->
+         <xs:element name="PDP_PB1_A_III_29" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         30. Увећање индиректног отписа потраживања осигуравајућег друштва изнад износа утврђеног прописима Народне банке Србије
+         -->
+         <xs:element name="PDP_PB1_A_III_30" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         31. Дугорочна резервисања која се не признају у пореском билансу
+         -->
+         <xs:element name="PDP_PB1_A_III_31" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         32. Искоришћена дугорочна резервисања за издате гаранције и друга јемства која нису била призната као расход у пореском периоду у коме су извршена
+         -->
+         <xs:element name="PDP_PB1_A_III_32" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         33. Расходи по основу обезвређења имовине
+         -->
+         <xs:element name="PDP_PB1_A_III_33" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         34. Расходи по основу обезвређења имовине који се признају у пореском периоду за који се подноси порески биланс, а у коме је та имовина отуђена, употребљена или је дошло до оштећења те имовине услед више силе
+         -->
+         <xs:element name="PDP_PB1_A_III_34" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         35. Порез на добит правних лица који је у другој држави платила нерезидентна филијала резидентног матичног правног лица
+         -->
+         <xs:element name="PDP_PB1_A_IV_35" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         36. Порез по одбитку на дивиденде који је у другој држави платила нерезидентна филијала резидентног матичног правног лица
+         -->
+         <xs:element name="PDP_PB1_A_IV_36" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         37. Порез по одбитку на камате, ауторске накнаде, накнаде по основу закупа непокретности и покретних ствари и дивиденде које не испуњавају услове за порески кредит по члану 52. Закона, плаћен у другој држави
+         -->
+         <xs:element name="PDP_PB1_A_IV_37" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         38. Исправке вредности појединачних потраживања које су биле признате на терет расхода, а за које, у пореском периоду у коме се врши отпис, нису кумулативно испуњени услови из члана 16. ст. 1. и 2. Закона
+         -->
+         <xs:element name="PDP_PB1_A_IV_38" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         39. Приходи остварени у пореском периоду по основу отписаних, исправљених и других потраживања која нису била призната као расход
+         -->
+         <xs:element name="PDP_PB1_A_IV_39" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         40. Приход по основу дивиденди и удела у добити од другог резидентног обвезника
+         -->
+         <xs:element name="PDP_PB1_A_IV_40" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         41. Приходи од камата по основу дужничких хартија од вредности чији је издавалац Република, аутономна покрајина, јединица локалне самоуправе или НБС
+         -->
+         <xs:element name="PDP_PB1_A_IV_41" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         42. Приходи по основу неискоришћених дугорочних резервисања која нису била призната као расход у пореском периоду у коме су извршена
+         -->
+         <xs:element name="PDP_PB1_A_IV_42" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         43. Приходи настали у вези са расходима који нису били признати
+         -->
+         <xs:element name="PDP_PB1_A_IV_43" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         44. Обрачунати трошкови по основу трансферних цена
+         -->
+         <xs:element name="PDP_PB1_A_V_44" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         45. Обрачунати трошкови по основу трансферних цена за које се подноси извештај у скраћеном облику
+         -->
+         <xs:element name="PDP_PB1_A_V_45" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         46. Обрачунати приходи по основу трансферних цена
+         -->
+         <xs:element name="PDP_PB1_A_V_46" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         47. Обрачунати приходи по основу трансферних цена за које се подноси извештај у скраћеном облику
+         -->
+         <xs:element name="PDP_PB1_A_V_47" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         48. Обрачунати расходи по основу камата ("на дохват руке") на зајмове, односно кредите добијене од повезаних лица
+         -->
+         <xs:element name="PDP_PB1_A_VI_48" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         49. Обрачунати приходи по основу камата ("на дохват руке") на зајмове, односно кредите одобрене повезаним лицима
+         -->
+         <xs:element name="PDP_PB1_A_VI_49" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         50. Збир коначних корекција (расхода и прихода) по основу трансакција са свим појединачним повезаним лицима утврђен у закључку документације о трансферним ценама
+         -->
+         <xs:element name="PDP_PB1_A_VII_50" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         51. Камата и припадајући трошкови на зајам, односно кредит изнад нивоа четвороструке (десетоструке) вредности обвезниковог сопственог капитала (ред. бр. 13. Обрасца ОК)
+         -->
+         <xs:element name="PDP_PB1_A_VIII_51" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         52. Опорезива добит (1-2-4+5 до 16-17+18-19+20 до 27-28+29 до 31-32+33-34+35 до 38-39 до 43+50+51)>0 (или негативан износ са редног броја 53)
+         -->
+         <xs:element name="PDP_PB1_A_IX_52" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         53. Губитак (3+4-5 до 16+17-18+19-20 до 27+28-29 до 31+32-33+34-35 до 38+39 до 43-50-51)>0 (или негативан износ са редног броја 52)
+         -->
+         <xs:element name="PDP_PB1_A_IX_53" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         54. Износ губитка из пореског биланса из претходних година, до висине опорезиве добити
+         -->
+         <xs:element name="PDP_PB1_A_IX_54" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         55. Остатак опорезиве добити (52-54)>0
+         -->
+         <xs:element name="PDP_PB1_A_IX_55" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         56. Укупни капитални добици текуће године обрачунати у складу са Законом
+         -->
+         <xs:element name="PDP_PB1_B_56" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         57. Укупни капитални губици текуће године обрачунати у складу са Законом
+         -->
+         <xs:element name="PDP_PB1_B_57" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         58. Капитални добици (56-57)>0
+         -->
+         <xs:element name="PDP_PB1_B_58" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         59. Капитални губици (57-56)>0
+         -->
+         <xs:element name="PDP_PB1_B_59" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         60. Пренети капитални губици из ранијих година до висине износа под редним бројем 58
+         -->
+         <xs:element name="PDP_PB1_B_60" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         61. Остатак капиталног добитка (58-60)>0
+         -->
+         <xs:element name="PDP_PB1_B_61" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PBPJType">
+      <xs:sequence>
+         <!--
+         16. Опорезива добит - пореска основица (ред. бр. 6-15>0)
+         -->
+         <xs:element name="PDP_PBPJ_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         1. Приходи сталне пословне јединице
+         -->
+         <xs:element name="PDP_PBPJ_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Дозначена средства
+         -->
+         <xs:element name="PDP_PBPJ_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Приходи по основу трансферних цена
+         -->
+         <xs:element name="PDP_PBPJ_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Обрачунати приходи по ценама „ван дохвата руке”
+         -->
+         <xs:element name="PDP_PBPJ_4" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Разлика обрачунатих прихода (ред. бр. 4-3>0)
+         -->
+         <xs:element name="PDP_PBPJ_5" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         6. Укупни приходи (ред. бр. 1+2+5)
+         -->
+         <xs:element name="PDP_PBPJ_6" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Зараде запослених у сталној пословној јединици
+         -->
+         <xs:element name="PDP_PBPJ_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Укупни трошкови закупљеног пословног простора
+         -->
+         <xs:element name="PDP_PBPJ_8" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Остали трошкови сталне пословне јединице
+         -->
+         <xs:element name="PDP_PBPJ_9" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Расходи по основу трансферних цена
+         -->
+         <xs:element name="PDP_PBPJ_10" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         11. Обрачунати расходи по ценама „ван дохвата руке”
+         -->
+         <xs:element name="PDP_PBPJ_11" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Разлика обрачунатих расхода (ред. бр. 10 - 11>0)
+         -->
+         <xs:element name="PDP_PBPJ_12" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         13. Расходи камата и припадајућих трошкова
+         -->
+         <xs:element name="PDP_PBPJ_13" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         14. Расходи по основу ауторског и сродних права и права индустријске својине
+         -->
+         <xs:element name="PDP_PBPJ_14" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         15. Укупни расходи (ред. бр. 7 + 8 + 9 - 12 - 13 - 14)
+         -->
+         <xs:element name="PDP_PBPJ_15" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         17.a Стопа %
+         -->
+         <xs:element name="PDP_PBPJ_A6A" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         17. Обрачунати порез (ред. бр. 16 x__%)
+         -->
+         <xs:element name="PDP_PBPJ_16" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PBNType">
+      <xs:sequence>
+         <!--
+         21. Пореска основица (ред. бр. 18+19-20)
+         -->
+         <xs:element name="PDP_PBN_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         1. Приходи од каматa
+         -->
+         <xs:element name="PDP_PBN_A_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Приходи од продаје добара и услуга или закупа од стране тржишних организација
+         -->
+         <xs:element name="PDP_PBN_A_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Споредне продаје добара и услуга које врше државне нетржишне јединице
+         -->
+         <xs:element name="PDP_PBN_A_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Импутиране продаје добара и услуга
+         -->
+         <xs:element name="PDP_PBN_A_4" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Укупно (ред. бр. 1. до 4)
+         -->
+         <xs:element name="PDP_PBN_A_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Плате и додаци запослених
+         -->
+         <xs:element name="PDP_PBN_B_6" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Социјални доприноси на терет послодавца
+         -->
+         <xs:element name="PDP_PBN_B_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Накнаде за запослене
+         -->
+         <xs:element name="PDP_PBN_B_8" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Награде, bonusi i ostali posebni rashodi
+         -->
+         <xs:element name="PDP_PBN_B_9" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Стални трошкови
+         -->
+         <xs:element name="PDP_PBN_B_10" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         11. Трошкови путовања
+         -->
+         <xs:element name="PDP_PBN_B_11" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Услуге по уговору
+         -->
+         <xs:element name="PDP_PBN_B_12" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         13. Специјализоване услуге
+         -->
+         <xs:element name="PDP_PBN_B_13" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         14. Текуће поправке и одржавање (услуге и материјали)
+         -->
+         <xs:element name="PDP_PBN_B_14" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         15. Материјал
+         -->
+         <xs:element name="PDP_PBN_B_15" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         16. Употреба основних средстава
+         -->
+         <xs:element name="PDP_PBN_B_16" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         17. Укупно (ред. бр. 6. до 16)
+         -->
+         <xs:element name="PDP_PBN_B_17" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         18. Вишак прихода над расходима (ред. бр. 5-17)
+         -->
+         <xs:element name="PDP_PBN_B_18" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         19. Примања од продаје нефинансијске имовине у залихама
+         -->
+         <xs:element name="PDP_PBN_B_19" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         20. Покриће утрошених средстава за набавку нефинансијске имовине
+         -->
+         <xs:element name="PDP_PBN_B_20" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PBN1Type">
+      <xs:sequence>
+         <!--
+         11. Пореска основица (ред. бр. 4-10)
+         -->
+         <xs:element name="PDP_PBN1_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         1. Приходи од продаје робе. производа и услуга
+         -->
+         <xs:element name="PDP_PBN1_A_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Приходи од закупнина
+         -->
+         <xs:element name="PDP_PBN1_A_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Приходи од камата
+         -->
+         <xs:element name="PDP_PBN1_A_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Укупно (ред. бр. 1+2+3)
+         -->
+         <xs:element name="PDP_PBN1_A_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Набавна вредност продате робе
+         -->
+         <xs:element name="PDP_PBN1_B_5" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Трошкови материјала
+         -->
+         <xs:element name="PDP_PBN1_B_6" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Трошкови зарада. накнада зарада и остали лични расходи
+         -->
+         <xs:element name="PDP_PBN1_B_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Трошкови амортизације
+         -->
+         <xs:element name="PDP_PBN1_B_8" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Остали пословни расходи
+         -->
+         <xs:element name="PDP_PBN1_B_9" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         10, Укупно (ред. бр. 5. до 9)
+         -->
+         <xs:element name="PDP_PBN1_B_10" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PBN2Type">
+      <xs:sequence>
+         <!--
+         9. Пореска основица (ред. бр. 4-8)
+         -->
+         <xs:element name="PDP_PBN2_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         1. Добитак по основу камата, накнада и провизија
+         -->
+         <xs:element name="PDP_PBN2_A_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Добици од продаје хартија од вредности, удела и осталих пласмана
+         -->
+         <xs:element name="PDP_PBN2_A_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Приходи од продаје производа и услуга
+         -->
+         <xs:element name="PDP_PBN2_A_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Укупно (ред. бр. 1+2+3)
+         -->
+         <xs:element name="PDP_PBN2_A_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Трошкови зарада. накнада зарада и остали лични расходи
+         -->
+         <xs:element name="PDP_PBN2_B_5" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Трошкови амортизације
+         -->
+         <xs:element name="PDP_PBN2_B_6" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Остали пословни расходи
+         -->
+         <xs:element name="PDP_PBN2_B_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Укупно (ред. бр. 5. до 7)
+         -->
+         <xs:element name="PDP_PBN2_B_8" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PBN3Type">
+      <xs:sequence>
+         <!--
+         6. Пореска основица (ред. бр. 1-5)
+         -->
+         <xs:element name="PDP_PBN3_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         1. Приходи од продаје производа и услуга
+         -->
+         <xs:element name="PDP_PBN3_A_1" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Трошкови зарада. накнада зарада и остали лични расходи
+         -->
+         <xs:element name="PDP_PBN3_B_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Трошкови амортизације
+         -->
+         <xs:element name="PDP_PBN3_B_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Остали пословни расходи
+         -->
+         <xs:element name="PDP_PBN3_B_4" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Укупно (ред. бр. 2. до 4)
+         -->
+         <xs:element name="PDP_PBN3_B_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="SIType">
+      <xs:sequence>
+         <!--
+         1. Вредност имовине (изражене у основним средствима) стечене статусном променом
+         -->
+         <xs:element name="PDP_SI_1" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Укупна вредност имовине (изражене у основним средствима)
+         -->
+         <xs:element name="PDP_SI_2" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         3. Сразмерно учешће имовине (изражене у основним средствима) стечене статусном променом изражено у %
+         -->
+         <xs:element name="PDP_SI_3" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4. Обрачунати порез сразмерно имовини (израженој у основним средствима) стеченој статусном променом (ред. бр. 3 x редни број из обрасца ПДП на коме се утврђује обрачунати порез, и то множењем пореске основице са пореском стопом)
+         -->
+         <xs:element name="PDP_SI_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PK1Type">
+      <xs:sequence>
+         <!--
+         1. Укупан износ улагања у основна средстава која су плаћена у текућем пореском периоду
+         -->
+         <xs:element name="PDP_PK1_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Износ улагања у опрему, плаћену у текућем пореском периоду, а која је била у употреби на територији Републике
+         -->
+         <xs:element name="PDP_PK1_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Износ улагања у основна средства за која се признаје право на порески кредит
+         -->
+         <xs:element name="PDP_PK1_3" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Износ обрачунатог пореског кредита за текућу годину
+         -->
+         <xs:element name="PDP_PK1_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Износ пореског кредита који се користи у текућем пореском периоду
+         -->
+         <xs:element name="PDP_PK1_5" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Неискоришћени део пореског кредита из текућег пореског периода који се преноси на рачун пореза на добит из будућих обрачунских периода
+         -->
+         <xs:element name="PDP_PK1_6" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Неискоришћени део пореског кредита из ранијих година који се преноси на рачун пореза на добит из будућих обрачунских периода
+         -->
+         <xs:element name="PDP_PK1_7" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Износ корекције неискоришћеног дела пореског кредита из ранијих година услед отуђења основних средстава, односно губитка права на порески кредит
+         -->
+         <xs:element name="PDP_PK1_8" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Неискоришћени део пореског кредита из ранијих година, који се, после корекције, преноси на рачун пореза на добит из будућих обрачунских периода
+         -->
+         <xs:element name="PDP_PK1_9" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Неискоришћени део пореског кредита из ранијих година, који се користи у текућој години
+         -->
+         <xs:element name="PDP_PK1_10" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         11. Неискоришћени део пореског кредита из ранијих година који се преноси на рачун пореза на добит из будућих обрачунских периода
+         -->
+         <xs:element name="PDP_PK1_11" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Укупни порески кредит који се користи у текућем пореском периоду збир пореског кредита текуће године и пренетих пореских кредита из ранијих година по редоследу улагања
+         -->
+         <xs:element name="PDP_PK1_12" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         13. Неискоришћени део пореског кредита који се преноси на рачун пореза на добит из будућих периода – збир неискоришћеног пореског кредита текуће године и пренетог пореског кредита из ранијих година
+         -->
+         <xs:element name="PDP_PK1_13" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="SU2Type">
+      <xs:sequence>
+         <!--
+         1. Вредност укупно плаћених основних средстава набављених у складу са чланом 50б ст. 1. и 6. Закона
+         -->
+         <xs:element name="PDP_SU2_1" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         2. Вредност плаћене опреме која је била у употреби на територији Републике Србије
+         -->
+         <xs:element name="PDP_SU2_2" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Вредност набављених основних средстава у складу са чланом 50б ст. 1. и 6. Закона (1 - 2)
+         -->
+         <xs:element name="PDP_SU2_3" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Вредност укупних основних средстава
+         -->
+         <xs:element name="PDP_SU2_4" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         5. Сразмера улагања (3 : 4 х 100)
+         -->
+         <xs:element name="PDP_SU2_5" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         6. Умањење обрачунатог пореза (ред. бр . 5 х ред.  бр. 9.3. Обрасца ПДП)
+         -->
+         <xs:element name="PDP_SU2_6" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="SUType">
+      <xs:sequence>
+         <!--
+         1. Вредност укупно плаћених основних средстава набављених у складу са чланом 50a Закона
+         -->
+         <xs:element name="PDP_SU_1" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Вредност плаћене опреме која је била у употреби на територији Републике Србије
+         -->
+         <xs:element name="PDP_SU_2" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Вредност плаћених основних средстава набављених у складу са чланом 50a Закона (1 - 2)
+         -->
+         <xs:element name="PDP_SU_3" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Вредност укупних основних средстава
+         -->
+         <xs:element name="PDP_SU_4" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         5. Сразмера улагања (3 : 4 х 100)
+         -->
+         <xs:element name="PDP_SU_5" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         6. Умањење обрачунатог пореза (ред. бр. 5 х ред. бр. 9.3. Обрасца ПДП)
+         -->
+         <xs:element name="PDP_SU_6" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="OKType">
+      <xs:sequence>
+         <!--
+         1. Aktiva na dan 1. januara
+         -->
+         <xs:element name="PDP_OK_1" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Aktiva na dan 31. decembra - dan izrade bilansa
+         -->
+         <xs:element name="PDP_OK_2" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Prosečno stanje aktive
+         -->
+         <xs:element name="PDP_OK_3" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Obaveze na dan 1. januara
+         -->
+         <xs:element name="PDP_OK_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Obaveze na dan 31. decembra - dan izrade bilansa
+         -->
+         <xs:element name="PDP_OK_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Prosečno stanje obaveza
+         -->
+         <xs:element name="PDP_OK_6" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Sopstveni kapital
+         -->
+         <xs:element name="PDP_OK_7" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         8. Stanje zajmova, odnosno kredita, uprosečeno na dnevnom nivou
+         -->
+         <xs:element name="PDP_OK_8" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         9. Četverostruka, odnosno desetostruka vrednost sopstvenog kapitala obveznika
+         -->
+         <xs:element name="PDP_OK_9" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         10. Odnos četverostruke, odnosno desetostruke vrednosti sopstvenog kapitala i stanja zajmova, odnosno kredita uprosečenog na dnevnom nivou
+         -->
+         <xs:element name="PDP_OK_10" maxOccurs="1" minOccurs="1" type="tns:KoeficjentType"/>
+         <!--
+         11. Iznos ukupno obračunate kamate i pripadajućih troškova na zajmove, odnosno kredite
+         -->
+         <xs:element name="PDP_OK_11" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Iznos kamate i pripadajućih troškova na zajmove, odnosno kredite koji može biti priznat
+         -->
+         <xs:element name="PDP_OK_12" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         13. Iznos kamate i pripadajućih troškova na zajmove, odnosno kredite koji se ne priznaje
+         -->
+         <xs:element name="PDP_OK_13" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PKType">
+      <xs:sequence>
+         <!--
+         1. Ukupan iznos ulaganja u osnovna sredstva po osnovu kojih je plaćanje izvršeno u tekućem poreskom periodu
+         -->
+         <xs:element name="PDP_PK_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Iznos ulaganja u opremu, plaćenu u tekućem poreskom periodu, a koja je bila u upotrebi na teritoriji Republike
+         -->
+         <xs:element name="PDP_PK_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Iznos ulaganja u osnovna sredstva za koja se priznaje pravo na poreski kredit
+         -->
+         <xs:element name="PDP_PK_3" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Ulaganja u razvoj kao nematerijalnu imovinu
+         -->
+         <xs:element name="PDP_PK_4" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Ukupan iznos ulaganja u osnovna sredstva i razvoj kao nematerijalnu imovinu
+         -->
+         <xs:element name="PDP_PK_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Iznos obračunatog poreskog kredita za tekući poreski period
+         -->
+         <xs:element name="PDP_PK_6" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Iznos obračunatog poreskog kredita koji se koristi u tekućem poreskom periodu, a najviše do 33%, odnosno do 70% obračunatog poreza
+         -->
+         <xs:element name="PDP_PK_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Neiskorišćeni deo poreskog kredita iz tekućeg poreskog perioda koji se prenosi na račun poreza na dobit iz budućih obračunskih perioda
+         -->
+         <xs:element name="PDP_PK_8" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Neiskorišćeni deo poreskog kredita iz ranijih poreskih perioda koji se prenosi na račun poreza na dobit iz budućih obračunskih perioda
+         -->
+         <xs:element name="PDP_PK_9" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Iznos korekcije neiskorišćenog dela poreskog kredita iz ranijih poreskih perioda usled otuđenja osnovnih sredstava i nematerijalne imovine, odnosno gubitka prava na poreski kredit
+         -->
+         <xs:element name="PDP_PK_10" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         11. Neiskorišćeni deo poreskog kredita iz ranijih poreskih perioda koji, posle korekcije, može da se koristi u tekućem poreskom periodu po redosledu ulaganja
+         -->
+         <xs:element name="PDP_PK_11" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Neiskorišćeni deo poreskog kredita iz ranijih poreskih perioda, koji se koristi u tekućem poreskom periodu
+         -->
+         <xs:element name="PDP_PK_12" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         13. Neiskorišćeni deo poreskog kredita iz ranijih poreskih perioda, koji se prenosi na račun poreza na dobit iz budućih obračunskih perioda
+         -->
+         <xs:element name="PDP_PK_13" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         14. Ukupan poreski kredit koji se koristi u tekućem poreskom periodu -  zbir poreskog kredita tekućeg poreskog perioda i prenetih poreskih kredita iz ranijih poreskih perioda po redosledu ulaganja, a najviše do 33% odnosno 70% obračunatog poreza
+         -->
+         <xs:element name="PDP_PK_14" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         15. Neiskorišćeni deo poreskog kredita koji se prenosi na račun poreza na dobit iz budućih perioda - zbir neiskorišćenog poreskog kredita tekućeg poreskog perioda i prenetog poreskog kredita tekućeg poreskog perioda i prenetog poreskog kredita iz ranijih poreskih perioda
+         -->
+         <xs:element name="PDP_PK_15" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PB1AneksType">
+      <xs:sequence>
+         <!--
+         1. Бруто дивиденда коју је обвезник остварио од своје нерезидентне филијале
+         -->
+         <xs:element name="PDP_ANEKSPB1_1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Порез који је нерезидентна филијала платила у другој држави на добит из које је исплаћена дивиденда
+         -->
+         <xs:element name="PDP_ANEKSPB1_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Порез по одбитку који је нерезидентна филијала платила на исплаћене дивиденде
+         -->
+         <xs:element name="PDP_ANEKSPB1_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Основица за обрачун пореског кредита (1+2)
+         -->
+         <xs:element name="PDP_ANEKSPB1_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Укупан износ пореза на добит и пореза по одбитку који је нерезидентна филијала платила у другој држави (2+3)
+         -->
+         <xs:element name="PDP_ANEKSPB1_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6.1 Стопа %
+         -->
+         <xs:element name="PDP_ANEKSPB1_6_1" maxOccurs="1" minOccurs="0" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         6. Износ пореског кредита (4 x 6.1%), ili iznos sa red. br. 5.
+         
+         -->
+         <xs:element name="PDP_ANEKSPB1_6" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         7. Неискоришћени део пореског кредита из ранијих година
+         -->
+         <xs:element name="PDP_ANEKSPB1_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Укупан порески кредит (6+7)
+         -->
+         <xs:element name="PDP_ANEKSPB1_8" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         9. Искоришћени порески кредит у текућој години
+         -->
+         <xs:element name="PDP_ANEKSPB1_9" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Неискоришћени порески кредит који се преноси у наредне године (8-9)
+         -->
+         <xs:element name="PDP_ANEKSPB1_10" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PB1Aneks1Type">
+      <xs:sequence>
+         <!--
+         1. Приход остварен из друге државе (1.1.+ 1.2.+1.3.+1.4.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_1" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         1.1 од камата
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_11" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         1.2 од ауторских накнада
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_12" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         1.3 од накнада по основу закупа непокретности и покретних ствари
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_13" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         1.4 од дивиденди
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_14" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2. Порез по одбитку плаћен у другој држави (2.1.+2.2.+2.3.+2.4.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_2" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         2.1 на камате
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_21" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2.2 на ауторске накнаде
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_22" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2.3 на накнаде по основу закупа непокретности и покретних ствари
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_23" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         2.4 на дивиденде
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_24" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Основица за обрачун пореског кредита (3.1.+3.2.+3.3.+3.4.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_3" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         3.1 40% (1.1.+2.1.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_31" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3.2 40% (1.2.+2.2.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_32" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3.3 40% (1.3.+2.3.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_33" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3.4 40% (1.4.+2.4.)
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_34" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Износ пореског кредита (4.1.+4.2.+4.3.+4.4.) односно износ са ред. бр. 2.
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4.1.a Стопа %
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_41A" maxOccurs="1" minOccurs="0" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4.1 3.1.x__%
+         3.1.x4.1.a%
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_41" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4.2.a Стопа %
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_42A" maxOccurs="1" minOccurs="0" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4.2 3.2.x __%
+         3.2.x 4.2.a%
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_42" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4.3.a Стопа %
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_43A" maxOccurs="1" minOccurs="0" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4.3 3.3.x __%
+         3.3.x 4.3.a% 
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_43" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4.4.a Стопа %
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_44A" maxOccurs="1" minOccurs="0" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4.4 3.4.x __%
+         3.4.x 4.4.a%
+         
+         -->
+         <xs:element name="PDP_ANEKS1_PB1_44" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="OAType">
+      <xs:sequence>
+         <!--
+         1. Број групе
+         -->
+         <xs:element name="PDP_OA_BG" maxOccurs="1" minOccurs="1">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                 <xs:enumeration value="II"/>
+                 <xs:enumeration value="III"/>
+                 <xs:enumeration value="IV"/>
+                 <xs:enumeration value="V"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         2. Почетни салдо групе
+         -->
+         <xs:element name="PDP_OA_2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Прибављена средства која се стављају у употребу
+         -->
+         <xs:element name="PDP_OA_3" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         4. Отуђена средства током године
+         -->
+         <xs:element name="PDP_OA_4" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Неотписана вредност (2+3-4)
+         -->
+         <xs:element name="PDP_OA_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Стопа %
+         -->
+         <xs:element name="PDP_OA_6" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         7. Aмортизација
+         -->
+         <xs:element name="PDP_OA_7" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Неотписана вредност на крају године (5-7)
+         -->
+         <xs:element name="PDP_OA_8" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   Decimalni broj sa dve decimale, veći ili jednak nuli.
+   -->
+   <xs:simpleType name="DecimalPozitivNulaType">
+     <xs:restriction base="xs:decimal">
+        <xs:minInclusive value="0"/>
+        <xs:fractionDigits value="2"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="KPBPojedinacniType">
+      <xs:sequence>
+         <!--
+         1. Редни број
+         -->
+         <xs:element name="PDP_KPBD_RB" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         2. Фирма пословно име и седиште чл. групе
+         -->
+         <xs:element name="PDP_KPBD_FIRMA" maxOccurs="1" minOccurs="0" type="tns:String255Type"/>
+         <!--
+         3. ПИБ
+         -->
+         <xs:element name="PDP_KPBD_PIB" maxOccurs="1" minOccurs="1" type="tns:PIBType"/>
+         <!--
+         4. Опорез. добит
+         -->
+         <xs:element name="PDP_KPBD_PORO" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Губитак
+         -->
+         <xs:element name="PDP_KPBD_5" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         6. Пореска основица након пребијања (4 - 5)
+         -->
+         <xs:element name="PDP_KPBD_6" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+         <!--
+         7. Остатак кап. доб.
+         -->
+         <xs:element name="PDP_KPBD_7" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         8. Пореска основица на нивоу консолид. (збир кол. 6 и 7 исказан у реду Свега)
+         -->
+         <xs:element name="PDP_KPBD_8" maxOccurs="0" minOccurs="0" type="tns:String255Type"/>
+         <!--
+         9. Распоред обр. пореза
+         -->
+         <xs:element name="PDP_KPBD_9" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         10. Умањење обр. пореза
+         -->
+         <xs:element name="PDP_KPBD_10" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         11. Износ обр. пореза за уплату
+         -->
+         <xs:element name="PDP_KPBD_11" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         12. Аконтац. пореза на добит
+         -->
+         <xs:element name="PDP_KPBD_12" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="KPBUkupnoType">
+      <xs:sequence>
+         <!--
+         Svega.4 Опорез. добит
+         -->
+         <xs:element name="PDP_KPB_PORO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.5 Губитак
+         -->
+         <xs:element name="PDP_KPB_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.6 Пореска основица након пребијања (4 - 5)
+         -->
+         <xs:element name="PDP_KPB_6" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+         <!--
+         Svega.7 Остатак кап. доб.
+         -->
+         <xs:element name="PDP_KPB_7" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.8 Пореска основица на нивоу консолид. (збир кол. 6 и 7 исказан у реду Свега)
+         -->
+         <xs:element name="PDP_KPB_8" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.9 Распоред обр. пореза
+         -->
+         <xs:element name="PDP_KPB_9" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.10 Умањење обр. пореза
+         -->
+         <xs:element name="PDP_KPB_10" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.11 Износ обр. пореза за уплату
+         -->
+         <xs:element name="PDP_KPB_11" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         Svega.12 Аконтац. пореза на добит
+         -->
+         <xs:element name="PDP_KPB_12" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="KPBType">
+      <xs:sequence>
+         <xs:element name="KPBStavke" maxOccurs="1" minOccurs="1">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="KPBPojedinacni" maxOccurs="unbounded" minOccurs="1" type="tns:KPBPojedinacniType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="KPBUkupno" maxOccurs="1" minOccurs="1" type="tns:KPBUkupnoType"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   1. Podaci o prijavi
+   -->
+   <xs:complexType name="PodaciOPrijaviType">
+      <xs:sequence>
+         <xs:element name="KlijentskaOznakaDeklaracije" maxOccurs="1" minOccurs="0" type="tns:String255Type"/>
+         <xs:element name="PortalOznakaDeklaracije" maxOccurs="1" minOccurs="0" type="tns:String255Type"/>
+         <!--
+         1.1 - Vrsta prijave
+         1 – Za konačnu obavezu
+         2 – Otpočinjanje delatnosti
+         3 – Za konačnu obavezu u toku perioda
+         4 – Izmena mesečnih akontacija
+         5 – Po nalazu kontrole
+         6 – Po konsolidovanom bilansu
+         -->
+         <xs:element name="VrstaPrijave" maxOccurs="1" minOccurs="1">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+                 <xs:enumeration value="4"/>
+                 <xs:enumeration value="5"/>
+                 <xs:enumeration value="6"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         1.1a - Osnov
+         10 – Prestanak obavljanja delatnosti u toku poreskog perioda
+         20 – Statusna promena
+         30 – Promena poreskog perioda
+         41 – Otvaranje postupka likvidacije
+         42 – Okončanje postupka likvidacije
+         43 – Prenos postupka likvidacije
+         51 – Otvaranje postupka stečaja
+         52 – Okončanje postupka stečaja
+         53 – Prenos postupka stečaja u narednu godinu
+         100 – Poreska prijava za konačnu obavezu po nalazu kontrole
+         200 – Poreska prijava kod otpočinjanja obavljanja delatnosti po nalazu kontrole
+         310 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole zbog prestanka obavljanja delatnosti
+         320 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole zbog statusne promene
+         330 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole zbog promene poreskog perioda na osnovu saglasnosti ministra finansija, odnosno guvernera NBS
+         341 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole po osnovu otvaranja postupka likvidacije
+         342 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole po osnovu okončanja postupka likvidacije
+         343 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole po osnovu prenošenja postupka likvidacije u narednu godinu
+         351 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole po osnovu otvaranja postupka stečaja
+         352 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole po osnovu okončanja postupka stečaja
+         353 – Poreska prijava za konačnu obavezu u toku poreskog perioda po nalazu kontrole po osnovu prenošenja postupka stečaja u narednu godinu
+         400 – Poreska prijava za izmenu mesečnih akontacija u toku godine po nalazu kontrole
+         600 – Poreska prijava po konsolidovanom poreskom bilansu po nalazu kontrole
+         
+         
+         -->
+         <xs:element name="OsnovZaKonacnu" maxOccurs="1" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="200"/>
+                 <xs:enumeration value="100"/>
+                 <xs:enumeration value="600"/>
+                 <xs:enumeration value="351"/>
+                 <xs:enumeration value="352"/>
+                 <xs:enumeration value="51"/>
+                 <xs:enumeration value="52"/>
+                 <xs:enumeration value="53"/>
+                 <xs:enumeration value="10"/>
+                 <xs:enumeration value="20"/>
+                 <xs:enumeration value="30"/>
+                 <xs:enumeration value="41"/>
+                 <xs:enumeration value="341"/>
+                 <xs:enumeration value="342"/>
+                 <xs:enumeration value="42"/>
+                 <xs:enumeration value="43"/>
+                 <xs:enumeration value="343"/>
+                 <xs:enumeration value="353"/>
+                 <xs:enumeration value="400"/>
+                 <xs:enumeration value="330"/>
+                 <xs:enumeration value="310"/>
+                 <xs:enumeration value="320"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         1.2.1 - Datum pocetka poreskog perioda
+         Datum početka poreskog perioda za koji je se podnosi prijava
+         -->
+         <xs:element name="DatumPocetka" maxOccurs="1" minOccurs="1" type="tns:DatumType"/>
+         <!--
+         1.2.2 - Datum kraja poreskog perioda
+         Datum kraja poreskog perioda za koji je se podnosi prijava
+         -->
+         <xs:element name="DatumKraja" maxOccurs="1" minOccurs="1" type="tns:DatumType"/>
+         <!--
+         1.3 - Izmena prijave/akontacije
+         Oznaka da se radi o izmenjenoj prijavi
+         1 – Izmenjena, 40 ZPPA
+         2 – Po nalazu kontrole
+         3 – Izmena akontacije
+         9 – Storno prijave
+         -->
+         <xs:element name="IzmenaPrijave" maxOccurs="1" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+                 <xs:enumeration value="9"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         1.3a - Identifikacioni broj prijave koja se menja
+         JIBP prijave koja se menja izmenjenom. Obavezan ukoliko je popunjeno polje 1.3
+         -->
+         <xs:element name="JIBP" maxOccurs="1" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:unsignedLong">
+                 <xs:totalDigits value="19"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         1.4 - Osnov podnosenja
+         Osnov za podnošenje 
+         1 – Prvostepeno rešenje
+         2 – Drugostepeno rešenje
+         3 – Upravni sud
+         -->
+         <xs:element name="OsnovPodnosenja" maxOccurs="1" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         1.5 - Broj rešenja
+         -->
+         <xs:element name="BrojResenja" maxOccurs="1" minOccurs="0" type="tns:String512Type"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   String dužine 1-512 karaktera.
+   -->
+   <xs:simpleType name="String512Type">
+     <xs:restriction base="xs:string">
+        <xs:maxLength value="512"/>
+        <xs:minLength value="1"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <!--
+   2. Podaci o podnosiocu
+   -->
+   <xs:complexType name="PodaciOPodnosiocuType">
+      <xs:sequence maxOccurs="1" minOccurs="1">
+         <!--
+         2.1 - PIB Poreskog Obveznika
+         -->
+         <xs:element name="PIB" maxOccurs="1" minOccurs="1" type="tns:PIBType"/>
+         <!--
+         2.2 - Tip obveznika
+         Tip obveznika u čije se ime podnosi prijava, 
+         1 – PL koje podnosi PB1/KPB
+         2 – Stalna jedinica koja podnosi PB1
+         3 – Stalna jedinica koja podnosi PBPJ
+         4 – Nedobitna organizacija koja podnosi PBN
+         5 - Nedobitna organizacija koja podnosi PBN1
+         6 – Nedobitna organizacija koja podnosi PBN2
+         7 – Nedobitna organizacija koja podnosi PBN3
+         -->
+         <xs:element name="TipObveznika" maxOccurs="1" minOccurs="1">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+                 <xs:enumeration value="4"/>
+                 <xs:enumeration value="5"/>
+                 <xs:enumeration value="6"/>
+                 <xs:enumeration value="7"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         2.2a - MPL
+         Matično pravno lice:
+         0 – nije matično pravno lice
+         1 – jeste matično pravno lice
+         -->
+         <xs:element name="MPL" maxOccurs="1" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="0"/>
+                 <xs:enumeration value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         2.3 - Matični broj 
+         Matični broj POBa
+         -->
+         <xs:element name="MaticniBrojObveznika" maxOccurs="1" minOccurs="1" type="tns:MBRType"/>
+         <!--
+         2.4 - Naziv
+         Naziv POBa
+         -->
+         <xs:element name="Naziv" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+         <!--
+         2.5 - Adresa
+         Adresa POBa
+         -->
+         <xs:element name="Adresa" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+         <!--
+         2.6 - Telefon
+         Telefon konkat osobe
+         -->
+         <xs:element name="Telefon" maxOccurs="1" minOccurs="0" type="tns:String255Type"/>
+         <!--
+         2.7 - Elektronska adresa
+         Elektronska adresa kontakt osobe
+         -->
+         <xs:element name="eMail" maxOccurs="1" minOccurs="1" type="tns:eMailAdresaType"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   3. Podaci o delatnosti
+   -->
+   <xs:complexType name="PodaciODelatnostiType">
+      <xs:sequence>
+         <!--
+         3.1 - Pretežna delatnost u APRu
+         -->
+         <xs:element name="PreteznaDelatnost" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+         <!--
+         3.2 - Delatnost po osnovu koje je u obr. periodu ostvario najviše  prihoda
+         Delatnost na osnovu koje je ostvareno najveći deo prihoda
+         -->
+         <xs:element name="SifraDelatnosti" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:simpleType name="DelatnostType">
+     <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{5}"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <!--
+   4. Podaci o proceni poslovnog rezultata i podaci o utvrdjivanju visine akontacije za obveznika koji podnosi PB1/PKB
+   -->
+   <xs:complexType name="PodaciOProceniPoslovnogRezultataType">
+      <xs:sequence>
+         <!--
+         4.1 - Procenjeni prihodi za poreski period
+         Ukupna suma procenjenih prihoda u poreskom periodu
+         -->
+         <xs:element name="ProcenaPrihoda" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4.2 - Procenjeni rashodi
+         Ukupna suma procenjenih rashoda u poreskom periodu
+         -->
+         <xs:element name="ProcenaRashoda" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4.3 - Procenjena dobit
+         Obračunata dobit kao razlika prihoda i rashoda
+         -->
+         <xs:element name="ProcenaDobiti" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+         <!--
+         4.4 - Poreska stopa
+         Primenjena poreska stopa
+         -->
+         <xs:element name="PoreskaStopaNVOVN" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4.5 - Obračunata akontacija za period
+         Obračunati iznos akontacije
+         -->
+         <xs:element name="ObracunataAkontacijaPoreza" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         4.6 - Mesečni iznos akontacije
+         Obračunati mesečni iznos akontacije
+         -->
+         <xs:element name="MesecniIznosAkontacije" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   5. Podaci od znacaja za utvrdjivanje poreske obaveze
+   -->
+   <xs:complexType name="PodaciZaPoreskuObavezu123Type">
+      <xs:sequence>
+         <!--
+         5.1 - Poreska osnovica
+         -->
+         <xs:element name="PoreskaOsnovica" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.2 - Poreska stopa 
+         Poreska stopa sekcije kod konačne obaveze
+         -->
+         <xs:element name="PoreskaStopaKOB" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         5.3 - Obračunati porez
+         -->
+         <xs:element name="ObracunatiPorezKOB" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.4 - Ukupan iznos umanjena
+         Ukupno umanjenja obračunatog poreza
+         -->
+         <xs:element name="UmanjenjaObracunatogPorezaKOB" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.4.1.a - Oznaka umanjenja K
+         -->
+         <xs:element name="OznakaUmanjenaK" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.1.b - Umanjenje koncesionih ulaganje
+         Iznos umanjenja na osnovu koncesionih ulaganja
+         -->
+         <xs:element name="IznosUmanjenjaK" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         5.4.2.a - Oznaka umanjenja IL
+         -->
+         <xs:element name="OznakaUmanjenaIL" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.2.b - Umanjenje radnog osposobljavanja
+         Iznos umanjena na osnovu ulaganja u radno osposobljavanje
+         -->
+         <xs:element name="IznosUmanjenjeIL" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         5.4.3.a - Oznaka umanjenja poreskih kredita, PK/PK1
+         -->
+         <xs:element name="OznakaUmanjenjaPKPK1" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.3.b - Oznaka umanjenja poreskih kredita, PK/PK1
+         Iznos umanjenja na osnovu osnovu neiskorišćenih poreskih kredita iz ranijih poreskih perioda
+         -->
+         <xs:element name="IznosUmanjenjePKPK1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5.4.4.a - Oznaka umanjenja na osnovu ulaganja,  SU/SU2
+         -->
+         <xs:element name="OznakaUmanjenjaSUSU2" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.4.b - Umanjenje ulaganja
+         Iznos umanjenja po osnovu poreskog oslobođenja za srazmerni iznos ulaganja u osnovna sredstva
+         -->
+         <xs:element name="IznosUmanjenjaSUSU2" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5.4.5.a - Umanjenje plaćenog poreza po čl.51
+         -->
+         <xs:element name="OznakaUmanjenjaC51" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.5.b - Umanjenje čl.51
+         Iznos umanjenja na osnovu člana 51 zakona
+         -->
+         <xs:element name="IznosUmanjenjaC51" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         5.4.6.a - Umanjenje plaćenog poreza i dividendi, Aneks PB1/IPD
+         -->
+         <xs:element name="OznakaUmanjenjaAPB1" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.6.b - Iznos umanjenja plaćenog poreza i dividendi, Aneks PB1
+         Iznos umanjenje na osnovu isplaćenog iznos poreza koji je nerezidentna filijala platila u drugoj državi na dobit na dividende kao i iznos poreza po odbitku
+         -->
+         <xs:element name="IznosUmanjenjaAPB1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5.4.7.a - Umanjenje plaćenog poreza po odbitku, Aneks 1 PB1/IPD1
+         -->
+         <xs:element name="OznakaUmanjenjaA1PB1" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.4.7.b - Iznos umanjenje plaćenog poreza po odbitku, Aneks 1 PB1
+         Iznos umanjenje na osnovu isplaćenog iznos poreza po odbitku na autorska naknade, zakup i slično
+         -->
+         <xs:element name="IznosUmanjenjaA1PB1" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5.5 - Obračunati porez po umanjenu
+         Ukupno obračunati porez nakon primene umanjenja
+         -->
+         <xs:element name="ObracunatiPorezPoUmanjenu" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.6 - Ukupan iznos uvećanja
+         -->
+         <xs:element name="UvecanjeObracunatogPoreza" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.6.1.a - Uvećanje na osnovu imovine
+         -->
+         <xs:element name="OznakaUvecanjaSI" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.6.1.b - Iznos uvećanja na osnovu imovine
+         Iznos uvećanja na osnovu sticanja imovine spajanjem, pripajanjem, podelom
+         -->
+         <xs:element name="IznosUvecanjaSI" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         5.6.2.a - Uvećanje na osnovu gubitka poreskog kredita
+         -->
+         <xs:element name="OznakaUvecanjaGPK" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.6.2.b - Iznos uvećanja na osnovu gubitka poreskog kredita
+         Iznos uvećanja na osnovu gubitka prava na poreski kredit
+         -->
+         <xs:element name="IznosUvecanjaGPK" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         5.7 - Poreska obaveza
+         Poreska obaveza za period
+         -->
+         <xs:element name="PoreskaObavezaZaPeriod" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.8 - Uplaćene akontacije
+         Ukupan iznos uplaćenih akontacija
+         -->
+         <xs:element name="UplaceneAkontacijePoreza" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+         <!--
+         5.9 - Iznos za uplatu/pretplata
+         Ukupan iznos za uplatu ili iznos pretplate
+         -->
+         <xs:element name="IznosPorezaZaUplatuPretplata" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+         <!--
+         5.9.a - Iznos obračunate kamate
+         -->
+         <xs:element name="IznosKamate" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   5A. Podaci od znacaja za utvrdjivanje poreske obaveze za nedobitne organizacije
+   -->
+   <xs:complexType name="PodaciZaPoreskuObavezu4567Type">
+      <xs:sequence>
+         <!--
+         5.10 - Poreska osnovica 
+         Osnovica za obračun poreza
+         -->
+         <xs:element name="PoreskaOsnovicaNO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.11a - Poresko oslobođenje
+         Logička vrednost:
+         0 – ako se ne primenjuje umanjenje
+         1 – ako se primenjuje umanjenje
+          
+         -->
+         <xs:element name="OznakaPoreskogOslobodjenjaNO" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         5.11b - Iznos poreskog oslobođenja
+         -->
+         <xs:element name="IznosPoreskogOslobodjenjaNO" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         5.12 - Poreska stopa
+         Primenjena poreska stopa
+         -->
+         <xs:element name="PoreskaStopaNO" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         5.13 - Obračunati porez
+         Obračunati iznos poreza
+         -->
+         <xs:element name="ObracunatiPorezNO" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5.13a - Iznos obračunate kamate
+         -->
+         <xs:element name="IznosObracunateKamateNO" maxOccurs="1" minOccurs="0" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   6. Podaci za utvrdjivanje akontacije
+   -->
+   <xs:complexType name="PodaciZaUtvrdjivanjeAkontacijeType">
+      <xs:sequence>
+         <!--
+         6.1 - Ostatak oporezive dobiti
+         -->
+         <xs:element name="OstatakOporeziveDobitiAK" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6.2 - Poreska stopa
+         Primenjena poreska stopa
+         -->
+         <xs:element name="PoreskaStopaAK" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         6.3 - Obračunati porez
+         Obračunati iznos poreza
+         -->
+         <xs:element name="ObracunatiPorezAK" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6.4 - Ukupan iznos umanjena
+         Ukupna iznos umanjenja
+         -->
+         <xs:element name="UmanjenjeObracunatogPorezaAK" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+         <!--
+         6.4.1.a - Oznaka umanjenja nesikorištenih poreskih kredita, PK/PK1
+         Umanjenje po osnovu neiskorištenih poreskih kredita
+         -->
+         <xs:element name="OznakaUmanjenjaPKPK1AK" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         6.4.1.b - Iznos umanjenje neiskorišćenih poreskih kredita, PK/PK1
+         Iznos umanjenja na osnovu osnovu neiskorišćenih poreskih kredita iz ranijih poreskih perioda
+         -->
+         <xs:element name="IznosUmanjenjaPKPK1AK" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         6.4.2.a - Oznaka umanjenja na osnovu ulaganja,  SU/SU2
+         Umanjenje na osnovu ulaganja
+         -->
+         <xs:element name="OznakaUmanjenjaSUSU2AK" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         6.4.2.b - Iznos umanjenje na osnovu ulaganja, SU/SU2
+         Iznos umanjenja na osnovu ulaganja u osnovna sredstva, srazmerni iznos
+         -->
+         <xs:element name="IznosUmanjenjaSUSU2AK" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         6.4.3.a - Umanjenje plaćenog poreza i dividendi, Aneks PB1
+         Umanjenje na osnovu plaćenog poreza na dobit, dividendi, poreza po odbitku
+         -->
+         <xs:element name="OznakaUmanjenjaAPB1AK" maxOccurs="1" minOccurs="1" type="xs:boolean"/>
+         <!--
+         6.4.3.b - Umanjenje Aneks PB1
+         Iznos umanjenje na osnovu isplaćenog poreza na dobit, dividendi, poreza po odbitku
+         -->
+         <xs:element name="IznosUmanjenjaAPB1AK" maxOccurs="1" minOccurs="0" type="xs:positiveInteger"/>
+         <!--
+         6.5 - Ukupan iznos akontacije
+         Iznos ukupne poreske akontacije
+         -->
+         <xs:element name="UkupanIznosAkontacije" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         6.6 - Mesečni iznos
+         Obračunati mesečni iznos akontacije
+         -->
+         <xs:element name="MesecniIznosAkontacije" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   7. Podaci o poreskom konsolidovanju
+   -->
+   <xs:complexType name="PodaciOPoreskomKonsolidovanjuType">
+      <xs:sequence>
+         <!--
+         7.2 - Naziv MPL
+         Naziv matičnog pravnog lica
+         -->
+         <xs:element name="NazivMaticnogPravnogLica" maxOccurs="1" minOccurs="0" type="tns:String255Type"/>
+         <!--
+         7.1 -PIB MPL
+         PIB matičnog pravnog lica
+         -->
+         <xs:element name="PIBMaticnogPravnogLica" maxOccurs="1" minOccurs="0" type="tns:PIBType"/>
+         <!--
+         7.3 - Iznos poreza
+         Iznos obračunatog poreza za uplatu
+         -->
+         <xs:element name="IznosObracunatogPorezaZaUplatu" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+         <!--
+         7.4 - Iznos mesečne akontacije 
+         -->
+         <xs:element name="IznosMesecneAkontacije" maxOccurs="1" minOccurs="1" type="xs:integer"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   8. Podaci o likvidaciji
+   -->
+   <xs:complexType name="PodaciLikvidacijaType">
+      <xs:sequence>
+         <!--
+         8.1 - Broj rešenja o otvaranju postupka likvidacije
+         -->
+         <xs:element name="BrojResenjaZaOtvaranjePostupkaLikvidacije" maxOccurs="1" minOccurs="1" type="tns:String512Type"/>
+         <!--
+         8.2 - Datum otvaranja postupka likvidacije
+         -->
+         <xs:element name="DatumOtvaranjaPostupkaLikvidacije" maxOccurs="1" minOccurs="1" type="tns:DatumType"/>
+         <!--
+         8.3 - Ime i prezime likvidacionog upravnika
+         -->
+         <xs:element name="ImePrezimeLikvidacionogUpravnika" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+         <!--
+         8.4 - Datum okončanja postupka likvidacije
+         -->
+         <xs:element name="DatumOkoncanjaPostupkaLikvidacije" maxOccurs="1" minOccurs="0" type="tns:DatumType"/>
+         <!--
+         8.5 - Broj rešenja o okončanju postupka likvidacije
+         -->
+         <xs:element name="BrojResenjaOOkoncanjuPostupkaLikvidacije" maxOccurs="1" minOccurs="0" type="tns:String512Type"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   9. Podaci o stecaju
+   -->
+   <xs:complexType name="PodaciStecajType">
+      <xs:sequence>
+         <!--
+         9.1 - Broj rešenja o otvaranju postupka stečaja
+         -->
+         <xs:element name="BrojResenjaOOtvaranjuPostupkaStecaja" maxOccurs="1" minOccurs="1" type="tns:String512Type"/>
+         <!--
+         9.2 - Datum otvaranja postupka stečaja
+         -->
+         <xs:element name="DatumOtvaranjaPostupkaStecaja" maxOccurs="1" minOccurs="1" type="tns:DatumType"/>
+         <!--
+         9.3 - Ime i prezime stečajnog upravnika
+         -->
+         <xs:element name="ImePrezimeStecajnogUpravnika" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+         <!--
+         9.4 - Datum nastanka odluke o nastavku stečaja bankrotstvom
+         -->
+         <xs:element name="DatumOdlukeONastavkuStecajaBankrotstvom" maxOccurs="1" minOccurs="0" type="tns:DatumType"/>
+         <!--
+         9.5 - Broj rešenja o nastavku postupka stečaja
+         -->
+         <xs:element name="BrojResenjaONastavkuStecajaBankrotstvom" maxOccurs="1" minOccurs="0" type="tns:String512Type"/>
+         <!--
+         9.6 - Datum nastanka odluke o okoncanju stecaja bankrotstvom
+         -->
+         <xs:element name="DatumOdlukeOOkoncanjuStecajaBankrotstvom" maxOccurs="1" minOccurs="0" type="tns:DatumType"/>
+         <!--
+         9.7 - Broj rešenja o okončanju postupka stečaja
+         -->
+         <xs:element name="BrojResenjaOOkoncanjuStecajaBankrotstvom" maxOccurs="1" minOccurs="0" type="tns:String512Type"/>
+         <!--
+         9.8 - Datum donosenja odluke odluke o usvajanju plana reorganizacije
+         -->
+         <xs:element name="DatumOdlukeOUsvajanjuPlanaReorganizacije" maxOccurs="1" minOccurs="0" type="tns:DatumType"/>
+         <!--
+         9.9 - Broj rešenja o usvajanju plana reorganizacije
+         -->
+         <xs:element name="BrojResenjaOUsvajanjuPlanaReorganizacije" maxOccurs="1" minOccurs="0" type="tns:String512Type"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   10. Ostali podaci - Vrste statusnih promena
+   -->
+   <xs:complexType name="PodaciVrsteStatusnihPromenaType">
+      <xs:sequence>
+         <!--
+         10.1 - Vrsta statusne promene:
+         1 – pripajanje
+         2 – spajanje
+         3 – podela
+         
+         -->
+         <xs:element name="VrstaStatusnePromene" maxOccurs="1" minOccurs="1">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         10.1.a - Oznaka oblika
+         Podvrsta statusne promene:
+         1 – podela uz osnivanje
+         2 – podela uz pripajanje
+         3 – mešovita podela
+         
+         -->
+         <xs:element name="ObliciPodele" maxOccurs="1" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                 <xs:enumeration value="1"/>
+                 <xs:enumeration value="2"/>
+                 <xs:enumeration value="3"/>
+              </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <!--
+         10.2 - Datum odluke o statusnoj promeni
+         Datum odluke sprovođenja statusne promene
+         -->
+         <xs:element name="DatumOdlukeOStatusnojPromeni" maxOccurs="1" minOccurs="1" type="tns:DatumType"/>
+         <!--
+         10.3 - Podaci o drustvima koja ucestvuju u statusnoj promeni
+         -->
+         <xs:element name="PDPDrustva" maxOccurs="1" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <!--
+                  10.3a i 10.3b - Podaci o društvu PIB/Naziv
+                  -->
+                  <xs:element name="PDPDrustvo" maxOccurs="unbounded" minOccurs="1" type="tns:PDPDrustvoType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PDPPrijavaType">
+      <xs:sequence>
+         <!--
+         1. Podaci o prijavi
+         -->
+         <xs:element name="PodaciOPrijavi" maxOccurs="1" minOccurs="1" type="tns:PodaciOPrijaviType"/>
+         <!--
+         2. Podaci o podnosiocu
+         -->
+         <xs:element name="PodaciOPodnosiocu" maxOccurs="1" minOccurs="1" type="tns:PodaciOPodnosiocuType"/>
+         <!--
+         3. Podaci o delatnosti
+         -->
+         <xs:element name="PodaciODelatnosti" maxOccurs="1" minOccurs="1" type="tns:PodaciODelatnostiType"/>
+         <!--
+         4. Podaci o proceni poslovnog rezultata i podaci o utvrdjivanju visine akontacije za obveznika koji podnosi PB1/PKB
+         -->
+         <xs:element name="PodaciOProceniPoslovnogRezultata" maxOccurs="1" minOccurs="0" type="tns:PodaciOProceniPoslovnogRezultataType"/>
+         <xs:choice>
+            <!--
+            5. Podaci od znacaja za utvrdjivanje poreske obaveze
+            -->
+            <xs:element name="PodaciZaPoreskuObavezu123" maxOccurs="1" minOccurs="0" type="tns:PodaciZaPoreskuObavezu123Type"/>
+            <!--
+            5A. Podaci od znacaja za utvrdjivanje poreske obaveze za nedobitne organizacije
+            -->
+            <xs:element name="PodaciZaPoreskuObavezu4567" maxOccurs="1" minOccurs="0" type="tns:PodaciZaPoreskuObavezu4567Type"/>
+         </xs:choice>
+         <!--
+         6. Podaci za utvrdjivanje akontacije
+         -->
+         <xs:element name="PodaciZaUtvrdjivanjeAkontacije" maxOccurs="1" minOccurs="0" type="tns:PodaciZaUtvrdjivanjeAkontacijeType"/>
+         <!--
+         7. Podaci o poreskom konsolidovanju
+         -->
+         <xs:element name="PodaciOPoreskomKonsolidovanju" maxOccurs="1" minOccurs="0" type="tns:PodaciOPoreskomKonsolidovanjuType"/>
+         <xs:choice>
+            <!--
+            8. Podaci o likvidaciji
+            -->
+            <xs:element name="PodaciOLikvidaciji" maxOccurs="1" minOccurs="0" type="tns:PodaciLikvidacijaType"/>
+            <!--
+            9. Podaci o stecaju
+            -->
+            <xs:element name="PodaciOStecaju" maxOccurs="1" minOccurs="0" type="tns:PodaciStecajType"/>
+         </xs:choice>
+         <!--
+         10. Ostali podaci - Vrste statusnih promena
+         -->
+         <xs:element name="PodaciVrsteStatusnihPromena" maxOccurs="1" minOccurs="0" type="tns:PodaciVrsteStatusnihPromenaType"/>
+         <!--
+         Bilo koja napomena poreskog obveznika
+         -->
+         <xs:element name="NapomeneZastupnika" maxOccurs="1" minOccurs="0" type="xs:string"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PoreskiBilansType">
+      <xs:choice>
+         <xs:element name="PB1SaPrilozima" type="tns:PB1SaPrilozimaType"/>
+         <xs:element name="PBPJ" type="tns:PBPJType"/>
+         <xs:element name="PBN" type="tns:PBNType"/>
+         <xs:element name="PBN1" type="tns:PBN1Type"/>
+         <xs:element name="PBN2" type="tns:PBN2Type"/>
+         <xs:element name="PBN3" type="tns:PBN3Type"/>
+      </xs:choice>   
+   </xs:complexType>
+   <xs:complexType name="ObrasciTipType">
+      <xs:sequence>
+         <xs:element name="PK" maxOccurs="1" minOccurs="0" type="tns:PKType"/>
+         <xs:element name="PK1" maxOccurs="1" minOccurs="0" type="tns:PK1Type"/>
+         <xs:element name="SU" maxOccurs="1" minOccurs="0" type="tns:SUType"/>
+         <xs:element name="SU2" maxOccurs="1" minOccurs="0" type="tns:SU2Type"/>
+         <xs:element name="PB1Aneks" maxOccurs="1" minOccurs="0" type="tns:PB1AneksType"/>
+         <xs:element name="PB1Aneks1" maxOccurs="1" minOccurs="0" type="tns:PB1Aneks1Type"/>
+         <xs:element name="SI" maxOccurs="1" minOccurs="0" type="tns:SIType"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PDPDeklaracijaType">
+      <xs:sequence>
+         <xs:element name="PDPPrijava" maxOccurs="1" minOccurs="1" type="tns:PDPPrijavaType"/>
+         <xs:element name="PoreskiBilans" maxOccurs="1" minOccurs="0" type="tns:PoreskiBilansType"/>
+         <xs:element name="KPB" maxOccurs="1" minOccurs="0" type="tns:KPBType"/>
+         <xs:element name="Obasci" maxOccurs="1" minOccurs="0" type="tns:ObrasciTipType"/>
+         <xs:element name="PDPPrilozi" maxOccurs="1" minOccurs="0" type="tns:PriloziType"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PriloziType">
+      <xs:sequence>
+         <xs:element name="Prilozi" maxOccurs="1" minOccurs="1">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Prilog" maxOccurs="unbounded" minOccurs="1">
+                     <xs:complexType>
+                        <xs:attribute name="ImePriloga" use="required">
+                           <xs:simpleType>
+                             <xs:restriction base="xs:string">
+                                <xs:enumeration value="IPD"/>
+                                <xs:enumeration value="IPD1"/>
+                                <xs:enumeration value="IPONO"/>
+                             </xs:restriction>
+                           </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Putanja" type="xs:string" use="required">
+                        </xs:attribute>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>   
+   </xs:complexType>
+   <xs:complexType name="PB1SaPrilozimaType">
+      <xs:sequence>
+         <xs:element name="PB1" maxOccurs="1" minOccurs="1" type="tns:PB1Type"/>
+         <xs:element name="OAPrilozi" maxOccurs="1" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="OA" maxOccurs="unbounded" minOccurs="1" type="tns:OAType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="OK" maxOccurs="1" minOccurs="0" type="tns:OKType"/>
+         <!--
+         DK - Dobit od predmeta koncesije
+         -->
+         <xs:element name="DK" maxOccurs="1" minOccurs="0" type="tns:DKType"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   10.3a i 10.3b - Podaci o društvu PIB/Naziv
+   -->
+   <xs:complexType name="PDPDrustvoType">
+      <xs:sequence>
+         <!--
+         10.3.a - Podaci o društvima, PIB
+         Identifikator društva koje učestvuje u statusnoj promeni
+         -->
+         <xs:element name="PIB" maxOccurs="1" minOccurs="1" type="tns:PIBType"/>
+         <!--
+         10.3.b - Podaci o društvima, naziv
+         Naziv društva koje učestvuje u statusnoj promeni
+         -->
+         <xs:element name="NazivPrivrednogDrustva" maxOccurs="1" minOccurs="1" type="tns:String255Type"/>
+      </xs:sequence>   
+   </xs:complexType>
+   <!--
+   Koeficjent je decimalni broj sa pet decimale, veći ili jednak nuli.
+   -->
+   <xs:simpleType name="KoeficjentType">
+     <xs:restriction base="xs:decimal">
+        <xs:minInclusive value="0"/>
+        <xs:fractionDigits value="5"/>
+     </xs:restriction>
+   </xs:simpleType>
+   <!--
+   DK - Dobit od predmeta koncesije
+   -->
+   <xs:complexType name="DKType">
+      <xs:sequence>
+         <!--
+         1. Ukupan prihod
+         -->
+         <xs:element name="PDP_DK_1" maxOccurs="1" minOccurs="1" type="xs:positiveInteger"/>
+         <!--
+         2. Prihodi od predmeta koncesije
+         -->
+         <xs:element name="PDP_DK_2" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         3. Procenat učešća (2/1)*100
+         -->
+         <xs:element name="PDP_DK_3" maxOccurs="1" minOccurs="1" type="tns:DecimalPozitivNulaType"/>
+         <!--
+         4. Dobit poslovne godine
+         -->
+         <xs:element name="PDP_DK_4" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+         <!--
+         5. Dobit ostvarena po osnovu prihoda od predmeta koncesije koja ne podleže oporezivannju (4 x 3)
+         -->
+         <xs:element name="PDP_DK_5" maxOccurs="1" minOccurs="1" type="xs:nonNegativeInteger"/>
+      </xs:sequence>   
+   </xs:complexType>
+</xs:schema>

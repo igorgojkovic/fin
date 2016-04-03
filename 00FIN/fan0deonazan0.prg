@@ -1,0 +1,4 @@
+PUSH KEY CLEAR
+DO FORM FAN0DEONAZ
+an0.grd0.setfocus
+POP KEY

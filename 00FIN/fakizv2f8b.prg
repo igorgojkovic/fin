@@ -1,0 +1,12 @@
+PUSH KEY CLEAR
+MSIFRA=SIFRA
+SET ORDER TO 1
+   *REPORT FORM FAKIZV20 PREVIEW FOR SIFRA<>MSIFRA
+
+   mfile='FAKIZV20'
+   uslov="SIFRA<>MSIFRA"
+   DO printer_bullzip WITH mdata02,mfile,uslov
+   
+   
+POP KEY
+

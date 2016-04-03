@@ -1,0 +1,73 @@
+00NEUPLACENI UPISANI KAPITAL                   UPISANI A NEUPLAÆENI KAPITAL                 00           0
+01NEMATERIJALNA ULAGANJA                       NEMATERIJALNA IMOVINA                        01           0
+02NEKRETNINE,POSTROJENJA,OPREMA I BIOLOSKA SREDNEKRETNINE, POSTROJENJA I OPREMA             02           0
+03DUGOROCNI FINANSIJSKI PLASMANI               BIOLOŠKA SREDSTVA                            03           0
+04                                             DUGOROÈNI FINANSIJSKI PLASMANI               04           0
+05                                             DUGOROÈNA POTRAŽIVANJA                       05           0
+10ZALIHE MATERIJALA                            ZALIHE MATERIJALA                            10           0
+11NEDOVRSENA PROIZVODNJA                       NEDOVRŠENA PROIZVODNJA I USLUGE              11           0
+12GOTOVI PROIZVODI                             GOTOVI PROIZVODI                             12           0
+13ROBA                                         ROBA                                         13           0
+14NEKRETNINE NAMANJENE PRODAJI                 STALNA SREDSTVA NAMENJENA PRODAJI            14           0
+15DATI AVANSI                                  PLAÆENI AVANSI ZA ZALIHE I USLUGE            15           0
+20POTRAZIVANJA PO OSNOVU PRODAJE               POTRAŽIVANJA PO OSNOVU PRODAJE               20           0
+21POTRAZIVANJA IZ SPECIFICNIH POSLOVA          POTRAŽIVANJA IZ SPECIFIÈNIH POSLOVA          21           0
+22DRUGA POTRAZIVANJA                           DRUGA POTRAŽIVANJA                           22           0
+23KRATKOROCNI FINANSIJSKI PLASMANI             KRATKOROÈNI FINANSIJSKI PLASMANI             23           0
+24GOTOVINSKI EKVIVALENTI I GOTOVINA            GOTOVINSKI EKVIVALENTI I GOTOVINA            24           0
+27POREZ NA DODATU VREDNOST                     POREZ NA DODATU VREDNOST                     27           0
+29GUBITAK IZNAD VISINE KAPITALA                AKTIVNA VREMENSKA RAZGRANIÈENJA              29           0
+30OSNOVNI                                      OSNOVNI KAPITAL                              30           0
+31NEUPLACENI UPISANI KAPITAL                   UPISANI A NEUPLAÆENI KAPITAL                 31           0
+32REZERVE                                      REZERVE                                      32           0
+33REVALORIZACIONE REZERVE                      REVALORIZAC.REZER. I NEREALIZ.DOBICI I GUBICI33           0
+34NERASPOREDJENI DOBITAK                       NERASPOREÐENI DOBITAK                        34           0
+35GUBITAK                                      GUBITAK                                      35           0
+40DUGOROCNA REZERVISANJA                       DUGOROÈNA REZERVISANJA                       40           0
+41DUGOROCNE OBAVEZE                            DUGOROÈNE OBAVEZE                            41           0
+42KRATKOROCNE FINANSIJSKE OBAVEZE              KRATKOROÈNE FINANSIJSKE OBAVEZE              42           0
+43OBAVEZE IZ POSLOVANJA                        OBAVEZE IZ POSLOVANJA                        43           0
+44OBAVEZE IZ SPECIFICNIH POSLOVA               OBAVEZE IZ SPECIFIÈNIH POSLOVA               44           0
+45OBAVEZE PO OSNOVU ZARADA I NAKNADA ZARADA    OBAVEZE PO OSNOVU ZARADA I NAKNADA ZARADA    45           0
+46DRUGE OBAVEZE                                DRUGE OBAVEZE                                46           0
+47OBAVEZE ZA POREZ NA DODATU VREDNOST          OBAVEZE ZA POREZ NA DODATU VREDNOST          47           0
+48OBAVEZE ZA OSTALE POREZE,DOPRINOSE I DRUGE DAOBAVEZE ZA OSTALE POREZE, DOPRINOSE I DR.DAŽB48           0
+49PASIVNA VREMENSKA RAZGRANICENJA              PASIVNA VREMENSKA RAZGRANIÈENJA              49           0
+50NABAVNA VREDNOST PRODATE ROBE                NABAVNA VREDNOST PRODATE ROBE                50           0
+51TROSKOVI MATERIJALA                          TROŠKOVI MATERIJALA I ENERGIJE               51           0
+52TROSKOVI ZARADA,NAKNADA ZARADA I OSTALI LICNITROŠ.ZARADA, NAKN.ZARADA I OSTALI LIÈNI TROŠ.52           0
+53TROSKOVI PROIZVODNIH USLUGA                  TROŠKOVI PROIZVODNIH USLUGA                  53           0
+54TROSKOVI AMORTIZACIJE I REZERVISANJA         TROŠKOVI AMORTIZACIJE I REZERVISANJA         54           0
+55NEMATERIJALNI TROSKOVI                       NEMATERIJALNI TROŠKOVI                       55           0
+56FINANSIJSKI TROSKOVI                         FINANSIJSKI RASHODI                          56           0
+57OSTALI RASHODI                               OSTALI RASHODI                               57           0
+58RASHODI PO OSNOVU OBEZVREDJENJA IMOVINE      RAS.PO OS.OBEZ.IM.KO. SE VR.PO FER VR.KROZ BU58           0
+59VANREDNI RASHODI I PRENOS RASHODA            GUB.POS.K. SE OB.EF.PRIM.RAÈ.POL.ISP.GR.R.P. 59           0
+60PRIHODI OD PRODAJE ROBE                      PRIHODI OD PRODAJE ROBE                      60           0
+61PROHODI OD PRODAJE PROIZVODA I USLUGA        PRIHODI OD PRODAJE PROIZVODA I USLUGA        61           0
+62PRIHOD OD AKTIVIRANJA UCINAKA I ROBE         PRIHODI OD AKTIVIRANJA UÈINAKA I ROBE        62           0
+63PROMENA VREDNOSTI ZALIHA UCINAKA             PROMENA VREDNOSTI ZALIHA UÈINAKA             63           0
+64PRIHODI OD PREMIJA,SUBVENCIJA,DOTACIJA,DONACIPRIH.OD PREMIJA, SUBVENC.DOTAC.DONACIJA I SL.64           0
+65DRUGI POSLOVNI PRIHODI                       DRUGI POSLOVNI PRIHODI                       65           0
+66FINANSIJSKI PRIHODI                          FINANSIJSKI PRIHODI                          66           0
+67OSTALI PRIHODI                               OSTALI PRIHODI                               67           0
+68PRIHODI OD USKLADJIVANJA VREDNOSTI IMOVINE   PRIHODI OD USKLAÐIVANJA VREDNOSTI IMOVINE    68           0
+69DOBITAK POSLOVANJA KOJE SE OBUSTAVLJA I PRENODOBIT.POS.KOJE SE OBUS.EF.PROM.RAÈ.POL.ISP.GR69           0
+70OTVARANJE GLAVNE KNJIGE                      OTVARANJE GLAVNE KNJIGE                      70           0
+71ZAKLJUCAK RACUNA USPEHA                      ZAKLJUÈAK RAÈUNA USPEHA                      71           0
+72RACUN DOBITKA I GUBITKA                      RAÈUN DOBITKA I GUBITKA                      72           0
+73ZAKLJUCAK RACUNA STANJA                      ZAKLJUÈAK RAÈUNA STANJA                      73           0
+74SLOBODNA GRUPA                               SLOBODNA GRUPA                               74           0
+88VANBILANSNA AKTIVA                           VANBILANSNA AKTIVA                           88           0
+89VANBILANSNA PASIVA                           VANBILANSNA PASIVA                           89           0
+90RACUNI ODNOSA S FINANSIJSKIM KNJIGOVODSTVOM  RAÈUNI ODNOSA S FINANSIJSKIM KNJIGOVODSTVOM  90           0
+91MATERIJAL I ROBA                             MATERIJAL I ROBA                             91           0
+92RACUNI MESTA TROSKOVA NABAVKE,TEHNICKE UPRAVERAÈ.MESTA TROŠ.NABAV.TEHNIÈ.UPR. I POM.DELAT.92           0
+93RACUNI GLAVNIH PROIZVODNIH MESTA TROSKOVA    RAÈUNI GLAVNIH PROIZVODNIH MESTA TROŠKOVA    93           0
+94RACUNI MESTA TROSKOVA URAVE,PRODAJE I SL.AKTIRAÈ.MESTA TROŠ.UPRAVE, PRODAJE I SL.AKTIVNOS.94           0
+95NOSIOCI TROSKOVA                             NOSIOCI TROŠKOVA                             95           0
+96GOTOVI PROIZVODI                             GOTOVI PROIZVODI                             96           0
+97SLOBODNA GRUPA                               SLOBODNA GRUPA                               97           0
+98RASHODI I PROHODI                            RASHODI I PRIHODI                            98           0
+99RACUN DOBITKA,GUBITKA I ZAKLJUCKA            RAÈUNI DOBITKA, GUBITKA I ZAKLJUÈKA          99           0
+28ATIVNA VREMENSKA RAZGRANICENJA                                                                         0

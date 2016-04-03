@@ -1,0 +1,146 @@
+PUSH KEY CLEAR
+SELECT FAK
+IF FAKG.KASA=' '
+   MCEK=0
+   MKARTICA=0
+   MGOTOVINA=0
+   SELECT FAK
+   MBRKAL=BRKAL
+   SET ORDER TO 1
+   MMIME='KASA'+'00'+PPAS+'.WNG'
+   MMIME0='KASA'+'00'+PPAS
+   DO IDEL WITH (KKOCKAX)
+   DO IDEL WITH (KKOCKAX2)
+   SELECT FAK
+   COPY STRUCTURE TO &KKOCKA
+   USE &KKOCKA IN 0 ALIAS KOCKA EXCLU
+   SELECT KOCKA
+   MMALVRED=0
+   SELECT FAK
+   LOCATE FOR BRKAL=MBRKAL
+
+   IF FOUND()
+      DO WHILE.NOT.EOF()
+         IF BRKAL<>MBRKAL
+            EXIT
+         ENDIF
+         SCATTER NAME POLJA
+         MVELVRED=VELVRED
+         IF KOLI>0
+            SELECT KOCKA
+            APPEND BLANK
+            GATHER NAME POLJA
+            IF TOBJEKAT='V'
+               REPLACE MALVRED WITH ROUND(MVELVRED*(100+PROCPOR)/100,2)
+               REPLACE MALCENA WITH ROUND(MALVRED/KOLI,2)
+            ENDIF
+            REPLACE NAZ WITH ROB.NAZ
+            MMALVRED=MMALVRED+MALVRED
+         ENDIF
+         SELECT FAK
+         SKIP
+      ENDDO      
+   ENDIF
+   MGOTOVINA=MMALVRED
+   SET EXACT ON
+   SELECT KOCKA
+   INDEX ON RSIF TAG RSIF
+   SET ORDER TO 1
+   TOTAL ON RSIF TO &KKOCKA2 FIELDS RSIF
+   DELETE ALL
+PACK
+
+   APPEND FROM &KKOCKA2
+   GO TOP
+   SET RELATION TO RSIF INTO ROB
+   SET EXACT OFF 
+   SET CENTURY ON
+   
+   SET EXACT OFF 
+   SET CENTURY ON
+   FIDAT=FCREATE(MMIME)
+   MTARIFA='G'
+   M2MALVRED=0
+   mm='#FISKAL'
+   FPUTS(fidat,MM)
+   DO WHILE.NOT.EOF()
+      M2MALVRED=M2MALVRED+MALVRED-RABAT
+      IF KOLI>0
+         DO CASE TARIFA
+         CASE ALLTRIM(TARIFA)=TOSTOPA
+            MTARIFA='Ð'
+         CASE ALLTRIM(TARIFA)=TNSTOPA
+            MTARIFA='E'
+         OTHERWISE
+            MTARIFA='A'
+         ENDCASE
+         mrsif=rsif
+         mmalcena=TRANSFORM(malcena,'9999999.99')
+         mcena=TRANSFORM(malcena,'9999999.99')
+         mNAZ=SUBSTR(naz,1,18)
+         MJED='kom'
+         MKOLLEN=LEN(ALLTRIM(STR(ABS(KOLI),10,3)))
+         MKOLI=ABS(KOLI)
+         MKOLIC=''
+         IF MKOLI>10
+            MKOLIC=STR(MKOLI,5,2)
+         ELSE
+            MKOLIC=STR(MKOLI,5,3)
+         ENDIF
+         IF MKOLI>99
+            MKOLIC=STR(MKOLI,5,1)
+         ENDIF
+         IF MKOLI>999
+            MKOLIC=STR(MKOLI,5,0)
+         ENDIF
+         mmalcena='      0.00'
+         IF koli>=0
+            mkolic=SPACE(10-mkollen)+mkolic
+         ELSE
+            mkolic=SPACE(9-mkollen)+'-'+mkolic
+         endif   
+         MM=LTRIM(RSIF)+';'+MNAZ+';'+MJED+';'+MKOLIC+';'+MCENA+';'+MTARIFA
+         FPUTS(fidat,MM)
+      ENDIF
+      SKIP
+   ENDDO
+   MM='#PLACANJE'
+   FPUTS(fidat,MM)
+   SELECT KASAPL
+   MCEK=CEK
+   MGOTOVINA=KES
+   MKARTICA=KARTICA
+   mdato=dato
+   IF mdato<mgotovina
+      mdato=mgotovina
+   endif   
+   SELECT FAK
+   MP1=TRANSFORM(MCEK,'9999999.99')
+   MP2=TRANSFORM(MKARTICA,'9999999.99')
+   MP3=TRANSFORM(Mdato,'9999999.99')
+   IF MCEK<>0
+      MM='CEKOVI'+';'+MP1
+      FPUTS(fidat,MM)
+   ENDIF
+   IF MKARTICA<>0
+      MM='KARTICA'+';'+MP2
+      FPUTS(fidat,MM)
+   ENDIF
+   IF MGOTOVINA<>0
+      MM='GOTOVINA'+';'+MP3
+      FPUTS(fidat,MM)
+   ENDIF
+   GO top
+   FCLOSE(fidat)
+   MWNGSALJI='C:\COM'
+   COPY FILE &MMIME TO &MWNGSALJI
+   SELECT KOCKA
+   USE
+   SELECT FAK
+LOCATE FOR BRKAL=MBRKAL
+
+   SET ORDER TO 
+   REPLACE FAKG.KASA WITH '*'
+ENDIF
+POP KEY
+

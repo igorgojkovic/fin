@@ -1,0 +1,28 @@
+PUSH KEY CLEAR
+MNALU=NALU
+MNALI=NALI
+IF MNALU<>0
+PUSH KEY CLEAR
+
+ 
+   *REPORT FORM BLNALU FOR NALU=MNALU PREVIEW
+
+   mfile='BLNALU'
+   uslov="NALU=MNALU"
+   DO printer_bullzip WITH mdata02,mfile,uslov
+   
+   
+   POP KEY
+ELSE
+PUSH KEY CLEAR
+
+   *REPORT FORM BLNALI FOR NALI=MNALI PREVIEW
+
+   mfile='BLNALI'
+   uslov="NALI=MNALI"
+   DO printer_bullzip WITH mdata02,mfile,uslov
+   
+   
+   POP KEY
+ENDIF
+POP KEY

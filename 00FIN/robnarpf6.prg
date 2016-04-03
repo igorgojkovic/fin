@@ -1,0 +1,9 @@
+GO TOP
+DO WHILE.NOT.EOF()
+   IF IZLAZ<>0
+      MNARUCITI=IZLAZ
+      REPLACE NARUCITI WITH MNARUCITI 
+   ENDIF
+   SKIP
+ENDDO   
+robnarpnarucivanje.release

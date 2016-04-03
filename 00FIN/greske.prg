@@ -1,0 +1,4 @@
+PARAMETER merror, mess, mess1, mprog, mlineno
+
+   DO FORM GRESKE WITH MERROR,MESS,MESS1,MPROG,MLINENO
+   READ EVENTS

@@ -1,0 +1,5 @@
+PUSH KEY CLEAR
+AN0fizli.GRD0.ReadOnly=.F.
+AN0fizli.GRD0.BACKCOLOR=RGB(255,255,255)
+AN0fizli.Refresh  
+POP KEY

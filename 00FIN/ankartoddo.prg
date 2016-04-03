@@ -1,0 +1,159 @@
+PARAMETERS MDINDEV,MDAT0,MDAT1,MDOK,M2BRNAL,MSVE
+PUSH KEY CLEAR
+SELECT DATUMI
+REPLACE DAT0 WITH MDAT0
+REPLACE DAT1 WITH MDAT1
+SELECT ANALK
+PUBLIC TMESTO,TNAZIV,TSIFRA,TULICA,TULBROJ,TTEL,TFAX,TZIRORAC
+TSIFRA=AN0.SIFRA
+TNAZIV=AN0.NAZIV
+TMESTO=AN0.MESTO
+TULICA=AN0.ULICA
+TULBROJ=AN0.ULBROJ
+TTELEFON=AN0.TELEFON
+TFAX=AN0.FAX
+TZIRORAC=AN0.ZIRORAC
+
+KKNALIZV=MDATA01+'\NALIZV'+OPERATER+'.DBF'
+KKNALIZVX=MDATA01+'\NALIZV'+OPERATER+'.CDX'
+KNALIZV=MDATA01+'\NALIZV'+OPERATER
+KNALIZVX=MDATA01+'\NALIZV'+OPERATER
+
+
+DO IDEL WITH (KKNALIZV)
+DO IDEL WITH (KKNALIZVX)
+DO IBAZE WITH KNALIZV,'NALIZV'
+DO IIND WITH KNALIZV,'KONTO+DTOS(DATDOK)','BRNAL','DTOS(DATDOK)',;
+             'KONTO+SIFRA+DTOS(DATDOK)','SIFRA+DTOS(DATDOK)','SIFRA+BRRAC+DTOS(DATDOK)'
+
+USE &KNALIZV IN 0 ALIAS NALIZV EXCLUSIVE 
+
+      SELECT ANALK
+      GO TOP 
+      MPDUG=0
+      MPPOT=0
+      DO WHILE.NOT.EOF()
+         IF DATDOK<MDAT0
+            IF DOK=MDOK.OR.MDOK=SPACE(3)
+               IF BRNAL=m2brnal.or.m2brnal=SPACE(6)
+                  IF MDINDEV='DIN'
+                     MPDUG=MPDUG+DUG
+                     MPPOT=MPPOT+POT
+                  ELSE
+                     MPDUG=MPDUG+DEVDUG
+                     MPPOT=MPPOT+DEVPOT
+                  ENDIF
+               endif
+            ENDIF
+         ENDIF
+         SKIP
+      ENDDO
+      SELECT NALIZV
+      IF MPDUG<>0.OR.MPPOT<>0
+         APPEND BLANK
+         REPLACE PDUG WITH MPDUG
+         REPLACE PPOT WITH MPPOT
+         REPLACE PSALDO WITH PDUG-PPOT    
+      ENDIF
+      PUBLIC APDUG,APPOT,ADUG,APOT
+      APDUG=MPDUG
+      APPOT=MPPOT
+      SELECT ANALK
+      GO TOP
+      MADUG=0
+      MAPOT=0
+ 
+      DO WHILE.NOT.EOF()
+         IF DATDOK>=MDAT0.AND.DATDOK<=MDAT1
+            IF DOK=MDOK.OR.MDOK=SPACE(3)
+               IF BRNAL=m2brnal.or.m2brnal=SPACE(6)
+               MBRNAL=BRNAL
+               MDUG=DUG
+               MPOT=POT
+               MDATDOK=DATDOK
+               MDEV=DEV
+               MDEVKURS=DEVKURS
+               MDEVDUG=DEVDUG
+               MDEVPOT=DEVPOT
+               MOPIS=OPIS
+               MBRRAC=BRRAC
+               MVALUTA=VALUTA
+               IF MDINDEV='DIN'
+                  MADUG=MADUG+DUG
+                  MAPOT=MAPOT+POT
+               ELSE
+                  MADUG=MADUG+DEVDUG
+                  MAPOT=MAPOT+DEVPOT
+               ENDIF   
+               MVANVAL=VANVAL
+               MZATVAR=ZATVAR
+               SELECT NALIZV
+               APPEND BLANK
+               REPLACE BRNAL WITH MBRNAL
+               REPLACE DUG WITH MDUG
+               REPLACE POT WITH MPOT
+               REPLACE DATDOK WITH MDATDOK
+               REPLACE DEV WITH MDEV
+               REPLACE DEVKURS WITH MDEVKURS
+               REPLACE DEVDUG WITH MDEVDUG
+               REPLACE DEVPOT WITH MDEVPOT
+               REPLACE OPIS WITH MOPIS
+               REPLACE BRRAC WITH MBRRAC
+               REPLACE VALUTA WITH MVALUTA
+               REPLACE VANVAL WITH MVANVAL
+               REPLACE ZATVAR WITH MZATVAR
+               SELECT ANALK
+               endif
+            ENDIF   
+         ENDIF 
+         SKIP
+      ENDDO
+      ADUG=MADUG
+      APOT=MAPOT
+      SELECT NALIZV
+      GO TOP
+      IF MDINDEV='DEV'
+         REPLACE ALL DUG WITH DEVDUG
+         REPLACE ALL POT WITH DEVPOT
+         REPLACE ALL DEVDUG WITH 0
+         REPLACE ALL DEVPOT WITH 0
+      ENDIF
+      MDUG=0
+      MPOT=0
+      MSALDO=0
+      IF MSVE='D'
+         DELETE ALL FOR pot<>0
+         DELETE ALL FOR devpot<>0
+         DELETE ALL FOR ppot<>0
+         pack
+      ENDIF
+      IF MSVE='P'
+         DELETE ALL FOR dug<>0
+         DELETE ALL FOR devdug<>0
+         DELETE ALL FOR pdug<>0
+         pack
+      ENDIF
+      GO top
+      DO WHILE.NOT.EOF()
+         MSALDO=MSALDO+DUG-POT+PDUG-PPOT
+         REPLACE SALDO WITH MSALDO
+         SKIP
+      ENDDO   
+      GO TOP
+      SELECT NALIZV 
+      PUSH KEY CLEAR
+      PUBLIC ADINDEV
+      ADINDEV=MDINDEV
+      REPORT FORM ANALK02ODDO PREVIEW
+      
+   mfile='ANALK02ODDO'
+   uslov=""
+   DO printer_bullzip WITH mdata02,mfile,uslov
+      
+      
+      POP KEY
+      USE
+SELECT ANALK
+
+SET EXACT ON                                        
+POP KEY

@@ -1,0 +1,22 @@
+   PARAMETERS MMAOP,MN,MP
+   PUSH KEY CLEAR
+
+   MAOP=MMAOP
+   SEEK MAOP
+   IF FOUND()
+      MN001=NETO
+      MP001=PRETH
+      IF MN<>0
+         MNP=ROUND(MN001*100/MN,0)
+      ELSE
+         MNP=0
+      ENDIF
+      IF MP<>0
+         MPP=ROUND(MP001*100/MP,0)
+      ELSE
+         MPP=0
+      ENDIF
+      REPLACE PRNETO WITH MNP
+      REPLACE PRPRETH WITH MPP
+   POP KEY
+   ENDIF  

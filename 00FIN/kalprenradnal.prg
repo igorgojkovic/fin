@@ -1,0 +1,6 @@
+PUSH KEY CLEAR
+IF KALG.ARHIVA=' '
+   DO FORM kalprenradnal
+ENDIF
+POP KEY
+

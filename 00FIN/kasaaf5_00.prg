@@ -1,0 +1,8 @@
+DO CASE 
+CASE apartnaz=0
+   DO KASAAF5
+CASE apartnaz=1
+   DO KASAAF5naz
+OTHERWISE   
+   DO KASAAF5PIB2
+ENDCASE

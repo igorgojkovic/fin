@@ -1,0 +1,133 @@
+PUSH KEY CLEAR
+FAK.GRD0.COLUMN1.SETFOCUS
+MTNET=TNET
+*IF TNET=2
+MPKAL=FAKG.PBRKAL
+MPDOK=FAKG.PDOK
+MMBROJNI=VAL(TTVREDNI)
+IF MPKAL<>SPACE(6)
+   IF MPDOK<>SPACE(3) 
+      IF SUBSTR(MPDOK,1,1)='M'
+*         TKOJI='M'
+         *----AKO POSTOJI KALKULACIJA-------------
+         MKKAL='TMKAL'+ALLTRIM(SUBSTR(MPDOK,2,2))+'.DBF'
+         IF FILE(MKKAL)
+            FAK.RELEASE
+            MBROJNI=VAL(ALLTRIM(SUBSTR(MPDOK,2,2)))
+            USE AATM IN 0 ALIAS IZBOR
+            SELECT IZBOR
+            GOTO MBROJNI
+           * WAIT WINDOWS TUNKOL+' '+TTVREDNI+' '+TNAZIV+' '+TSIFARNIK
+            PUBLIC TTVREDNI,TKOJI,TMESTO,TVRSTA,TNAZIV,TGRAD,TSIFARNIK,TNET,TFVRSTA,TDANVAL,TNABAVNA,TPRACENJE,TUNKOL,TPRENCEN,TNIVELAC,TKONTOU,TKORIGUJMC,TFPVRSTAS,TMCMARZA
+            TTVREDNI=ALLTRIM(SIFPROD)
+            TNAZIV=ALLTRIM(PNAZIV)
+            TMESTO=ALLTRIM(PMESTO)
+            TSIFARNIK=SIFARNIK
+            TKOJI=' '
+            TGRAD=MP
+            TFVRSTA=FVRSTA
+            TDANVAL=DANVAL
+            TNET=1
+            TNABAVNA=NABCENA
+            TPRACENJE=PRACENJE
+            TUNKOL=UNKOL 
+            TNIVELAC=TNIVEL
+            TPRENCEN=PRENCEN
+            TKONTOU=KONTOU
+            TKORIGUJMC=KORIGUJMC
+            TFPVRSTAS=FPVRSTAS
+            TMCMARZA=MCMARZA
+            CLOSE ALL TABLES
+            KKAL='TMKAL'+TTVREDNI
+            KKALG='TMKALG'+TTVREDNI
+            KFAK='TMFAK'+TTVREDNI
+            KFAKG='TMFAKG'+TTVREDNI
+            KTVNIV='TMNIV'+TTVREDNI
+            KKALP=MDATA01+'\'+'TMKALP'+OPERATER
+            IF TSIFARNIK<>'  '
+               KROB='MROB'+ALLTRIM(TSIFARNIK)
+            ELSE
+               KROB='ROB'
+            ENDIF
+            KFAKP=MDATA01+'\'+'TMFAKP'+OPERATER+'.DBF'
+            KTVNIVP=MDATA01+'\'+'TMNIVP'+OPERATER+'.DBF'
+            KTM='TM'+TTVREDNI
+            *KPP='PP'+TTVREDNI
+            KTVP='KP'+TTVREDNI
+            KKALIZV=MDATA01+'\'+'KALIZV'+OPERATER+'.DBF'
+            KNIVIZV=MDATA01+'\'+'NIVIZV'+OPERATER+'.DBF'
+            KTVKART=MDATA01+'\'+'TVKART'+OPERATER+'.DBF'
+            KTVPAR=MDATA01+'\'+'TVPAR'+OPERATER+'.DBF'
+            KzFAK=MDATA01+'\'+'zFAK'+OPERATER+'.DBF'
+            KzFAKG=MDATA01+'\'+'zFAKG'+OPERATER+'.DBF'
+            PUSH KEY CLEAR
+            TKOJI='KAL'
+            NALB='TVK'
+            TNET=1
+            TOBJEKAT='M'
+            DO FORM KAL WITH MPKAL
+            pop key 
+            *-------------POVRATAK U RACUNE VP
+            USE AATV IN 0 ALIAS IZBOR
+            SELECT IZBOR
+            GOTO MMBROJNI
+            PUBLIC TTVREDNI,TKOJI,TMESTO,TVRSTA,TNAZIV,TGRAD,TSIFARNIK,TNET,TFVRSTA,TDANVAL,TNABAVNA,TPRACENJE,TUNKOL,TPRENCEN,TNIVELAC,TKONTOU,TKORIGUJMC,TFPVRSTAS,TMCMARZA
+            TTVREDNI=ALLTRIM(SIFPROD)
+            TNAZIV=ALLTRIM(PNAZIV)
+            TMESTO=ALLTRIM(PMESTO)
+            TSIFARNIK=SIFARNIK
+            TGRAD=MP
+            TKOJI=' '
+            TFVRSTA=FVRSTA
+            TDANVAL=DANVAL
+            TNET=1
+            TNABAVNA=NABCENA
+            TPRACENJE=PRACENJE
+            TUNKOL=UNKOL
+            TNIVELAC=TNIVEL
+            TPRENCEN=PRENCEN
+            TKONTOU=KONTOU  
+            TKORIGUJMC=KORIGUJMC
+            TFPVRSTAS=FPVRSTAS
+            TMCMARZA=MCMARZA
+            CLOSE ALL TABLES
+            KKAL='KAL'+TTVREDNI
+            KKALG='KALG'+TTVREDNI
+            KFAK='FAK'+TTVREDNI
+            KFAKG='FAKG'+TTVREDNI
+            KTVNIV='TVNIV'+TTVREDNI
+            KKALP=MDATA01+'\'+'KALP'+OPERATER+'.DBF'
+            IF TSIFARNIK<>'  ' 
+               KROB='ROB'+ALLTRIM(TSIFARNIK)
+            ELSE
+               KROB='ROB'
+            ENDIF
+            KFAKP=MDATA01+'\'+'FAKP'+OPERATER
+            KTVNIVP=MDATA01+'\'+'TVNIVP'+OPERATER
+            KTM='TVTM'+TTVREDNI
+            *KPP='TVPP'+TTVREDNI
+            KTVP='TVP'+TTVREDNI
+            KKALIZV=MDATA01+'\'+'KALIZV'+OPERATER+'.DBF'
+            KNIVIZV=MDATA01+'\'+'NIVIZV'+OPERATER+'.DBF'
+            KTVKART=MDATA01+'\'+'TVKART'+OPERATER+'.DBF'
+            KTVPAR=MDATA01+'\'+'TVPAR'+OPERATER+'.DBF'
+            KzFAK=MDATA01+'\'+'zFAK'+OPERATER+'.DBF'
+            KzFAKG=MDATA01+'\'+'zFAKG'+OPERATER+'.DBF'
+            PUSH KEY CLEAR
+            TKOJI='RAC'
+            NALB='TVR'
+            TNET=MTNET
+            SET PROCEDURE TO TASTERI2
+               DO fakTAST
+            SET PROCEDURE TO
+            pop key     
+            TOBJEKAT='V'       
+            KEYBOARD '{ENTER}'
+            
+         ENDIF      
+         *----KRAJ AKO POSTOJI KALKULACIJA--------
+      ENDIF   
+   ENDIF
+ENDIF   
+*ENDIF
+POP KEY

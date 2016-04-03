@@ -1,0 +1,8 @@
+PUSH KEY CLEAR
+   SELECT email0
+   APPEND BLANK
+   REPLACE SIFmail WITH STR(RECNO(),5,0)
+   gmailslanje.GRD0.SETFOCUS
+   gmailslanje.GRD0.SETFOCUS
+   gmailslanje.REFRESH
+POP KEY

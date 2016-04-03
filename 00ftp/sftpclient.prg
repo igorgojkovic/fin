@@ -1,0 +1,3 @@
+DO FORM Sftpclient
+*READ EVENTS 
+*QUIT

@@ -1,0 +1,105 @@
+PUSH KEY CLEAR
+   IF BL.GRD0.READONLY=.F.  
+ *  SET STEP ON  
+      MBRNAL=BRNAL
+      USE NAL IN 0 ALIAS NAL ORDER 2
+      SELECT NAL
+      SEEK MBRNAL
+      IF FOUND()
+         DO WHILE.NOT.EOF()
+            IF BRNAL<>MBRNAL
+               EXIT
+            ENDIF
+            REPLACE DUG WITH 0 
+            REPLACE POT WITH 0
+            SKIP
+         ENDDO       
+      ENDIF
+      DO IDEL WITH (Kkockax)
+      DO IDEL WITH (Kkockax2)
+      DO IDEL WITH (Kkockax3)
+      SELECT NAL
+      COPY STRUCTURE TO &KKOCKA
+      USE
+      USE &KKOCKA IN 0 ALIAS KOCKA EXCLU
+      USE NALAP IN 0 ALIAS NAL ORDER 2
+      SELECT NAL
+      SEEK MBRNAL
+      IF FOUND()
+         DO WHILE.NOT.EOF()
+            IF BRNAL<>MBRNAL
+               EXIT
+            ENDIF
+            REPLACE DUG WITH 0
+            REPLACE POT WITH 0
+            SKIP
+         ENDDO       
+      ENDIF
+      SELECT BLP
+      SET ORDER TO 2
+      SEEK MBRNAL
+      MMDUG=0
+      MMPOT=0
+      MOPIS=''
+      MDATDOK=DATDOK
+      MKONTO='2430000000'
+      MDNEV=STR(DNEV,4,0)
+      DO WHILE.NOT.EOF()
+         IF BRNAL<>MBRNAL
+            EXIT
+         ENDIF
+         IF DUG<>0.OR.POT<>0
+            SCAttER name POLJA
+            SELECT KOCKA
+            APPEND BLANK
+            GATHER NAME POLJA   
+            MDUG=DUG
+            MPOT=POT
+            REPLACE OPIS WITH 'BLAGAJNA '+MDNEV
+            REPLACE DUG WITH MPOT
+            REPLACE POT WITH MDUG 
+            MMDUG=MMDUG+DUG
+            MMPOT=MMPOT+POT
+            SELECT BLP
+         ENDIF
+         SKIP
+      ENDDO
+      SELECT KOCKA
+      INDEX ON KONTO+MP+DOK TAG KONTO
+      SET ORDER TO 1
+      TOTAL ON KONTO+MP+DOK TO &KKOCKA2 FIELDS DUG,POT FOR DUG<>0
+      TOTAL ON KONTO+MP+DOK TO &KKOCKA3 FIELDS DUG,POT FOR POT<>0
+      DELETE ALL
+      PACK
+      APPEND FROM &KKOCKA2
+      APPEND FROM &KKOCKA3
+      IF MMPOT<>0
+         APPEND BLANK
+         REPLACE DUG WITH MMPOT
+         REPLACE DATDOK WITH MDATDOK
+         REPLACE OPIS WITH 'BLAGAJNA '+MDNEV
+         REPLACE KONTO WITH MKONTO
+         REPLACE BRNAL WITH MBRNAL
+      ENDIF
+      IF MMDUG<>0
+         APPEND BLANK
+         REPLACE POT WITH MMDUG
+         REPLACE DATDOK WITH MDATDOK
+         REPLACE OPIS WITH 'BLAGAJNA '+MDNEV
+         REPLACE KONTO WITH MKONTO
+         REPLACE BRNAL WITH MBRNAL
+      ENDIF
+      USE      
+      SELECT NAL
+      APPEND FROM &KKOCKA
+      SELECT NALBROJ
+      SEEK MBRNAL
+      IF FOUND()
+         REPLACE DATKNJI WITH DATE()
+      ENDIF   
+      SELECT NAL
+      USE
+      SELECT BLP
+      BL.GRD0.SETFOCUS
+   ENDIF
+POP KEY

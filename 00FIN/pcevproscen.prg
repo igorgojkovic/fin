@@ -1,0 +1,56 @@
+SELECT PCEV
+GO TOP
+DO WHILE.NOT.EOF()
+   IF PCEVG.ULIZ<>'U'
+      REPLACE TREBOV WITH 'T'
+   ENDIF
+   SKIP
+ENDDO    
+GO TOP
+SET RELATION TO
+SET ORDER TO 2
+SELECT PCEV
+SET RELATION TO BRKAL INTO PCEVG  ADDITIVE
+SELECT ROB
+GO TOP
+DO WHILE.NOT.EOF()
+   MRSIF=RSIF
+   SELECT PCEV
+   SEEK MRSIF
+   IF FOUND()
+      MVELVRED=0
+      MKOL=0
+      DO WHILE.NOT.EOF()
+         IF RSIF<>MRSIF
+            EXIT
+         ENDIF  
+         IF PCEVG.ULIZ='U'
+            MVELVRED=MVELVRED+VELVRED
+            MKOL=MKOL+KOL
+            IF MKOL<>0
+               MVELCENA=ROUND(MVELVRED/MKOL,4)
+            ELSE
+               MVELCENA=0   
+            ENDIF   
+            REPLACE PROSCENA WITH VELCENA          
+         ELSE
+            MKOLI=KOL
+            IF MKOL<>0
+               MVELCENA=ROUND(MVELVRED/MKOL,4)
+            ELSE
+               MVELCENA=VELCENA  
+            ENDIF   
+            REPLACE PROSCENA WITH MVELCENA
+            MVELVRED2=ROUND(MVELCENA*MKOLI,2)
+            MVELVRED=MVELVRED-MVELVRED2
+            MKOL=MKOL-MKOLI   
+         ENDIF 
+         REPLACE PROSVRED WITH ROUND(KOL*PROSCENA,2)
+         SKIP
+      ENDDO   
+   ENDIF
+   SELECT ROB
+   SKIP
+ENDDO
+SELECT PCEV 
+

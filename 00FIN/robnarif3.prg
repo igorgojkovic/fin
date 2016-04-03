@@ -1,0 +1,1 @@
+roBNARI.txtGRUPA.setfocus

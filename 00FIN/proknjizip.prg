@@ -1,0 +1,468 @@
+PUSH KEY CLEAR
+USE PROPAR IN 0 
+SELECT PROPAR
+MMAGGOT=MAGGOT
+MFPGOT=FPGOT
+MMAGGOTF=MAGGOTF
+MFPGOTF=FPGOTF
+
+MMAGPOLU=MAGPOLU
+MFPPOLU=FPPOLU
+
+MMAGMAT=MAGMAT
+MFPMAT=FPMAT
+
+MMAGPMAT=MAGPMAT
+MFPPMAT=FPPMAT
+
+MMAGAMB=MAGAMB
+MFPAMB=FPAMB
+USE
+
+SELECT PRONAL
+   MRNAL=RNAL
+   MDAT0=DAT0
+   MDAT1=DAT1
+   MDOK=DOK
+   MFAKTURA=FAKTURA
+   DO IDEL WITH (KKOCKAX)
+   DO IDEL WITH (KKOCKAX2)
+   SELECT PRONAL
+   MDAT1=DAT1
+   MDOK1=SUBSTR(MDOK,1,1)
+   MDOK2=SUBSTR(MDOK,2,2)
+
+   IF MDOK1=' '
+      MDOK1='V'
+   ENDIF
+
+   IF MDOK2='  '
+      MDOK2=ALLTRIM(MMAGPOLU)
+   ENDIF
+
+   IF MDOK1='V'
+      KMKAL='KAL'+ALLTRIM(MDOK2)+'.DBF'
+      KMKALG='KALG'+ALLTRIM(MDOK2)+'.DBF'
+   ELSE
+      KMKAL='TMKAL'+ALLTRIM(MDOK2)+'.DBF'
+      KMKALG='TMKALG'+ALLTRIM(MDOK2)+'.DBF'
+   ENDIF
+
+   MIMA=0
+   MMIMA=0
+   USE &KMKALG IN 0 ALIAS KALG
+   SELECT KALG
+   SET ORDER TO 6
+   SEEK MRNAL
+   IF FOUND()
+      MMIMA=1
+      MBRKAL=BRKAL
+      *-----ISPRAZNI STAVKE----------
+      MIMA=1
+      REPLACE BRKAL WITH SPACE(6)
+      REPLACE RNAL WITH SPACE(12)
+   ELSE
+      SET ORDER TO 1
+      GO BOTTOM
+      IF RECCOUNT()>0
+         MBRKAL=BRKAL
+      ELSE
+         MBRKAL='000000'
+      ENDIF
+   ENDIF
+   BROJAC=1
+   IF MMIMA=0
+      MNBRKAL= REPLI('0',6-LEN(ALLTRIM((STR(VAL(MBRKAL)+BROJAC,6,0)))))+ALLTRIM((STR(VAL(MBRKAL)+BROJAC,6,0)))
+   ELSE
+      MNBRKAL=MBRKAL
+   ENDIF
+   USE &KKALPRN IN 0 ALIAS KALPRN 
+   SElECT KALPRN
+   SET ORDER TO 1
+   LOCATE FOR ALLTRIM(FVRSTA)=ALLTRIM(MFPGOT)
+   IF FOUND()
+      MSEMA=SEMA
+      MFVRSTA=FVRSTA
+      MVPDV=VPDV
+   ELSE
+      MSEMA=SPACE(4)
+      MFVRSTA=SPACE(3)
+      MVPDV=' '
+   ENDIF
+   USE
+   *-----------OVDE ODREDJUJEMO NALOG
+   USE &KNALVRSTA IN 0 ALIAS NALVRSTA
+   SELECT NALVRSTA
+   MGOT=ALLTRIM(MMAGPOLU)
+   IF MDOK1='V'
+   MDOK='V'+MGOT
+   ELSE
+   MDOK='M'+MGOT
+   ENDIF
+   MOBL='K'
+   LOCATE FOR DOK=MDOK.AND.OBL=MOBL
+   IF FOUND()
+      MZNAKOVI=SUBSTR(POCSIF,1,2)
+   ELSE
+      MZNAKOVI=SPACE(2)
+   ENDIF
+   USE
+   MBRNAL=MZNAKOVI+SUBSTR(MNBRKAL,3,4)
+   *----------KRAJ ODREDJIVANJA NALOGA
+   *-------NASLI SMO KALKULACIJU SAD DODAJEMO STAVKE
+   SELECT KALG
+   IF MMIMA=0
+         APPEND BLANK 
+         REPLACE BRKAL WITH MNBRKAL
+         REPLACE DOKUM WITH MRNAL
+         REPLACE BRRAC WITH MRNAL
+         REPLACE FVRSTA WITH MFVRSTA
+         REPLACE VPDV WITH MVPDV
+         REPLACE DATDOK WITH MDAT1
+         REPLACE VALUTA WITH MDAT1
+         REPLACE BRNAL WITH MBRNAL
+         REPLACE RNAL WITH MRNAL
+         REPLACE SIFRA WITH '    1'
+
+   ELSE
+         REPLACE BRKAL WITH MNBRKAL
+         REPLACE DOKUM WITH MRNAL
+         REPLACE BRRAC WITH MRNAL
+         REPLACE FVRSTA WITH MFVRSTA
+         REPLACE VPDV   WITH MVPDV
+         REPLACE DATDOK WITH MDAT1
+         REPLACE VALUTA WITH MDAT1
+         REPLACE BRNAL WITH MBRNAL
+         REPLACE RNAL WITH MRNAL
+         REPLACE SIFRA WITH '    1'
+
+   ENDIF
+   
+   USE
+   *----------SADA PUNIMO TELO KALKULACIJE------------
+   USE &KMKAL IN 0 ALIAS KAL
+   SELECT KAL
+   SET ORDER TO 1
+   IF MIMA=1
+      LOCATE FOR BRKAL=MBRKAL
+
+      IF FOUND()
+         DO WHILE.NOT.EOF()
+            IF BRKAL<>MBRKAL
+               EXIT
+            ENDIF
+               REPLACE KOL WITH 0
+               REPLACE CENA WITH 0
+               REPLACE IZNOS WITH 0
+               REPLACE BRKAL WITH ''
+               UNLOCK
+            LOCATE FOR BRKAL=MBRKAL
+
+            IF FOUND()
+               LOOP
+            ELSE
+               EXIT
+            ENDIF
+            SKIP
+         ENDDO
+      ENDIF
+   ENDIF
+   SELECT PRONAL
+   SET ORDER TO 1
+   SEEK MRNAL
+   IF FOUND()
+      DO WHILE.NOT.EOF()
+         IF RNAL<>MRNAL
+            EXIT
+         ENDIF
+         MRSIF=PSIF
+         MRKOL=KOL
+         MRCENA=RCENA
+         MTARIFA=PROPOLU.TARIFA
+         MPROCPOR=PROPOLU.PROCPOR
+         MVELCENA=PROPOLU.PLCENA
+         MMALCENA=PROPOLU.MALCENA
+         REPLACE ARHIVA WITH '*'
+         SELECT KAL
+            APPEND BLANK  
+            REPLACE BRKAL WITH MNBRKAL
+            REPLACE RSIF WITH MRSIF
+            REPLACE KOL WITH MRKOL
+            REPLACE CENA WITH MRCENA
+            REPLACE VELCENA WITH MRCENA
+            REPLACE MALCENA WITH MMALCENA
+            REPLACE IZNOS WITH ROUND(KOL*CENA,2)
+            REPLACE VELVRED WITH ROUND(KOL*CENA,2)
+            REPLACE MALVRED WITH ROUND(KOL*MALCENA,2)
+            REPLACE TARIFA WITH MTARIFA
+            REPLACE PROCPOR WITH MPROCPOR
+            REPLACE POREZ WITH ROUND(VELVRED*PROCPOR/100,2)
+            REPLACE DATDOK WITH MDAT1
+         SELECT PRONAL
+         SKIP
+      ENDDO
+   ENDIF
+   SELECT KAL
+   USE
+   *------------NAPUNILI SMO GOTOVE PROIZVODE------------------
+
+   *----------PUNIMO BAZU KOCKA--------------------------------
+   SELECT PRONORMA
+   SET ORDER TO 3
+   COPY STRU TO &KKOCKA
+   USE &KKOCKA IN 0 ALIAS KOCKA EXCLU
+   
+   SELECT PRONAl
+   SET ORDER TO 1
+   SEEK MRNAL
+   IF FOUND()
+      DO WHILE.NOT.EOF()
+         IF RNAL<>MRNAL
+            EXIT
+         ENDIF
+         MNORMATIV=NORMATIV
+         MRSIF=PSIF
+         MRKOL=KOL
+         SELECT PRONORMA
+         SEEK MNORMATIV
+         IF FOUND()
+            MIZNOS=0
+            DO WHILE.NOT.EOF()
+               if NORMATIV<>MNORMATIV
+                  EXIT
+               ENDIF
+               SCATTER NAME polja
+               SELECT kocka
+               APPEND BLANK
+               GATHER NAME polja
+               REPLACE KOL WITH KOL*MRKOL
+               REPLACE IZNOS WITH KOL*CENA
+               MIZNOS=MIZNOS+IZNOS
+               SELECT PRONORMA
+               SKIP
+            ENDDO
+         ELSE
+            MIZNOS=0
+         ENDIF
+         SELECT PRONAL
+         SKIP
+      ENDDO
+   ENDIF
+   
+   *--------PRVO PUNIMO SIROVINE---------
+   FOR I=1 TO 3
+      SELECT KOCKA
+      GO TOP
+      DO CASE i
+      case I=1
+         MMAG=MMAGMAT
+         MFP=MFPMAT
+         COPY TO &KKOCKA2 FOR MSIF<>SPACE(5)
+      case I=2
+         MMAG=MMAGPMAT
+         MFP=MFPPMAT
+         COPY TO &KKOCKA2 FOR PMSIF<>SPACE(5)
+      case I=3
+         MMAG=MMAGAMB
+         MFP=MFPAMB
+         COPY TO &KKOCKA2 FOR ASIF<>SPACE(5)
+      ENDcase
+      
+      USE AATV IN 0 
+      SELECT AATV
+      LOCATE FOR ALLTRIM(SIFPROD)=ALLTRIM(MMAG)
+      IF FOUND()
+         IF SIFARNIK<>'  '
+            PROR='ROB'+ALLTRIM(SIFARNIK)+'.DBF'
+         ELSE
+            PROR='ROB.DBF'
+         ENDIF
+      ENDIF
+      USE
+      USE &PROR IN 0 ALIAS ROBA
+      SELECT ROBA
+    
+      SET ORDER TO 1
+      DO IDEL WITH (KKOCKAX2)
+      USE &KKOCKA2 IN 0 ALIAS KOCKA2 EXCLU
+      SELECT KOCKA2
+      IF RECCOUNT()>0
+         DO CASE i
+         case I=1
+            MMSIF=MSIF
+            REPLACE ALL PSIF WITH MSIF
+         case I=2
+            MMSIF=PMSIF
+            REPLACE ALL PSIF WITH PMSIF
+         case I=3
+            MMSIF=ASIF
+            REPLACE ALL PSIF WITH ASIF
+         endcase
+         INDEX ON PSIF TAG PSIF
+         SET ORDER TO 1
+         TOTAL ON PSIF TO &KKOCKA3 FIELDS KOL,IZNOS
+         DELETE ALL
+PACK
+
+         APPEND FROM &KKOCKA3
+         KMFAK='FAK'+ALLTRIM(MMAG)+'.DBF'
+         KMFAKG='FAKG'+ALLTRIM(MMAG)+'.DBF'
+         MIMA=0
+         MMIMA=0
+         USE &KMFAKG IN 0 ALIAS FAKG
+         SELECT FAKG
+         SET ORDER TO 6
+         SEEK MRNAL
+         IF FOUND()
+            MMIMA=1
+            MBRKAL=BRKAL
+         ELSE
+            SET ORDER TO 1
+            GO BOTTOM
+            IF RECCOUNT()>0
+               MBRKAL=BRKAL
+            ELSE
+               MBRKAL='000000'
+            ENDIF
+         ENDIF
+         BROJAC=1
+         IF MMIMA=1
+            MNBRKAL=MBRKAL
+         ELSE
+            MNBRKAL= REPLI('0',6-LEN(ALLTRIM((STR(VAL(MBRKAL)+BROJAC,6,0)))))+ALLTRIM((STR(VAL(MBRKAL)+BROJAC,6,0)))
+         ENDIF
+         USE &kFAKPRN  IN 0 ALIAS fakprn
+         SELECT fakprn
+         SET ORDER TO 1
+         LOCATE FOR ALLTRIM(FVRSTA)=ALLTRIM(MFP)
+         IF FOUND()
+            MFVRSTA=FVRSTA
+            MSEMA=SEMA
+            MVPDV=VPDV
+         ELSE
+            MFVRSTA=SPACE(3)
+            MSEMA=SPACE(4)
+            MVPDV=' '
+         ENDIF
+         USE
+         *-----------OVDE ODREDJUJEMO NALOG
+         USE &KNALVRSTA IN 0 ALIAS NALVRSTA
+         SELECT NALVRSTA
+         MGOT=ALLTRIM(MMAG)
+         MDOK='V'+MGOT
+         MOBL='R'
+         LOCATE FOR DOK=MDOK.AND.OBL=MOBL
+         IF FOUND()
+            MZNAKOVI=SUBSTR(POCSIF,1,2)
+         ELSE
+            MZNAKOVI=SPACE(2)
+         ENDIF
+         USE
+         MBRNAL=MZNAKOVI+SUBSTR(MNBRKAL,3,4)
+         *-------NASLI SMO RACUN SAD DODAJEMO STAVKE
+         SELECT FAKG
+         IF MMIMA=0
+            APPEND BLANK
+               REPLACE BRKAL WITH MNBRKAL
+               REPLACE BRRAC WITH MRNAL
+               REPLACE FVRSTA WITH MFVRSTA
+               REPLACE OTPBR WITH MNBRKAL
+               REPLACE DATDOK WITH MDAT1
+               REPLACE OTPDAT WITH MDAT1
+               REPLACE VALUTA WITH MDAT1
+               REPLACE BRNAL WITH MBRNAL
+               REPLACE RNAL WITH MRNAL
+               REPLACE SIFRA WITH '    1'
+               REPLACE DATUM WITH DATE()
+               REPLACE VREME WITH TIME()
+         ELSE
+               REPLACE BRKAL WITH MNBRKAL
+               REPLACE BRRAC WITH MRNAL
+               REPLACE FVRSTA WITH MFVRSTA
+               REPLACE OTPBR WITH MNBRKAL
+               REPLACE DATDOK WITH MDAT1
+               REPLACE OTPDAT WITH MDAT1
+               REPLACE VALUTA WITH MDAT1
+               REPLACE BRNAL WITH MBRNAL
+               REPLACE RNAL WITH MRNAL
+               REPLACE SIFRA WITH '    1'
+               REPLACE DATUM WITH DATE()
+               REPLACE VREME WITH TIME()
+         ENDIF
+         USE
+         *----------SADA PUNIMO TELO KALKULACIJE------------
+     
+         USE &KMFAK IN 0 ALIAS FAK
+         SELECT FAK
+         
+         SET ORDER TO 1
+         IF MMIMA=1
+            LOCATE FOR BRKAL=MBRKAL
+
+            IF FOUND()
+               DO WHILE.NOT.EOF()
+                  IF BRKAL<>MBRKAL
+                     EXIT
+                  ENDIF
+                     REPLACE KOLI WITH 0
+                     REPLACE CENA WITH 0
+                     REPLACE IZNI WITH 0
+                     REPLACE VELCENA WITH 0
+                     REPLACE VELVRED WITH 0
+                     REPLACE BRKAL WITH ''
+                     LOCATE FOR BRKAL=MBRKAL
+
+                     IF FOUND()
+                        LOOP
+                     ELSE
+                        EXIT
+                     ENDIF
+                  SKIP
+               ENDDO
+            ENDIF
+         ENDIF
+         SELECT KOCKA2
+         SET RELATION TO PSIF INTO ROBA
+         GO TOP
+         DO WHILE.NOT.EOF()
+            MRSIF=PSIF
+            MRKOL=KOL
+            MRCENA=CENA
+            MTARIFA=ROBA.TARIFA
+            MPROCPOR=ROBA.PROCPOR
+            IF MRKOL<>0
+            SELECT FAK
+            APPEND BLANK
+               REPLACE BRKAL WITH MNBRKAL
+               REPLACE RSIF WITH MRSIF
+               REPLACE KOLI WITH MRKOL
+               REPLACE CENA WITH MRCENA
+               REPLACE VELCENA WITH MRCENA
+               REPLACE IZNI WITH ROUND(KOLI*CENA,2)
+               REPLACE VELVRED WITH ROUND(KOLI*CENA,2)
+               REPLACE TARIFA WITH MTARIFA
+               REPLACE PROCPOR WITH MPROCPOR
+               REPLACE POREZ WITH 0
+               REPLACE MALVRED WITH VELVRED
+               REPLACE MALCENA WITH CENA
+               REPLACE DATDOK WITH MDAT1
+            ENDIF
+            SELECT KOCKA2
+            SKIP
+         ENDDO
+         SELECT FAK
+         
+         USE
+      ENDIF   
+      SELECT KOCKA2
+      USE      
+      SELECT ROBA
+      USE      
+   NEXT
+   *---------------KRAJ KNJIZENJA SIROVINA----------------
+   SELECT kocka 
+   use
+   SELECT pronal
+POP KEY
+
+

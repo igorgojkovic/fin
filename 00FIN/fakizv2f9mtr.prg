@@ -1,0 +1,32 @@
+PUSH KEY CLEAR
+   DO IDEL WITH (Kkockax)
+   DO IDEL WITH (Kkockax2)
+   SET RELATION TO
+   USE MTR IN 0 ORDER 1
+   SELECT kali
+   COPY TO &kkocka
+   USE &kkocka IN 0 ALIAS kocka EXCLUSIVE
+   SELECT kocka
+   INDEX on mtr TAG mtr
+   SET ORDER TO 1
+   TOTAL ON mtr FIELDS izni,IZNOS TO &KKOCKA2
+   DELETE ALL
+   PACK
+   APPEND FROM &KKOCKA2
+   SET ORDER TO 
+   SET RELATION TO MTR INTO MTR ADDITIVE
+   GO TOP   
+   REPLACE ALL IZNOS WITH IZNI
+   *REPORT FORM FAKIZV2MTR PREVIEW
+   mfile='FAKIZV2MTR'
+   uslov=""
+   DO printer_bullzip WITH mdata02,mfile,uslov
+   
+   
+   SELECT KOCKA
+   USE
+   SELECT MTR 
+   USE
+   SELECT KALI
+POP KEY   
+

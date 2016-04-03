@@ -1,0 +1,70 @@
+PUSH KEY CLEAR
+CLOSE ALL
+USE &KKAL IN 0 ORDER 1 ALIAS KAL EXCLU
+USE &KKALG IN 0 ORDER 1 ALIAS KALG EXCLU
+   SELECT KALG
+   GO TOP
+   DO WHILE.NOT.EOF()
+      MBRKAL=BRKAL
+      IF DATDOK=CTOD('').OR.SIFRA=SPACE(5)
+         DELETE 
+      ENDIF
+      *IF LEN(ALLTRIM(RNAL))>6
+      *REPLACE RNAL WITH REPLICATE('0',12-LEN(ALLTRIM(RNAL)))+ALLTRIM(STR(VAL(ALLTRIM(RNAL)),12,0))
+      *ENDIF
+      IF PRENOS=' '
+         REPLACE PBRKAL WITH ''
+         REPLACE PDOK WITH ''
+         REPLACE PUBRKAL WITH ' '
+         REPLACE PUDOK WITH ''
+      ENDIF   
+      SKIP
+   ENDDO
+   PACK
+   GO TOP
+   DO WHILE.NOT.EOF()
+      MBRKAL=BRKAL
+      SELECT KAL
+      SEEK MBRKAL
+      IF FOUND()
+         LL=1
+      ELSE
+         LL=0
+      ENDIF
+      SELECT KALG
+      IF LL=0
+         DELETE 
+      ENDIF
+      SKIP
+   ENDDO
+   SELECT KALG
+   SET ORDER TO 
+   GO TOP
+   DO WHILE.NOT.EOF()
+      MBRKAL=BRKAL
+      MREC=RECNO()
+      SET ORDER TO 1
+      SEEK MBRKAL
+      IF FOUND()
+         MBROJAC=0
+         DO WHILE.NOT.EOF()
+            IF BRKAL<>MBRKAL
+               EXIT
+            ENDIF   
+            MBROJAC=MBROJAC+1
+            IF MBROJAc=2
+               DELETE
+            endif   
+            SKIP
+         ENDDO   
+      ENDIF
+      SET ORDER TO 
+      GOTO MREC
+      SKIP
+   ENDDO
+   SELECT KALG
+   PACK
+   CLOSE ALL
+KALSERV.RELEASE
+POP KEY
+
